@@ -11,11 +11,9 @@ import { AboutSection } from '@/components/AboutSection';
 import { RecognitionsShowcase } from '@/components/RecognitionsShowcase';
 import { HumanImpactSection } from '@/components/HumanImpactSection';
 import { ReachOutSection } from '@/components/ReachOutSection';
-import { ArchivalVerificationModal } from '@/components/ArchivalVerificationModal';
 
 export default function Home() {
   const [currentLang, setCurrentLang] = useState<Language>('en');
-  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
   // Track active section for navbar highlight
@@ -61,41 +59,28 @@ export default function Home() {
       <Navbar
         currentLang={currentLang}
         onLanguageChange={handleLanguageChange}
-        onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
         activeSection={activeSection}
       />
 
-      {/* Hero Section */}
-      <HeroSection
-        currentLang={currentLang}
-        onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
-      />
+      {/* Hero Section with Floating Cutout Portrait */}
+      <HeroSection currentLang={currentLang} />
 
-      {/* Marquee Ticker Strip */}
+      {/* Marquee Ticker Strip: District Hubs */}
       <MarqueeStrip currentLang={currentLang} />
 
-      {/* 01 & 02: Origins & Agricultural Roots */}
+      {/* The LIC Story: Interactive Swiping Carousel */}
       <RootsSection currentLang={currentLang} />
 
-      {/* 03 & 04: Numbered Interactive Accordion */}
-      <MilestonesAccordion
-        currentLang={currentLang}
-        onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
-      />
+      {/* Public Concerns & Advisory Solutions: Stepped-Polygon Accordion */}
+      <MilestonesAccordion currentLang={currentLang} />
 
       {/* About Him Split Section */}
-      <AboutSection
-        currentLang={currentLang}
-        onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
-      />
+      <AboutSection currentLang={currentLang} />
 
-      {/* 05: Recognitions & Citations Grid */}
-      <RecognitionsShowcase
-        currentLang={currentLang}
-        onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
-      />
+      {/* Career Progression & Distinctions: Agent -> LIAFI -> CLIA -> 3x Diamond Brigade Club */}
+      <RecognitionsShowcase currentLang={currentLang} />
 
-      {/* 06: Human Impact & Confidentiality Notice */}
+      {/* Human Significance & Generational Impact */}
       <HumanImpactSection currentLang={currentLang} />
 
       {/* Reach Out & Connect (The Final Section) */}
@@ -106,8 +91,8 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
             {currentLang === 'te'
-              ? '© 2026 జి. శివరామిరెడ్డి అధికారిక డిజిటల్ లెగసీ ఆర్కైవ్. సర్వ హక్కులు ప్రత్యేకించబడ్డాయి.'
-              : '© 2026 G Sivarami Reddy Digital Legacy Archive. All Rights Reserved.'}
+              ? '© 2026 జి. శివరామిరెడ్డి అధికారిక డిజిటల్ లెగసీ. సర్వ హక్కులు ప్రత్యేకించబడ్డాయి.'
+              : '© 2026 G Sivarami Reddy Digital Legacy. All Rights Reserved.'}
           </p>
           <p className="font-semibold text-amberGold-400">
             {currentLang === 'te'
@@ -116,13 +101,6 @@ export default function Home() {
           </p>
         </div>
       </footer>
-
-      {/* Archival Verification Modal */}
-      <ArchivalVerificationModal
-        isOpen={isVerificationModalOpen}
-        onClose={() => setIsVerificationModalOpen(false)}
-        currentLang={currentLang}
-      />
 
     </main>
   );

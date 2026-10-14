@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Language } from '@/types';
 import { siteContent } from '@/data/content';
-import { Lock, HeartHandshake, Users2, ShieldAlert } from 'lucide-react';
+import { Lock, HeartHandshake, Users2, Sparkles } from 'lucide-react';
 
 interface HumanImpactSectionProps {
   currentLang: Language;
@@ -22,7 +22,9 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
             <span className="w-2.5 h-2.5 rounded-full bg-amberGold-500" />
-            <span>{currentLang === 'te' ? 'మానవీయ స్పర్శ & సేవా నిరతి' : 'The Human Significance'}</span>
+            <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+              {currentLang === 'te' ? 'మానవీయ స్పర్శ & సేవా నిరతి' : 'The Human Significance'}
+            </span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-charcoal-950 tracking-tight">
@@ -35,15 +37,18 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
                 Beyond Titles, <span className="text-amberGold-500">There Are People</span>
               </>
             )}
+            <Sparkles className="inline-block w-6 h-6 ml-2 text-amberGold-500 align-baseline" />
           </h2>
 
-          <p className="mt-3 text-sm sm:text-base text-charcoal-600 font-medium">
+          <p className={`mt-3 text-sm sm:text-base text-charcoal-600 font-medium ${
+            currentLang === 'te' ? 'font-telugu' : ''
+          }`}>
             {ch.tagline[currentLang]}
           </p>
         </div>
 
         {/* 3 Core Principles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {ch.principles.map((p, idx) => {
             const Icon = icons[idx % icons.length];
             return (
@@ -59,7 +64,9 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
                   <Icon className="w-6 h-6" />
                 </div>
 
-                <h3 className="text-xl font-bold text-charcoal-950 mb-3">
+                <h3 className={`text-xl font-bold text-charcoal-950 mb-3 ${
+                  currentLang === 'te' ? 'font-telugu' : ''
+                }`}>
                   {p.title[currentLang]}
                 </h3>
 
@@ -71,20 +78,6 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
               </motion.div>
             );
           })}
-        </div>
-
-        {/* Non-Fabrication & Privacy Notice */}
-        <div className="p-8 rounded-2xl bg-cream-200 border border-cream-400 text-center max-w-4xl mx-auto space-y-4">
-          <p className={`text-sm text-charcoal-700 leading-relaxed font-medium ${
-            currentLang === 'te' ? 'font-telugu' : ''
-          }`}>
-            {ch.restrainedReflection[currentLang]}
-          </p>
-
-          <div className="pt-4 border-t border-cream-300 flex items-center justify-center space-x-2 text-xs text-charcoal-500">
-            <ShieldAlert className="w-4 h-4 text-amberGold-600" />
-            <span>{ch.confidentialityNotice[currentLang]}</span>
-          </div>
         </div>
 
       </div>

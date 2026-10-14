@@ -8,12 +8,11 @@ import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface AboutSectionProps {
   currentLang: Language;
-  onOpenVerificationModal: () => void;
+  onOpenVerificationModal?: () => void;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({
   currentLang,
-  onOpenVerificationModal,
 }) => {
   const stats = [
     {
@@ -21,8 +20,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
       label: { en: 'Continuous Public Advisory', te: 'నిరంతర ప్రజా సేవ' },
     },
     {
-      value: { en: '#3 Rank', te: '#3 ర్యాంకు' },
-      label: { en: 'Diamond Brigade Merit Standing', te: 'డైమండ్ బ్రిగేడ్ విశిష్ట గౌరవం' },
+      value: { en: '3× Club', te: '3 సార్లు' },
+      label: { en: 'Diamond Brigade Club Honoree', te: 'డైమండ్ బ్రిగేడ్ విశిష్ట గౌరవం' },
     },
     {
       value: { en: 'Kadapa Div.', te: 'కడప డివిజన్' },
@@ -139,11 +138,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             {/* Action CTA */}
             <div className="pt-2">
               <button
-                onClick={onOpenVerificationModal}
+                onClick={() => {
+                  const el = document.getElementById('reach-out');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 font-bold text-xs uppercase tracking-wider hover-lift button-press transition-all shadow-md"
               >
                 <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                  {currentLang === 'te' ? 'సత్య ప్రమాణాల సమీక్ష' : 'Inspect Verified Records'}
+                  {currentLang === 'te' ? 'సలహా కొరకు సంప్రదించండి' : 'Connect for Advisory'}
                 </span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>

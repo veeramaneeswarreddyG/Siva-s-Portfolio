@@ -238,11 +238,11 @@ export const siteContent: SiteContent = {
         {
           id: "m-diamond",
           period: { en: "Earned Distinction", te: "అత్యున్నత గుర్తింపు" },
-          title: { en: "#3 Diamond Brigade", te: "#3 డైమండ్ బ్రిగేడ్" },
-          subtitle: { en: "Top Tier Performance Ranking", te: "అత్యుత్తమ పనితీరుకు గౌరవం" },
+          title: { en: "3× Diamond Brigade Club", te: "3 సార్లు డైమండ్ బ్రిగేడ్ క్లబ్" },
+          subtitle: { en: "3-Time Qualified Elite Distinction", te: "3 సార్లు సాధించిన విశిష్ట ఘనత" },
           description: {
-            en: "Achieved the #3 Diamond Brigade standing, recognizing stellar dedication and consistent excellence in insurance service.",
-            te: "అసాధారణ పనితీరు మరియు నిరంతర కృషికి గాను '#3 డైమండ్ బ్రిగేడ్' హోదాను సాధించి తన ప్రత్యేకతను చాటుకున్నారు.",
+            en: "Qualified and stood 3 times in the elite Diamond Brigade Club of Kadapa Division, recognizing sustained advisory excellence and generational community trust.",
+            te: "కడప డివిజన్‌లో 3 సార్లు ప్రతిష్టాత్మక డైమండ్ బ్రిగేడ్ క్లబ్‌లో నిలిచి విశిష్ట ఘనత సాధించారు. నిరంతర ప్రతిభ మరియు ప్రజా విశ్వసనీయతకు ఇది నిదర్శనం.",
           },
           significance: {
             en: "Competitive benchmark of dedication and trust",
@@ -345,32 +345,6 @@ export const siteContent: SiteContent = {
           },
         },
         {
-          id: "rec-diamond-brigade",
-          designationOrAward: "#3 Diamond Brigade",
-          category: {
-            en: "Elite Performance Distinction",
-            te: "విశిష్ట పనితీరు పురస్కారం",
-          },
-          context: {
-            en: "Merit Recognition Milestone • Kadapa Division",
-            te: "ప్రతిభకు దక్కిన గౌరవ స్థానం • కడప డివిజన్",
-          },
-          description: {
-            en: "Ranked #3 in Diamond Brigade, an elite distinction reflecting consistent high performance and policyholder satisfaction.",
-            te: "అత్యుత్తమ ఫలితాలు మరియు నిరంతర ప్రజాదరణను సాధించిన వారి కోసం కేటాయించబడిన డైమండ్ బ్రిగేడ్‌లో మూడవ స్థానం.",
-          },
-          verificationStatus: "verified",
-          verificationDetails: {
-            en: "Documented on official credential card and division register.",
-            te: "అధికారిక రికార్డుల్లో ధృవీకరించబడిన ప్రత్యేక పురస్కారం.",
-          },
-          certificateAvailable: true,
-          certificatePlaceholderText: {
-            en: "Official merit citation recorded in Jammalamadugu Branch.",
-            te: "జమ్మలమడుగు బ్రాంచ్‌లో నమోదైన విశిష్ట గౌరవ పత్రం.",
-          },
-        },
-        {
           id: "rec-clia",
           designationOrAward: "CLIA",
           category: {
@@ -396,14 +370,40 @@ export const siteContent: SiteContent = {
             te: "కడప డివిజన్ అధికారిక నియామక రికార్డులు ధృవీకరించబడ్డాయి.",
           },
         },
+        {
+          id: "rec-diamond-brigade",
+          designationOrAward: "3× Diamond Brigade Club",
+          category: {
+            en: "Elite Performance Distinction",
+            te: "విశిష్ట ప్రతిభ పురస్కారం",
+          },
+          context: {
+            en: "3-Time Qualified Honoree • Kadapa Division",
+            te: "3 సార్లు సాధించిన ఘనత • కడప డివిజన్",
+          },
+          description: {
+            en: "Qualified and stood 3 prestigious times in the elite Diamond Brigade Club of Kadapa Division — recognizing consistent top-tier performance, deep community trust, and unwavering service excellence.",
+            te: "కడప డివిజన్‌లో అత్యంత ప్రతిష్టాత్మకమైన డైమండ్ బ్రిగేడ్ క్లబ్‌లో 3 సార్లు అర్హత సాధించి సగర్వంగా నిలిచారు. అంకితభావం, నిరంతర ప్రతిభ మరియు వేలాది కుటుంబాల విశ్వసనీయతకు ఇది నిదర్శనం.",
+          },
+          verificationStatus: "verified",
+          verificationDetails: {
+            en: "Documented 3-time qualification in Kadapa Division club registers.",
+            te: "కడప డివిజన్ క్లబ్ రిజిస్టర్‌లో నమోదైన 3 సార్లు డైమండ్ బ్రిగేడ్ గౌరవం.",
+          },
+          certificateAvailable: true,
+          certificatePlaceholderText: {
+            en: "Official 3-time Diamond Brigade Club citation.",
+            te: "3 సార్లు సాధించిన అధికారిక డైమండ్ బ్రిగేడ్ పురస్కార పత్రం.",
+          },
+        },
       ],
       specialHonorTitle: {
-        en: "The Meaning Behind The Diamond Standing",
-        te: "డైమండ్ బ్రిగేడ్ వెనుక ఉన్న పరమార్థం",
+        en: "The Meaning Behind The 3× Diamond Brigade Club Standing",
+        te: "3 సార్లు డైమండ్ బ్రిగేడ్ క్లబ్ వెనుక ఉన్న విశిష్ట పరమార్థం",
       },
       specialHonorDesc: {
-        en: "Rankings in public service are not solitary conquests. The #3 Diamond Brigade standing stands as proof that hundreds of families in Jammalamadugu and Kadapa Division placed their trust in his word.",
-        te: "సేవా రంగంలో సాధించే ర్యాంకులు కేవలం అంకెలు కావు. జమ్మలమడుగు మరియు కడప డివిజన్ పరిధిలోని ఎన్నో కుటుంబాలు ఆయన మాటను నమ్మి తమ భవిష్యత్తును ఆయన చేతుల్లో పెట్టాయనడానికి ఇది సజీవ సాక్ష్యం.",
+        en: "Qualifying 3 times in the elite Diamond Brigade Club stands as proof that hundreds of families across Jammalamadugu and Kadapa Division placed their financial future in his trust year after year.",
+        te: "సేవా రంగంలో సాధించే గౌరవాలు కేవలం అలంకారాలు కావు. కడప డివిజన్ డైమండ్ బ్రిగేడ్ క్లబ్‌లో 3 సార్లు నిలవడం అనేది వందలాది కుటుంబాలు ఆయన మాటను నమ్మి తమ భవిష్యత్తును ఆయన చేతుల్లో పెట్టాయనడానికి సజీవ సాక్ష్యం.",
       },
     },
 
