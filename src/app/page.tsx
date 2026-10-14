@@ -10,6 +10,7 @@ import { MilestonesAccordion } from '@/components/MilestonesAccordion';
 import { AboutSection } from '@/components/AboutSection';
 import { RecognitionsShowcase } from '@/components/RecognitionsShowcase';
 import { HumanImpactSection } from '@/components/HumanImpactSection';
+import { ReachOutSection } from '@/components/ReachOutSection';
 import { LegacyClosing } from '@/components/LegacyClosing';
 import { ArchivalVerificationModal } from '@/components/ArchivalVerificationModal';
 
@@ -20,7 +21,7 @@ export default function Home() {
 
   // Track active section for navigation highlight
   useEffect(() => {
-    const sectionIds = ['hero', 'roots', 'milestones', 'about', 'recognitions', 'impact', 'legacy'];
+    const sectionIds = ['hero', 'roots', 'milestones', 'about', 'recognitions', 'reach-out', 'legacy'];
 
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight * 0.35;
@@ -57,31 +58,31 @@ export default function Home() {
         activeSection={activeSection}
       />
 
-      {/* Hero Section (Replicating Image 1 structure with Image 2 Transparent Portrait) */}
+      {/* Hero Section */}
       <HeroSection
         currentLang={currentLang}
         onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
       />
 
-      {/* Marquee Ticker Strip directly below Hero */}
+      {/* Marquee Ticker Strip */}
       <MarqueeStrip currentLang={currentLang} />
 
-      {/* Origins & Agricultural Roots (Two-Acre Heritage & 4 Virtues) */}
+      {/* Origins & Agricultural Roots */}
       <RootsSection currentLang={currentLang} />
 
-      {/* Numbered Interactive Accordion ("How Roots Turned Into Lifelong Protection") */}
+      {/* Numbered Interactive Accordion */}
       <MilestonesAccordion
         currentLang={currentLang}
         onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
       />
 
-      {/* "About Me" Split Section ("Who is Sivarami Reddy?") */}
+      {/* "About Him" Section */}
       <AboutSection
         currentLang={currentLang}
         onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
       />
 
-      {/* Recognitions & Citations Grid (#3 Diamond Brigade, CLIA, LIAFI, Agent) */}
+      {/* Recognitions & Citations Grid */}
       <RecognitionsShowcase
         currentLang={currentLang}
         onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
@@ -90,13 +91,16 @@ export default function Home() {
       {/* Human Impact & Confidentiality Notice */}
       <HumanImpactSection currentLang={currentLang} />
 
+      {/* Reach Out / Connect Section (Designed like user's Image 1 & 2 with Address, Phone, Email & Motto) */}
+      <ReachOutSection currentLang={currentLang} />
+
       {/* Legacy & Closing Documentary Statement */}
       <LegacyClosing
         currentLang={currentLang}
         onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
       />
 
-      {/* Archival Verification & Family Contribution Modal */}
+      {/* Archival Verification Modal */}
       <ArchivalVerificationModal
         isOpen={isVerificationModalOpen}
         onClose={() => setIsVerificationModalOpen(false)}

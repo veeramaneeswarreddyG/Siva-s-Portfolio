@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Language } from '@/types';
-import { ShieldCheck, Globe, Menu, X, ArrowUpRight } from 'lucide-react';
+import { ShieldCheck, Globe, Menu, X, ArrowUpRight, Phone } from 'lucide-react';
 
 interface NavbarProps {
   currentLang: Language;
@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'milestones', label: { en: 'Milestones', te: 'మైలురాళ్లు' } },
     { id: 'about', label: { en: 'About Him', te: 'పరిచయం' } },
     { id: 'recognitions', label: { en: 'Honours', te: 'గౌరవాలు' } },
-    { id: 'impact', label: { en: 'Human Impact', te: 'సేవా నిరతి' } },
+    { id: 'reach-out', label: { en: 'Reach Out', te: 'సంప్రదించండి' } },
     { id: 'legacy', label: { en: 'Legacy', te: 'వారసత్వం' } },
   ];
 
@@ -56,7 +56,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Brand Logo (Matching Image 1: Round icon + Brand Name + Orange dot) */}
+        {/* Brand Logo */}
         <button
           onClick={() => scrollTo('hero')}
           className="flex items-center space-x-3 text-left group focus-visible:outline-none"
@@ -69,17 +69,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div>
             <span className="font-bold text-lg sm:text-xl tracking-tight text-charcoal-950 font-sans group-hover:text-amberGold-600 transition-colors">
-              Sivarami<span className="text-amberGold-500">.</span>
+              G Sivarami Reddy<span className="text-amberGold-500">.</span>
             </span>
             <span className="hidden sm:block text-[10px] tracking-wider uppercase text-charcoal-600 font-semibold">
-              LIC Chief Advisor
+              Chief Advisor • Jammalamadugu Branch
             </span>
           </div>
         </button>
 
-        {/* Center Pill Navigation Menu (Matches Image 1: Dark capsule) */}
+        {/* Center Pill Navigation Menu */}
         <nav
-          className="hidden md:flex items-center space-x-1 px-4 py-1.5 rounded-full bg-charcoal-900/90 text-ivory-300 shadow-xl border border-charcoal-800 backdrop-blur-md"
+          className="hidden lg:flex items-center space-x-1 px-4 py-1.5 rounded-full bg-charcoal-900/90 text-ivory-300 shadow-xl border border-charcoal-800 backdrop-blur-md"
           aria-label="Main Navigation"
         >
           {navLinks.map((link) => {
@@ -88,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                   isActive
                     ? 'bg-amberGold-500 text-charcoal-950 font-semibold shadow-sm'
                     : 'text-ivory-300 hover:text-white hover:bg-charcoal-800/80'
@@ -100,9 +100,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Right Actions: Language Switcher & Archival CTA */}
+        {/* Right Actions: Phone Hotline, Language Switcher & Archival CTA */}
         <div className="flex items-center space-x-2 sm:space-x-3">
           
+          {/* Quick Call Button */}
+          <a
+            href="tel:8919358526"
+            className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-charcoal-950 bg-amberGold-400 hover:bg-amberGold-500 shadow-sm button-press transition-all"
+            title="Call G Sivarami Reddy"
+          >
+            <Phone className="w-3.5 h-3.5" />
+            <span>8919358526</span>
+          </a>
+
           {/* Language Toggle */}
           <button
             onClick={() => onLanguageChange(currentLang === 'en' ? 'te' : 'en')}
@@ -115,7 +125,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
           </button>
 
-          {/* Archival CTA Button (Matches "Let's Talk" pill from Image 1) */}
+          {/* Archival CTA Button */}
           <button
             onClick={onOpenVerificationModal}
             className="hidden sm:inline-flex items-center space-x-1.5 px-4 py-2 rounded-full text-xs font-semibold text-charcoal-950 bg-white hover:bg-cream-100 border border-charcoal-900/20 shadow-sm hover:shadow hover-lift button-press transition-all"
@@ -129,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full text-charcoal-900 bg-cream-300 hover:bg-cream-400"
+            className="lg:hidden p-2 rounded-full text-charcoal-900 bg-cream-300 hover:bg-cream-400"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -139,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-cream-100 border-b border-cream-400 px-6 pt-3 pb-6 mt-2 space-y-2 shadow-2xl animate-in slide-in-from-top-2">
+        <div className="lg:hidden bg-cream-100 border-b border-cream-400 px-6 pt-3 pb-6 mt-2 space-y-2 shadow-2xl animate-in slide-in-from-top-2">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -157,7 +167,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           ))}
 
-          <div className="pt-3 border-t border-cream-300 flex justify-between items-center">
+          <div className="pt-3 border-t border-cream-300 flex flex-col space-y-2">
+            <a
+              href="tel:8919358526"
+              className="w-full text-center py-2.5 rounded-full bg-amberGold-500 text-charcoal-950 text-xs font-bold flex items-center justify-center space-x-1.5"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>Call: 8919358526</span>
+            </a>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
