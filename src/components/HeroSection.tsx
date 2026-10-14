@@ -3,16 +3,15 @@
 import React from 'react';
 import Image from 'next/image';
 import { Language } from '@/types';
-import { ChevronRight, ShieldCheck } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 interface HeroSectionProps {
   currentLang: Language;
-  onOpenVerificationModal: () => void;
+  onOpenVerificationModal?: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   currentLang,
-  onOpenVerificationModal,
 }) => {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -26,21 +25,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       id="hero"
       className="relative w-full pt-16 sm:pt-20 pb-4 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
     >
-      {/* 1. TOP FRAMING LINE WITH OVERLAPPING CIRCLE TRADEMARK */}
+      {/* 1. TOP FRAMING LINE (Removed "Official Legacy Archive" label as requested) */}
       <div className="max-w-7xl mx-auto w-full border-t border-[#C8C5BD] pt-3 flex items-center justify-between z-10">
         {/* Overlapping Two-Circle Trademark (Black & Amber) */}
-        <div className="flex items-center space-x-2.5">
-          <div className="flex items-center -space-x-2">
-            <div className="w-5 h-5 rounded-full bg-[#1E1E1E] shadow-sm" />
-            <div className="w-5 h-5 rounded-full bg-[#F59E0B] shadow-sm" />
-          </div>
-          <span className="text-[11px] font-bold tracking-widest uppercase text-[#3A3A38]">
-            {currentLang === 'te' ? 'అధికారిక లెగసీ ఆర్కైవ్' : 'Official Legacy Archive'}
-          </span>
+        <div className="flex items-center -space-x-2">
+          <div className="w-5 h-5 rounded-full bg-[#1E1E1E] shadow-sm" />
+          <div className="w-5 h-5 rounded-full bg-[#F59E0B] shadow-sm" />
         </div>
 
-        {/* Small Branch Tagline */}
-        <div className="hidden sm:flex items-center space-x-2 text-[11px] font-mono uppercase tracking-wider text-[#6B6A66]">
+        {/* Branch / Division Tagline */}
+        <div className="flex items-center space-x-2 text-[11px] font-mono uppercase tracking-wider text-[#6B6A66]">
           <span>{currentLang === 'te' ? 'జమ్మలమడుగు బ్రాంచ్' : 'Jammalamadugu Branch'}</span>
           <span>•</span>
           <span>{currentLang === 'te' ? 'కడప డివిజన్' : 'Kadapa Division'}</span>
@@ -54,20 +48,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           : 'SIVARAMI REDDY GADIKOTA © 2026'}
       </div>
 
-      {/* 3. MAIN HERO STAGE: Moved up right under header rule, no huge empty gap */}
+      {/* 3. MAIN HERO STAGE: Clean, Moved Up, No 01 Watermark */}
       <div className="max-w-7xl mx-auto w-full mt-3 sm:mt-5 mb-3 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
         
-        {/* LEFT COLUMN: Clean Editorial Typography - Positioned Up */}
+        {/* LEFT COLUMN: Clean Editorial Typography */}
         <div className="lg:col-span-6 flex flex-col justify-center relative">
           
-          {/* Subtle Ghosted Number "01" in Background */}
-          <div className="absolute -left-4 sm:-left-8 -bottom-6 text-[130px] sm:text-[170px] lg:text-[210px] font-black text-[#1E1E1E]/[0.05] select-none pointer-events-none leading-none z-0">
-            01
-          </div>
-
           <div className="relative z-10 space-y-3 sm:space-y-4">
             
-            {/* Double Quotes & Two-Line Name Layout */}
+            {/* Double Quotes & Headline Typography */}
             <div className="flex items-start space-x-2 sm:space-x-3">
               <span className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#F59E0B] leading-none select-none -mt-2 sm:-mt-3">
                 “
@@ -75,6 +64,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
               <div className="flex flex-col">
                 
+                {/* REPOSITIONED: "LIC CHIEF ADVISOR" AS EYEBROW BADGE ABOVE NAME */}
+                <div className="mb-2">
+                  <span className="inline-flex items-center space-x-1.5 bg-[#F59E0B] text-[#1E1E1E] font-black uppercase text-[10px] sm:text-xs tracking-wider px-3.5 py-1 rounded-full shadow-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1E1E1E]" />
+                    <span>{currentLang === 'te' ? 'ఎల్.ఐ.సి చీఫ్ అడ్వైజర్' : 'LIC Chief Advisor'}</span>
+                  </span>
+                </div>
+
                 {/* LINE 1: "SIVARAMI REDDY" IN ONE LINE INSIDE AMBER CAPSULE */}
                 <div className="inline-block bg-[#F59E0B] text-[#1E1E1E] px-5 sm:px-7 lg:px-8 py-1.5 sm:py-2.5 rounded-full shadow-md w-fit">
                   <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[52px] font-black uppercase tracking-tight leading-none font-sans whitespace-nowrap m-0">
@@ -82,15 +79,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   </h1>
                 </div>
 
-                {/* NESTLED SUB-BADGE */}
-                <div className="mt-2 mb-1 ml-1">
-                  <span className="inline-block bg-[#F59E0B] text-[#1E1E1E] font-black uppercase text-[10px] sm:text-xs tracking-wider px-3.5 py-1 rounded-full shadow-sm">
-                    {currentLang === 'te' ? 'చీఫ్ అడ్వైజర్' : 'LIC Chief Advisor'}
-                  </span>
-                </div>
-
-                {/* LINE 2: "GADIKOTA." IN THE DOWNLINE WITH PERFECT SPACING */}
-                <div className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#1E1E1E] leading-[1.02] font-sans">
+                {/* LINE 2: "GADIKOTA." DIRECTLY BENEATH WITH PERFECT LINE SPACING */}
+                <div className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#1E1E1E] leading-[1.02] mt-2 sm:mt-2.5 font-sans">
                   {currentLang === 'te' ? 'గడికోట' : 'GADIKOTA'}
                   <span className="text-[#F59E0B]">.</span>
                 </div>
@@ -107,10 +97,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 : 'From two-acre agricultural roots to LIC Chief Advisor, Jammalamadugu Branch. Decades of uncompromised service, quiet integrity, and earned honour.'}
             </p>
 
-            {/* BOTTOM CTAs */}
-            <div className="pt-2 pl-3 sm:pl-7 flex flex-wrap items-center gap-3.5">
-              
-              {/* Circular Arrow Button */}
+            {/* ACTION CTA (Removed Archival Verification Button as requested) */}
+            <div className="pt-2 pl-3 sm:pl-7 flex items-center">
               <button
                 onClick={() => scrollToSection('roots')}
                 className="inline-flex items-center space-x-3 px-5 py-2.5 rounded-full bg-[#1E1E1E] text-white hover:bg-black text-xs sm:text-sm font-bold shadow-md hover-lift transition-all group"
@@ -122,27 +110,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {currentLang === 'te' ? 'ప్రస్థానాన్ని చూడండి' : 'Explore The Legacy'}
                 </span>
               </button>
-
-              {/* Archival Verification Link Button */}
-              <button
-                onClick={onOpenVerificationModal}
-                className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-full bg-white hover:bg-[#F7F5F0] text-[#1E1E1E] border border-[#C8C5BD] text-xs sm:text-sm font-bold shadow-sm hover-lift transition-all"
-              >
-                <ShieldCheck className="w-4 h-4 text-[#F59E0B]" />
-                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                  {currentLang === 'te' ? 'ధృవీకరణ రికార్డు' : 'Archival Verification'}
-                </span>
-              </button>
-
             </div>
 
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Person Image Shifted Up, Elevated & Sized Up Proportionally */}
+        {/* RIGHT COLUMN: Elevated, Sized-Up Person Portrait */}
         <div className="lg:col-span-6 flex flex-col items-center lg:items-end justify-center relative">
           
-          {/* Calibrated Container that fits cleanly in the viewport without pushing image below screen */}
           <div className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[520px] h-[400px] sm:h-[470px] lg:h-[520px] flex items-end justify-center overflow-visible">
             
             {/* 1. Circle Outline Behind Head / Shoulders */}
@@ -151,7 +126,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* 2. Bold Warm Amber/Yellow Block Behind Torso */}
             <div className="absolute bottom-0 right-2 sm:right-6 w-[220px] sm:w-[270px] lg:w-[320px] h-[250px] sm:h-[310px] lg:h-[360px] rounded-[36px] bg-[#F59E0B] shadow-xl z-0" />
 
-            {/* 3. Person Portrait: Big, Prominent, Lifted Up & Fully Visible */}
+            {/* 3. Sivarami Reddy Cutout Portrait: Scaled Up, Elevated & Fully Visible */}
             <div className="relative z-10 w-full h-full flex items-end justify-center">
               <Image
                 src="/images/sivarami_portrait.png"

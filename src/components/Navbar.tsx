@@ -1,51 +1,51 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Language } from '@/types';
 import { Globe, Menu, X, ArrowUpRight, PhoneCall } from 'lucide-react';
 
 interface NavbarProps {
   currentLang: Language;
   onLanguageChange: (lang: Language) => void;
-  onOpenVerificationModal: () => void;
+  onOpenVerificationModal?: () => void;
   activeSection: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   currentLang,
   onLanguageChange,
-  onOpenVerificationModal,
   activeSection,
 }) => {
   const [isShrunk, setIsShrunk] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
-  // Dynamic scroll listener: shrink on scroll down, expand on scroll up or at top
+  // Ultra-smooth 60/120fps scroll listener with requestAnimationFrame
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const currentY = window.scrollY;
 
-      if (currentScrollY < 60) {
-        // At the very top: fully expanded
-        setIsShrunk(false);
-      } else {
-        // Scrolling down: shrink navbar into compact logo + Request a Call pill
-        if (currentScrollY > lastScrollY + 4) {
-          setIsShrunk(true);
-        } 
-        // Scrolling up: expand navbar back to show all section links
-        else if (currentScrollY < lastScrollY - 4) {
-          setIsShrunk(false);
-        }
+          if (currentY < 40) {
+            setIsShrunk(false);
+          } else if (currentY > lastScrollY.current + 8) {
+            setIsShrunk(true);
+          } else if (currentY < lastScrollY.current - 8) {
+            setIsShrunk(false);
+          }
+
+          lastScrollY.current = currentY;
+          ticking.current = false;
+        });
+        ticking.current = true;
       }
-
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
@@ -65,42 +65,42 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 py-3 sm:py-4 transition-all duration-300">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-center">
+    <header className="fixed top-0 left-0 w-full z-50 py-2.5 sm:py-3.5 pointer-events-none">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-center pointer-events-auto">
         
-        {/* Dynamic Nav Capsule: Expands or Shrinks on Scroll */}
+        {/* Liquid Glass Capsule with Snappy Smooth Transitions */}
         <div
-          className={`flex items-center justify-between transition-all duration-500 ease-out rounded-full shadow-lg border backdrop-blur-md ${
+          className={`relative flex items-center justify-between rounded-full backdrop-blur-2xl border transition-all duration-200 ease-out shadow-[0_8px_30px_rgb(0,0,0,0.06)] before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/60 before:to-transparent before:pointer-events-none ${
             isShrunk
-              ? 'w-auto min-w-[280px] sm:min-w-[340px] px-3.5 py-1.5 sm:py-2 bg-cream-100/95 border-cream-400 shadow-xl'
-              : 'w-full px-4 sm:px-6 py-2 sm:py-2.5 bg-cream-100/90 border-cream-300/80'
+              ? 'w-auto px-3 py-1.5 bg-white/75 border-white/80 shadow-md'
+              : 'w-full px-4 sm:px-6 py-2 bg-white/65 border-white/60'
           }`}
         >
           
-          {/* Logo / Name (Always visible in both shrunk and expanded states) */}
+          {/* Logo / Monogram (Always visible) */}
           <button
             onClick={() => scrollTo('hero')}
-            className="flex items-center space-x-2.5 group focus-visible:outline-none flex-shrink-0"
+            className="flex items-center space-x-2 group focus-visible:outline-none flex-shrink-0 relative z-10"
             aria-label="Return to top"
           >
-            <div className="w-8 h-8 rounded-full bg-amberGold-500 text-charcoal-950 flex items-center justify-center font-bold text-xs shadow-sm group-hover:scale-105 transition-transform">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center font-black text-xs shadow-sm group-hover:scale-105 transition-transform">
               SRG
             </div>
-            <span className="font-extrabold text-sm sm:text-base tracking-tight text-charcoal-950 font-sans group-hover:text-amberGold-600 transition-colors">
-              {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'Sivarami'}
-              <span className="text-amberGold-500">.</span>
+            <span className="font-extrabold text-xs sm:text-sm tracking-tight text-[#1E1E1E] font-sans group-hover:text-amber-600 transition-colors">
+              {currentLang === 'te' ? 'శివరామి' : 'Sivarami'}
+              <span className="text-[#F59E0B]">.</span>
             </span>
           </button>
 
-          {/* Center Links: Visible when expanded, collapses when shrunk */}
+          {/* Center Links (Fades & collapses crisply in 200ms without stutter) */}
           <div
-            className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            className={`transition-all duration-200 ease-out flex items-center overflow-hidden relative z-10 ${
               isShrunk
-                ? 'max-w-0 opacity-0 pointer-events-none'
-                : 'max-w-[650px] opacity-100 hidden md:flex items-center space-x-1 mx-2'
+                ? 'opacity-0 scale-95 max-w-0 pointer-events-none mx-0'
+                : 'opacity-100 scale-100 max-w-[620px] hidden md:flex items-center space-x-1 mx-2'
             }`}
           >
-            <nav className="flex items-center space-x-1" aria-label="Main Navigation">
+            <nav className="flex items-center space-x-0.5" aria-label="Main Navigation">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.id;
                 return (
@@ -109,8 +109,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onClick={() => scrollTo(link.id)}
                     className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                       isActive
-                        ? 'bg-charcoal-950 text-amberGold-400 shadow-sm'
-                        : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-cream-200'
+                        ? 'bg-[#1E1E1E] text-[#F59E0B] shadow-sm'
+                        : 'text-[#3A3A38] hover:text-[#1E1E1E] hover:bg-black/5'
                     } ${currentLang === 'te' ? 'font-telugu' : ''}`}
                   >
                     {link.label[currentLang]}
@@ -121,24 +121,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Right Action: Language Toggle + Request a Call Button */}
-          <div className="flex items-center space-x-2 flex-shrink-0 ml-2">
+          <div className="flex items-center space-x-2 flex-shrink-0 ml-2 relative z-10">
             
             {/* Language Switcher */}
             <button
               onClick={() => onLanguageChange(currentLang === 'en' ? 'te' : 'en')}
-              className="flex items-center space-x-1 px-2.5 py-1.5 rounded-full text-xs font-bold text-charcoal-900 bg-cream-200 hover:bg-cream-300 border border-cream-400 transition-all button-press"
+              className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-bold text-[#1E1E1E] bg-black/5 hover:bg-black/10 border border-black/10 transition-all active:scale-95"
               aria-label={`Switch to ${currentLang === 'en' ? 'Telugu' : 'English'}`}
             >
-              <Globe className="w-3.5 h-3.5 text-amberGold-600" />
-              <span className={currentLang === 'en' ? 'font-telugu text-xs font-bold text-amberGold-700' : 'font-sans text-xs'}>
+              <Globe className="w-3.5 h-3.5 text-[#F59E0B]" />
+              <span className={currentLang === 'en' ? 'font-telugu text-xs font-bold text-amber-700' : 'font-sans text-xs'}>
                 {currentLang === 'en' ? 'తెలుగు' : 'EN'}
               </span>
             </button>
 
-            {/* "Request a Call" Button: Redirects to #reach-out (Always visible!) */}
+            {/* "Request a Call" Button: Smooth scroll to #reach-out */}
             <button
               onClick={() => scrollTo('reach-out')}
-              className="inline-flex items-center space-x-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 shadow-sm hover-lift button-press transition-all whitespace-nowrap"
+              className="inline-flex items-center space-x-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-black bg-[#F59E0B] hover:bg-amber-500 text-[#1E1E1E] shadow-sm hover:scale-[1.02] active:scale-95 transition-all whitespace-nowrap"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span className={currentLang === 'te' ? 'font-telugu' : ''}>
@@ -146,10 +146,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             </button>
 
-            {/* Mobile Hamburger (Only visible on small screens when expanded) */}
+            {/* Mobile Menu Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 rounded-full text-charcoal-900 bg-cream-200 hover:bg-cream-300"
+              className="md:hidden p-1.5 rounded-full text-[#1E1E1E] bg-black/5 hover:bg-black/10 transition-colors"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -160,18 +160,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (Liquid Glass Styled) */}
       {mobileMenuOpen && (
-        <div className="md:hidden max-w-sm mx-auto mt-2 px-4">
-          <div className="bg-cream-100 border border-cream-300 rounded-2xl p-4 shadow-xl space-y-1.5 animate-in slide-in-from-top-2">
+        <div className="md:hidden max-w-sm mx-auto mt-2 px-4 pointer-events-auto">
+          <div className="bg-white/85 backdrop-blur-2xl border border-white/80 rounded-2xl p-4 shadow-xl space-y-1.5 animate-in slide-in-from-top-2 duration-200">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`w-full text-left px-3 py-2 text-xs font-bold rounded-lg transition-colors flex items-center justify-between ${
+                className={`w-full text-left px-3 py-2 text-xs font-bold rounded-xl transition-colors flex items-center justify-between ${
                   activeSection === link.id
-                    ? 'bg-amberGold-500 text-charcoal-950 font-bold'
-                    : 'text-charcoal-800 hover:bg-cream-200'
+                    ? 'bg-[#F59E0B] text-[#1E1E1E] font-bold'
+                    : 'text-[#3A3A38] hover:bg-black/5'
                 }`}
               >
                 <span className={currentLang === 'te' ? 'font-telugu' : ''}>
@@ -181,13 +181,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             ))}
 
-            <div className="pt-2 border-t border-cream-300">
+            <div className="pt-2 border-t border-black/10">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   scrollTo('reach-out');
                 }}
-                className="w-full text-center py-2.5 rounded-full bg-amberGold-500 text-charcoal-950 text-xs font-bold flex items-center justify-center space-x-1.5"
+                className="w-full text-center py-2.5 rounded-full bg-[#F59E0B] text-[#1E1E1E] text-xs font-bold flex items-center justify-center space-x-1.5"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>{currentLang === 'te' ? 'కాల్ కొరకు అభ్యర్థించండి' : 'Request a Call (8919358526)'}</span>
