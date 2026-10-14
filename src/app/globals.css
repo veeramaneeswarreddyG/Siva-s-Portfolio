@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-serif: 'Cinzel', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-telugu: 'Noto Sans Telugu', sans-serif;
+}
+
+/* Base resets & smooth rendering */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: #0c120e;
+  overflow-x: hidden;
+}
+
+body {
+  color: #f3ebdd;
+  background-color: #0c120e;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.65;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1210;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2b3528;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c19a55;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Grain texture overlay */
+.bg-grain {
+  background-image: radial-gradient(rgba(243, 235, 221, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Gold hair-line accents */
+.border-gold-subtle {
+  border-color: rgba(193, 154, 85, 0.25);
+}
+
+.border-gold-glow {
+  border-color: rgba(193, 154, 85, 0.5);
+  box-shadow: 0 0 15px rgba(193, 154, 85, 0.1);
+}
+
+/* Typography refinement */
+.font-cinzel {
+  font-family: var(--font-serif);
+  letter-spacing: 0.04em;
+}
+
+.font-telugu {
+  font-family: var(--font-telugu), system-ui, sans-serif;
+  line-height: 1.8;
+}
+
+/* Selection styling */
+::selection {
+  background-color: #c19a55;
+  color: #0c120e;
+}
