@@ -9,38 +9,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        cream: {
+          50: "#FFFEFC",
+          100: "#FDFBF7",
+          200: "#FAF5EB",
+          300: "#F3EBDD",
+          400: "#E8DEC9",
+          500: "#D6C7AD",
+        },
+        amberGold: {
+          400: "#F5A623",
+          500: "#E88913",
+          600: "#D47806",
+          700: "#B86202",
+        },
+        charcoal: {
+          950: "#0F0F0E",
+          900: "#181816",
+          800: "#22211E",
+          700: "#33312C",
+          600: "#4D4A43",
+          500: "#6B675E",
+          400: "#8C877D",
+        },
         soil: {
           900: "#140F0A",
           800: "#1F1812",
           700: "#2B221B",
           600: "#3D3126",
           500: "#5A493B",
-          400: "#7E6A58",
-        },
-        forest: {
-          950: "#0C1611",
-          900: "#101F18",
-          800: "#182A22",
-          700: "#243A30",
-          600: "#324E42",
-          500: "#446456",
-          400: "#5B8070",
-        },
-        charcoal: {
-          950: "#111110",
-          900: "#1A1A18",
-          800: "#252522",
-          700: "#33332E",
-          600: "#474742",
-          500: "#63635C",
-        },
-        midnight: {
-          950: "#090E16",
-          900: "#0E141D",
-          800: "#141C28",
-          700: "#202B3B",
-          600: "#2E3C50",
-          500: "#41546E",
         },
         gold: {
           300: "#F0DA9B",
@@ -48,7 +45,6 @@ const config: Config = {
           500: "#C19A55",
           600: "#A37B34",
           700: "#7D5C22",
-          800: "#573F14",
         },
         ivory: {
           50: "#FCFAF6",
@@ -60,14 +56,29 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ["var(--font-cinzel)", "var(--font-cormorant)", "Georgia", "serif"],
-        sans: ["var(--font-plus-jakarta)", "system-ui", "sans-serif"],
+        serif: ["var(--font-cinzel)", "Georgia", "serif"],
+        sans: ["var(--font-plus-jakarta)", "system-ui", "-apple-system", "sans-serif"],
         telugu: ["var(--font-noto-telugu)", "var(--font-plus-jakarta)", "sans-serif"],
       },
+      animation: {
+        "spin-slow": "spin 20s linear infinite",
+        "pulse-subtle": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "float-gentle": "float 5s ease-in-out infinite",
+        "marquee": "marquee 35s linear infinite",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
       backgroundImage: {
-        "vignette-radial": "radial-gradient(circle, transparent 40%, rgba(0,0,0,0.85) 100%)",
-        "parchment-radial": "radial-gradient(circle at 50% 30%, rgba(243, 235, 221, 0.08) 0%, transparent 70%)",
-        "gold-shimmer": "linear-gradient(110deg, transparent 20%, rgba(193, 154, 85, 0.15) 50%, transparent 80%)",
+        "sunburst-radial": "radial-gradient(circle at 50% 60%, rgba(232, 137, 19, 0.18) 0%, rgba(250, 245, 235, 0) 70%)",
+        "card-shimmer": "linear-gradient(120deg, transparent 20%, rgba(232, 137, 19, 0.08) 50%, transparent 80%)",
       },
     },
   },
