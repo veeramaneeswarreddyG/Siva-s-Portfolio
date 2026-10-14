@@ -126,8 +126,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* 2. Bold Warm Amber/Yellow Block Behind Torso */}
             <div className="absolute bottom-0 right-2 sm:right-6 w-[220px] sm:w-[270px] lg:w-[320px] h-[250px] sm:h-[310px] lg:h-[360px] rounded-[36px] bg-[#F59E0B] shadow-xl z-0" />
 
-            {/* 3. Sivarami Reddy Cutout Portrait: Scaled Up, Elevated & Fully Visible */}
-            <div className="relative z-10 w-full h-full flex items-end justify-center">
+            {/* 3. Sivarami Reddy Cutout Portrait: Smooth Fade from Bottom */}
+            <div
+              className="relative z-10 w-full h-full flex items-end justify-center"
+              style={{
+                maskImage: 'linear-gradient(to bottom, black 72%, transparent 98%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 72%, transparent 98%)',
+              }}
+            >
               <Image
                 src="/images/sivarami_portrait.png"
                 alt="G Sivarami Reddy - LIC Chief Advisor"
@@ -136,24 +142,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 priority
                 className="object-contain object-bottom drop-shadow-[0_20px_30px_rgba(0,0,0,0.32)] h-[105%] max-h-none w-auto scale-105 sm:scale-110 lg:scale-115 origin-bottom transition-transform duration-300 hover:scale-[1.18]"
               />
-            </div>
-
-            {/* 4. Editorial Caption Under Graphic */}
-            <div className="absolute -bottom-6 right-6 text-right pointer-events-none">
-              <p className={`text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider text-[#3A3A38] leading-tight ${
-                currentLang === 'te' ? 'font-telugu' : ''
-              }`}>
-                {currentLang === 'te'
-                  ? 'ధృవీకరించబడిన సేవలు • జమ్మలమడుగు బ్రాంచ్'
-                  : 'Selected & Honoured Life Advisory'}
-              </p>
-              <p className={`text-[9.5px] sm:text-[10px] font-mono text-[#6B6A66] uppercase tracking-wider ${
-                currentLang === 'te' ? 'font-telugu' : ''
-              }`}>
-                {currentLang === 'te'
-                  ? 'కడప డివిజన్ • ఆంధ్రప్రదేశ్'
-                  : 'Kadapa Division Until 2026'}
-              </p>
             </div>
 
           </div>
