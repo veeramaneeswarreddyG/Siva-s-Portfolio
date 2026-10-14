@@ -1,11 +1,10 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Language } from '@/types';
 import { siteContent } from '@/data/content';
-import { ShieldCheck, ArrowRight, Heart } from 'lucide-react';
+import { ShieldCheck, ArrowRight } from 'lucide-react';
 
 interface LegacyClosingProps {
   currentLang: Language;
@@ -19,7 +18,7 @@ export const LegacyClosing: React.FC<LegacyClosingProps> = ({
   const ch = siteContent.chapters.chapter7;
 
   return (
-    <footer id="legacy" className="bg-charcoal-950 text-white pt-24 pb-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="legacy" className="bg-charcoal-950 text-white py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       
       {/* Background radial glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -29,7 +28,9 @@ export const LegacyClosing: React.FC<LegacyClosingProps> = ({
         {/* Eyebrow */}
         <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-amberGold-400 mb-6">
           <span className="w-2.5 h-2.5 rounded-full bg-amberGold-500" />
-          <span>{currentLang === 'te' ? 'శాశ్వత వారసత్వం' : 'The Enduring Legacy'}</span>
+          <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+            {currentLang === 'te' ? 'శాశ్వత వారసత్వం' : 'The Enduring Legacy'}
+          </span>
         </div>
 
         {/* Closing Statement */}
@@ -51,7 +52,7 @@ export const LegacyClosing: React.FC<LegacyClosingProps> = ({
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="p-8 sm:p-12 rounded-3xl bg-charcoal-900 border border-charcoal-800 shadow-2xl max-w-2xl mx-auto mb-16 space-y-6"
+          className="p-8 sm:p-12 rounded-3xl bg-charcoal-900 border border-charcoal-800 shadow-2xl max-w-2xl mx-auto space-y-6"
         >
           {/* Circular Monogram */}
           <div className="w-16 h-16 mx-auto rounded-full bg-amberGold-500 text-charcoal-950 flex items-center justify-center font-bold text-xl shadow-lg">
@@ -62,10 +63,14 @@ export const LegacyClosing: React.FC<LegacyClosingProps> = ({
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-wide uppercase">
               {ch.subjectName[currentLang]}
             </h3>
-            <p className="text-sm font-bold text-amberGold-400 uppercase tracking-widest mt-1">
+            <p className={`text-sm font-bold text-amberGold-400 uppercase tracking-widest mt-1 ${
+              currentLang === 'te' ? 'font-telugu' : ''
+            }`}>
               {ch.designation[currentLang]}
             </p>
-            <p className="text-xs text-cream-400/80 uppercase tracking-wider mt-0.5">
+            <p className={`text-xs text-cream-400/80 uppercase tracking-wider mt-0.5 ${
+              currentLang === 'te' ? 'font-telugu' : ''
+            }`}>
               {ch.location[currentLang]}
             </p>
           </div>
@@ -84,7 +89,7 @@ export const LegacyClosing: React.FC<LegacyClosingProps> = ({
               className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-white hover:bg-cream-100 text-charcoal-950 font-bold text-xs uppercase tracking-wider hover-lift button-press transition-all shadow-md"
             >
               <ShieldCheck className="w-4 h-4 text-amberGold-600" />
-              <span>
+              <span className={currentLang === 'te' ? 'font-telugu' : ''}>
                 {currentLang === 'te' ? 'సత్య ప్రమాణాలు & రికార్డులు' : 'Archival Verification Protocol'}
               </span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -92,17 +97,7 @@ export const LegacyClosing: React.FC<LegacyClosingProps> = ({
           </div>
         </motion.div>
 
-        {/* Colophon */}
-        <div className="pt-8 border-t border-charcoal-800 flex flex-col sm:flex-row items-center justify-between text-xs text-cream-500 gap-4">
-          <p>
-            © {new Date().getFullYear()} Sivarami Reddy Gadikota Digital Legacy Archive.
-          </p>
-          <p className="font-semibold text-amberGold-400/90">
-            Honour is Earned. Legacy is Left Behind.
-          </p>
-        </div>
-
       </div>
-    </footer>
+    </section>
   );
 };

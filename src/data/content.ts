@@ -29,12 +29,12 @@ export const siteContent: SiteContent = {
       te: "చీఫ్ అడ్వైజర్ • కడప డివిజన్",
     },
     location: {
-      en: "JAMMALAMADUGU • KAMALAPURAM, KADAPA DIST.",
-      te: "జమ్మలమడుగు • కమలాపురం, కడప జిల్లా",
+      en: "JAMMALAMADUGU • KADAPA DISTRICT",
+      te: "జమ్మలమడుగు • కడప జిల్లా",
     },
     subtitle: {
-      en: "A Journey of Work, Trust, and Legacy. “బీమా చేయండి - ధీమాగా ఉండండి!”",
-      te: "కృషి, విశ్వాసం, గౌరవప్రదమైన జీవన వారసత్వం. “బీమా చేయండి - ధీమాగా ఉండండి!”",
+      en: "A Journey of Work, Trust, and Legacy. “Be Insured — Live with Confidence!”",
+      te: "కృషి, విశ్వాసం, గౌరవప్రదమైన జీవన వారసత్వం. “బీమా చేయండి — ధీమాగా ఉండండి!”",
     },
     scrollPrompt: {
       en: "Begin the Journey",
@@ -53,7 +53,7 @@ export const siteContent: SiteContent = {
       },
       body: {
         en: [
-          "Before designations, there was a man rooted in the fertile soil of Andhra Pradesh.",
+          "Before designations and professional titles, there was a man rooted in the fertile soil of Andhra Pradesh.",
           "Connected to a two-acre farming background in Kamalapuram and Kadapa district, life was defined by the quiet cadence of dawn, seasonal patience, and the honest labor of the hands.",
           "The land does not yield to haste. It teaches that whatever is sown with integrity and tended with constancy will one day stand unshakeable.",
         ],
@@ -127,12 +127,12 @@ export const siteContent: SiteContent = {
         en: [
           "Stepping into the Life Insurance Corporation of India (Kadapa Division, Jammalamadugu Branch), G Sivarami Reddy translated the ethos of agriculture directly into household security.",
           "Both farming and life insurance require long-term vision: protecting the seed today so the tree can shade the family tomorrow.",
-          "He brought into public service the timeless promise: “బీమా చేయండి - ధీమాగా ఉండండి!” (Be Insured, Live with Confidence).",
+          "He brought into public service the timeless promise: “Be Insured — Live with Confidence!”.",
         ],
         te: [
           "భారతీయ జీవిత బీమా సంస్థ (కడప డివిజన్, జమ్మలమడుగు బ్రాంచ్)తో అనుబంధాన్ని ప్రారంభించి, గడపగడపకూ ఆర్థిక భద్రతను చేరవేయడం ప్రారంభించారు.",
           "మట్టిని సేద్యం చేయడం నుండి మనుషుల భవిష్యత్తును రక్షించే సేవలోకి మారడం ఆయనకు సహజమైన కొనసాగింపే అయింది: రెండింటికీ కావలసింది దీర్ఘకాలిక సంరక్షణ, ఆప్యాయత మరియు కుటుంబాల రేపటిపై అపరిమితమైన గౌరవం.",
-          "ఆయన ప్రజల ముంగిటకు తెచ్చిన అమూల్యమైన భరోసా: “బీమా చేయండి - ధీమాగా ఉండండి!”",
+          "ఆయన ప్రజల ముంగిటకు తెచ్చిన అమూల్యమైన భరోసా: “బీమా చేయండి — ధీమాగా ఉండండి!”.",
         ],
       },
       transitionNote: {
@@ -177,7 +177,7 @@ export const siteContent: SiteContent = {
         },
         {
           id: "m-early-2000s",
-          period: { en: "Since 2011 & Inception", te: "2011 & ప్రారంభం" },
+          period: { en: "Inception Era", te: "సేవా ప్రారంభం" },
           title: { en: "Entry into LIC", te: "ఎల్.ఐ.సి రంగ ప్రవేశం" },
           subtitle: { en: "Stepping into Professional Advisory", te: "వృత్తిపరమైన సలహాదారుగా తొలి అడుగులు" },
           description: {
@@ -218,7 +218,7 @@ export const siteContent: SiteContent = {
         {
           id: "m-liafi",
           period: { en: "Professional Association", te: "వృత్తిపరమైన అనుబంధం" },
-          title: { en: "LIAFI", te: "ఎల్.ఐ.ఎ.ఎఫ్.ఐ (LIAFI)" },
+          title: { en: "LIAFI", te: "ఎల్.ఐ.ఎ.ఎఫ్.ఐ" },
           subtitle: { en: "Life Insurance Agents Federation of India", te: "ఏజెంట్ల సమష్టి వేదిక" },
           description: {
             en: "Association with LIAFI, upholding ethical standards and advancing policyholder rights.",
@@ -258,7 +258,7 @@ export const siteContent: SiteContent = {
         {
           id: "m-clia",
           period: { en: "Executive Leadership", te: "నాయకత్వం & మార్గదర్శకత్వం" },
-          title: { en: "CLIA", te: "సి.ఎల్.ఐ.ఎ (CLIA)" },
+          title: { en: "CLIA", te: "సి.ఎల్.ఐ.ఎ" },
           subtitle: { en: "Chief Life Insurance Advisor", te: "చీఫ్ లైఫ్ ఇన్సూరెన్స్ అడ్వైజర్" },
           description: {
             en: "Serving as Chief Life Insurance Advisor (CLIA) at Jammalamadugu Branch, Kadapa Division, mentoring advisors and securing family futures.",
@@ -357,7 +357,7 @@ export const siteContent: SiteContent = {
           },
           description: {
             en: "Ranked #3 in Diamond Brigade, an elite distinction reflecting consistent high performance and policyholder satisfaction.",
-            te: "అత్యుత్తమ ఫలితాలు మరియు నిరంతర ప్రజాదరణను సాధించిన వారి కోసం కేటాయించబడిన 'డైమండ్ బ్రిగేడ్'లో మూడవ స్థానం.",
+            te: "అత్యుత్తమ ఫలితాలు మరియు నిరంతర ప్రజాదరణను సాధించిన వారి కోసం కేటాయించబడిన డైమండ్ బ్రిగేడ్‌లో మూడవ స్థానం.",
           },
           verificationStatus: "verified",
           verificationDetails: {
@@ -399,11 +399,11 @@ export const siteContent: SiteContent = {
       ],
       specialHonorTitle: {
         en: "The Meaning Behind The Diamond Standing",
-        te: "#3 డైమండ్ బ్రిగేడ్ వెనుక ఉన్న పరమార్థం",
+        te: "డైమండ్ బ్రిగేడ్ వెనుక ఉన్న పరమార్థం",
       },
       specialHonorDesc: {
         en: "Rankings in public service are not solitary conquests. The #3 Diamond Brigade standing stands as proof that hundreds of families in Jammalamadugu and Kadapa Division placed their trust in his word.",
-        te: "సేవా రంగంలో సాధించే ర్యాంకులు కేవలం అంకెలు కావు. జమ్మలమడుగు మరియు కడప డివిజన్ పరిధిలోని ఎన్నో కుటుంబాలు ఆయన మాటను నమ్మి తమ భవిష్యత్తును ఆయన చేతుల్లో పెట్టాయనడానికి '#3 డైమండ్ బ్రిగేడ్' సజీవ సాక్ష్యం.",
+        te: "సేవా రంగంలో సాధించే ర్యాంకులు కేవలం అంకెలు కావు. జమ్మలమడుగు మరియు కడప డివిజన్ పరిధిలోని ఎన్నో కుటుంబాలు ఆయన మాటను నమ్మి తమ భవిష్యత్తును ఆయన చేతుల్లో పెట్టాయనడానికి ఇది సజీవ సాక్ష్యం.",
       },
     },
 
@@ -475,8 +475,8 @@ export const siteContent: SiteContent = {
         te: "కడప డివిజన్ • ఆంధ్రప్రదేశ్",
       },
       tributeNote: {
-        en: "Preserved with reverence by his family and peers as an authentic digital archive of perseverance, humility, and earned honour. “బీమా చేయండి - ధీమాగా ఉండండి!”",
-        te: "శ్రమను, నిరాడంబరత్వాన్ని, స్వార్జిత గౌరవాన్ని భావి తరాలకు అందించడానికి కుటుంబ సభ్యులు మరియు శ్రేయోభిలాషులచే అత్యంత భక్తిశ్రద్ధలతో రూపొందించబడిన డిజిటల్ ఆర్కైవ్. “బీమా చేయండి - ధీమాగా ఉండండి!”",
+        en: "Preserved with reverence by his family and peers as an authentic digital archive of perseverance, humility, and earned honour. “Be Insured — Live with Confidence!”.",
+        te: "శ్రమను, నిరాడంబరత్వాన్ని, స్వార్జిత గౌరవాన్ని భావి తరాలకు అందించడానికి కుటుంబ సభ్యులు మరియు శ్రేయోభిలాషులచే అత్యంత భక్తిశ్రద్ధలతో రూపొందించబడిన డిజిటల్ ఆర్కైవ్. “బీమా చేయండి — ధీమాగా ఉండండి!”.",
       },
     },
   },
@@ -507,10 +507,10 @@ export const siteContent: SiteContent = {
       { id: "hero", label: { en: "Home", te: "హోమ్" } },
       { id: "roots", label: { en: "Origins", te: "మూలాలు" } },
       { id: "milestones", label: { en: "Milestones", te: "మైలురాళ్లు" } },
-      { id: "about", label: { en: "About Him", te: "పరిచయం" } },
+      { id: "about", label: { en: "About", te: "పరిచయం" } },
       { id: "recognitions", label: { en: "Honours", te: "గౌరవాలు" } },
-      { id: "reach-out", label: { en: "Reach Out", te: "సంప్రదించండి" } },
       { id: "legacy", label: { en: "Legacy", te: "వారసత్వం" } },
+      { id: "reach-out", label: { en: "Reach Out", te: "సంప్రదించండి" } },
     ],
     languageToggleLabel: {
       en: "తెలుగు",

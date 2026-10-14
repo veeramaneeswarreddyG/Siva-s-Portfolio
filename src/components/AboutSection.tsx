@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Language } from '@/types';
-import { Sparkles, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface AboutSectionProps {
   currentLang: Language;
@@ -17,23 +17,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 }) => {
   const stats = [
     {
-      value: '2+ Decades',
-      valueTe: '2+ దశాబ్దాలు',
+      value: { en: '2+ Decades', te: '2+ దశాబ్దాలు' },
       label: { en: 'Continuous Public Advisory', te: 'నిరంతర ప్రజా సేవ' },
     },
     {
-      value: '#3 Rank',
-      valueTe: '#3 ర్యాంకు',
+      value: { en: '#3 Rank', te: '#3 ర్యాంకు' },
       label: { en: 'Diamond Brigade Merit Standing', te: 'డైమండ్ బ్రిగేడ్ విశిష్ట గౌరవం' },
     },
     {
-      value: '2 Acres',
-      valueTe: '2 ఎకరాలు',
+      value: { en: '2 Acres', te: '2 ఎకరాలు' },
       label: { en: 'Agricultural Farming Roots', te: 'రైతు పునాది & శ్రమ సంస్కృతి' },
     },
     {
-      value: 'CLIA & LIAFI',
-      valueTe: 'CLIA & LIAFI',
+      value: { en: 'CLIA & LIAFI', te: 'నాయకత్వ హోదాలు' },
       label: { en: 'Leadership & Federation Ethics', te: 'సంస్థాగత నాయకత్వం & నైతికత' },
     },
   ];
@@ -42,12 +38,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal-950 text-white relative overflow-hidden">
       
       {/* Background glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Portrait Inside Arched Card with Floating Badges (Matches Image 1 bottom left) */}
+          {/* Left Column: Portrait Inside Arched Card (Suitably Sized) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -55,40 +51,46 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-[36px] bg-gradient-to-b from-amberGold-500 via-amberGold-600 to-amberGold-700 p-3 shadow-2xl flex items-end justify-center overflow-visible">
+            <div className="relative w-full max-w-[300px] sm:max-w-[320px] aspect-[4/5] rounded-[32px] bg-gradient-to-b from-amberGold-500 via-amberGold-600 to-amberGold-700 p-3 shadow-2xl flex items-end justify-center">
               
               {/* Inner frame */}
-              <div className="absolute inset-2 rounded-[30px] border border-amberGold-400/40 pointer-events-none z-20" />
+              <div className="absolute inset-2 rounded-[26px] border border-amberGold-400/40 pointer-events-none z-20" />
 
               {/* Portrait */}
               <div className="relative z-10 w-full h-[95%] flex items-end justify-center">
                 <Image
                   src="/images/sivarami_portrait.png"
-                  alt="Sivarami Reddy Gadikota"
-                  width={340}
-                  height={420}
+                  alt="G Sivarami Reddy"
+                  width={300}
+                  height={380}
                   className="object-contain object-bottom drop-shadow-2xl"
                 />
               </div>
 
-              {/* Floating Pill Tags (Matches Image 1 floating pills over portrait) */}
-              <div className="absolute -bottom-3 -left-3 z-30 px-3.5 py-1.5 rounded-full bg-charcoal-900 text-amberGold-400 text-xs font-bold border border-amberGold-500/50 shadow-xl flex items-center space-x-1.5 animate-float-gentle">
-                <span className="w-2 h-2 rounded-full bg-amberGold-400" />
-                <span>{currentLang === 'te' ? 'రెండు ఎకరాల మూలాలు' : 'Two-Acre Soil'}</span>
+              {/* Floating Pill Tags (100% pure language) */}
+              <div className="absolute -bottom-3 -left-3 z-30 px-3 py-1 rounded-full bg-charcoal-900 text-amberGold-400 text-xs font-bold border border-amberGold-500/50 shadow-xl flex items-center space-x-1.5 animate-float-gentle">
+                <span className="w-1.5 h-1.5 rounded-full bg-amberGold-400" />
+                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                  {currentLang === 'te' ? 'రెండు ఎకరాల నేల' : 'Two-Acre Soil'}
+                </span>
               </div>
 
-              <div className="absolute -top-3 -right-3 z-30 px-3.5 py-1.5 rounded-full bg-white text-charcoal-950 text-xs font-bold shadow-xl border border-cream-400 flex items-center space-x-1.5 animate-float-gentle [animation-delay:1.5s]">
+              <div className="absolute -top-3 -right-3 z-30 px-3 py-1 rounded-full bg-white text-charcoal-950 text-xs font-bold shadow-xl border border-cream-400 flex items-center space-x-1.5 animate-float-gentle [animation-delay:1.5s]">
                 <ShieldCheck className="w-3.5 h-3.5 text-amberGold-600" />
-                <span>LIC Chief Advisor</span>
+                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                  {currentLang === 'te' ? 'చీఫ్ అడ్వైజర్' : 'Chief Advisor'}
+                </span>
               </div>
 
-              <div className="absolute top-1/2 -left-6 z-30 px-3 py-1 rounded-full bg-charcoal-950 text-white text-[11px] font-semibold border border-charcoal-800 shadow-xl hidden sm:flex items-center space-x-1">
-                <span>Jammalamadugu</span>
+              <div className="absolute top-1/2 -left-4 z-30 px-2.5 py-0.5 rounded-full bg-charcoal-950 text-white text-[10px] font-semibold border border-charcoal-800 shadow-xl hidden sm:flex items-center space-x-1">
+                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                  {currentLang === 'te' ? 'కడప డివిజన్' : 'Kadapa Division'}
+                </span>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Bio Narrative & Facts (Matches Image 1 bottom right) */}
+          {/* Right Column: Bio Narrative & Pure Language Facts */}
           <motion.div
             initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -99,42 +101,48 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             {/* Eyebrow */}
             <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-amberGold-400">
               <span className="w-2.5 h-2.5 rounded-full bg-amberGold-500" />
-              <span>{currentLang === 'te' ? 'జీవిత పరిచయం' : 'About The Advisor'}</span>
+              <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                {currentLang === 'te' ? 'జీవిత పరిచయం' : 'About The Advisor'}
+              </span>
             </div>
 
             {/* Title */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
               {currentLang === 'te' ? 'ఎవరు ఈ ' : 'Who is '}
               <span className="text-amberGold-500">
-                {currentLang === 'te' ? 'శివరామిరెడ్డి గాడికోట?' : 'Sivarami Reddy?'}
+                {currentLang === 'te' ? 'జి. శివరామిరెడ్డి?' : 'G Sivarami Reddy?'}
               </span>
               <Sparkles className="inline-block w-6 h-6 ml-2 text-amberGold-500 align-baseline" />
             </h2>
 
             {/* Narrative Paragraphs */}
             <div className={`space-y-4 text-cream-300 text-sm sm:text-base leading-relaxed font-light ${
-              currentLang === 'te' ? 'font-telugu' : ''
+              currentLang === 'te' ? 'font-telugu leading-relaxed' : ''
             }`}>
               <p>
                 {currentLang === 'te'
-                  ? 'బిరుదులు, పదవుల కంటే ముందే... నేలను నమ్ముకున్న ఒక సాధారణ రైతు పుత్రుడు. రెండు ఎకరాల వ్యవసాయ నేపథ్యంతో మొదలైన ఆయన ప్రయాణం, కష్టపడే తత్వానికీ, అంకితభావానికీ నిలువెత్తు నిదర్శనం.'
-                  : 'Before titles and executive advisory roles, Sivarami Reddy Gadikota was rooted in the fertile red earth of Andhra Pradesh, connected to a two-acre agricultural heritage.'}
+                  ? 'బిరుదులు, పదవుల కంటే ముందే... నేలను నమ్ముకున్న ఒక సాధారణ రైతు పుత్రుడు. కడప జిల్లా కమలాపురంలో రెండు ఎకరాల వ్యవసాయ నేపథ్యంతో మొదలైన ఆయన ప్రయాణం, కష్టపడే తత్వానికీ, అంకితభావానికీ నిలువెత్తు నిదర్శనం.'
+                  : 'Before executive titles and advisory honors, G Sivarami Reddy was rooted in the fertile red earth of Kamalapuram, Kadapa district, connected to a two-acre agricultural heritage.'}
               </p>
               <p>
                 {currentLang === 'te'
-                  ? 'వ్యవసాయంలో నేర్చుకున్న ఓర్పు, క్రమశిక్షణ, మరియు ఇచ్చిన మాటకు కట్టుబడి ఉండే నైతికతను ఆయన తన ఎల్.ఐ.సి వృత్తిలోనూ ఆచరించారు. 2000ల ప్రారంభం నుండి జమ్మలమడుగు కేంద్రంగా ఎన్నో కుటుంబాల భవిష్యత్తుకు భరోసానిచ్చారు.'
-                  : 'The soil taught him that meaningful growth cannot be rushed. Moving into the Life Insurance Corporation of India in the early 2000s, he carried that exact agrarian discipline into protecting households across Jammalamadugu.'}
+                  ? 'వ్యవసాయంలో నేర్చుకున్న ఓర్పు, క్రమశిక్షణ, మరియు ఇచ్చిన మాటకు కట్టుబడి ఉండే నైతికతను ఆయన తన ఎల్.ఐ.సి వృత్తిలోనూ ఆచరించారు. జమ్మలమడుగు బ్రాంచ్ కేంద్రంగా వేలాది కుటుంబాల భవిష్యత్తుకు భరోసానిచ్చారు.'
+                  : 'The soil taught him that meaningful growth cannot be rushed. Moving into public insurance advisory, he brought that exact agrarian discipline into protecting households across Jammalamadugu Branch, Kadapa Division.'}
               </p>
             </div>
 
             {/* Stat Boxes Grid */}
-            <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
               {stats.map((s, idx) => (
-                <div key={idx} className="p-4 rounded-xl bg-charcoal-900 border border-charcoal-800">
-                  <div className="font-extrabold text-lg sm:text-xl text-amberGold-400 font-sans">
-                    {currentLang === 'te' ? s.valueTe : s.value}
+                <div key={idx} className="p-3.5 sm:p-4 rounded-xl bg-charcoal-900 border border-charcoal-800">
+                  <div className={`font-extrabold text-base sm:text-lg text-amberGold-400 font-sans ${
+                    currentLang === 'te' ? 'font-telugu' : ''
+                  }`}>
+                    {s.value[currentLang]}
                   </div>
-                  <div className="text-xs text-cream-400/80 mt-1">
+                  <div className={`text-xs text-cream-400/80 mt-0.5 ${
+                    currentLang === 'te' ? 'font-telugu' : ''
+                  }`}>
                     {s.label[currentLang]}
                   </div>
                 </div>
@@ -145,10 +153,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             <div className="pt-2">
               <button
                 onClick={onOpenVerificationModal}
-                className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 font-bold text-xs uppercase tracking-wider hover-lift button-press transition-all shadow-lg"
+                className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 font-bold text-xs uppercase tracking-wider hover-lift button-press transition-all shadow-md"
               >
-                <span>{currentLang === 'te' ? 'సత్య ప్రమాణాల సమీక్ష' : 'Inspect Verified Records'}</span>
-                <ArrowRight className="w-4 h-4" />
+                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                  {currentLang === 'te' ? 'సత్య ప్రమాణాల సమీక్ష' : 'Inspect Verified Records'}
+                </span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
