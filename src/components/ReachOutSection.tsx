@@ -10,9 +10,7 @@ import {
   MapPin, 
   Send, 
   CheckCircle2, 
-  MessageSquare, 
   Sparkles, 
-  ShieldCheck,
   PhoneCall
 } from 'lucide-react';
 
@@ -60,7 +58,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Big Thumbs-Up Portrait Filling the Card (Matches Reference Image) */}
+          {/* Left Column: Big, Crystal-Clear Thumbs-Up Portrait (100% Bright & Natural) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -68,40 +66,29 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[360px] sm:max-w-[400px] h-[480px] sm:h-[550px] rounded-[36px] overflow-hidden shadow-2xl border-4 border-amberGold-500/30 group">
+            <div className="relative w-full max-w-[360px] sm:max-w-[400px] h-[500px] sm:h-[570px] rounded-[36px] overflow-hidden shadow-2xl border-4 border-amberGold-500/40 bg-cream-200 group">
               
-              {/* Thumbs-Up Image Filling the Card */}
+              {/* Thumbs-Up Image: Fully Bright, Natural & Clear (No dark dimming gradient) */}
               <Image
                 src="/images/sivarami_thumbsup.jpg"
-                alt="G Sivarami Reddy giving thumbs up"
+                alt="G Sivarami Reddy"
                 fill
                 priority
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105 brightness-100 contrast-100"
               />
 
-              {/* Gradient Vignette at Bottom for High-Contrast Text / Pill Badges */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/30 to-transparent pointer-events-none" />
-
-              {/* Top-Right Badge: Since 2011 */}
-              <div className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 text-charcoal-950 text-xs font-extrabold shadow-lg border border-cream-300 flex items-center space-x-1 backdrop-blur-sm">
-                <ShieldCheck className="w-3.5 h-3.5 text-amberGold-600" />
-                <span className={currentLang === 'te' ? 'font-telugu text-[11px]' : ''}>
-                  {currentLang === 'te' ? '2011 నుండి' : 'Since: 2011'}
-                </span>
-              </div>
-
-              {/* Floating Pill Badges Overlapping Image (Matches Reference Image) */}
-              <div className="absolute bottom-5 inset-x-3 z-20 flex flex-wrap justify-center gap-1.5">
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-charcoal-950 text-white shadow-xl border border-charcoal-800 animate-float-gentle">
+              {/* Floating Pill Badges Overlapping at Bottom of Card */}
+              <div className="absolute bottom-5 inset-x-3 z-20 flex flex-wrap justify-center gap-1.5 pointer-events-none">
+                <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-charcoal-950/95 text-white shadow-2xl border border-charcoal-700 animate-float-gentle backdrop-blur-sm">
                   {pillTags[0]}
                 </span>
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-amberGold-500 text-charcoal-950 shadow-xl border border-amberGold-300 animate-float-gentle [animation-delay:1s]">
+                <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-amberGold-500 text-charcoal-950 shadow-2xl border border-amberGold-300 animate-float-gentle [animation-delay:1s]">
                   {pillTags[1]}
                 </span>
-                <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-white text-charcoal-950 shadow-xl">
+                <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-white/95 text-charcoal-950 shadow-2xl border border-cream-300">
                   {pillTags[2]}
                 </span>
-                <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amberGold-400 text-charcoal-950 shadow-xl">
+                <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-amberGold-400 text-charcoal-950 shadow-2xl">
                   {pillTags[3]}
                 </span>
               </div>
