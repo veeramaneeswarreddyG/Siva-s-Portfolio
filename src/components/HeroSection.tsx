@@ -2,16 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { Language } from '@/types';
-import { siteContent } from '@/data/content';
-import { 
-  ArrowRight, 
-  Sparkles, 
-  Star, 
-  ShieldCheck, 
-  Award,
-} from 'lucide-react';
+import { ChevronRight, ShieldCheck } from 'lucide-react';
 
 interface HeroSectionProps {
   currentLang: Language;
@@ -22,8 +14,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   currentLang,
   onOpenVerificationModal,
 }) => {
-  const content = siteContent.hero;
-
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -31,249 +21,215 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     }
   };
 
-  const pillTags = currentLang === 'te'
-    ? ['ఏజెంట్', 'ఎల్.ఐ.ఎ.ఎఫ్.ఐ', 'సి.ఎల్.ఐ.ఎ', '#3 డైమండ్ బ్రిగేడ్', 'రెండు ఎకరాల నేల']
-    : ['Agent', 'LIAFI', 'CLIA', '#3 Diamond Brigade', 'Two-Acre Soil'];
-
   return (
     <section
       id="hero"
-      className="relative min-h-[98vh] w-full pt-20 sm:pt-24 pb-14 px-4 sm:px-6 lg:px-8 bg-cream-200 overflow-hidden flex flex-col justify-between"
+      className="relative min-h-[95vh] w-full pt-20 sm:pt-24 pb-10 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5] text-[#1E1E1E] overflow-hidden flex flex-col justify-between select-none"
     >
-      {/* Warm Ambient Radial & Golden Sunburst Backdrop */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[950px] bg-sunburst-radial rounded-full blur-3xl opacity-90" />
-        <div className="absolute top-12 right-12 w-[450px] h-[450px] bg-amberGold-400/15 rounded-full blur-3xl" />
-        <div className="absolute inset-0 bg-warm-dots opacity-40" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto w-full my-auto">
-        
-        {/* Top Header Block: Eyebrow + Name + Subtitle */}
-        <div className="text-center max-w-4xl mx-auto mb-4 sm:mb-6">
-          
-          {/* Eyebrow Pill */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-cream-300 border border-cream-400 text-charcoal-800 text-xs font-semibold mb-2.5 shadow-sm"
-          >
-            <div className="w-4 h-4 rounded-full bg-amberGold-500 text-charcoal-950 flex items-center justify-center">
-              <Star className="w-2.5 h-2.5 fill-current" />
-            </div>
-            <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-              {content.eyebrow[currentLang]}
-            </span>
-          </motion.div>
-
-          {/* Main Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-charcoal-950 mb-2 leading-none"
-          >
-            {currentLang === 'te' ? 'నేను ' : "I'm "}
-            <span className="text-amberGold-500 relative inline-block">
-              {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G Sivarami Reddy'}
-              <Sparkles className="w-6 h-6 sm:w-9 sm:h-9 text-amberGold-500 absolute -top-3 -right-7 animate-pulse" />
-            </span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className={`text-sm sm:text-base md:text-lg text-charcoal-600 font-medium ${
-              currentLang === 'te' ? 'font-telugu leading-relaxed' : ''
-            }`}
-          >
-            {content.location[currentLang]} • {currentLang === 'te' ? 'మట్టి నుండి మహోన్నతం వరకు' : 'From Soil to Significance'}
-          </motion.p>
+      {/* 1. TOP FRAMING LINE WITH OVERLAPPING CIRCLE TRADEMARK */}
+      <div className="max-w-7xl mx-auto w-full border-t border-[#C8C5BD] pt-4 flex items-center justify-between z-10">
+        {/* Overlapping Two-Circle Trademark (Black & Amber) */}
+        <div className="flex items-center space-x-2.5">
+          <div className="flex items-center -space-x-2">
+            <div className="w-5 h-5 rounded-full bg-[#1E1E1E] shadow-sm" />
+            <div className="w-5 h-5 rounded-full bg-[#F59E0B] shadow-sm" />
+          </div>
+          <span className="text-[11px] font-bold tracking-widest uppercase text-[#3A3A38]">
+            {currentLang === 'te' ? 'అధికారిక లెగసీ ఆర్కైవ్' : 'Official Legacy Archive'}
+          </span>
         </div>
 
-        {/* Hero Composition: Left Content + CINEMATIC ELEVATED BIGGER PORTRAIT + Right Content */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-center">
+        {/* Small Branch Tagline */}
+        <div className="hidden sm:flex items-center space-x-2 text-[11px] font-mono uppercase tracking-wider text-[#6B6A66]">
+          <span>{currentLang === 'te' ? 'జమ్మలమడుగు బ్రాంచ్' : 'Jammalamadugu Branch'}</span>
+          <span>•</span>
+          <span>{currentLang === 'te' ? 'కడప డివిజన్' : 'Kadapa Division'}</span>
+        </div>
+      </div>
+
+      {/* 2. ROTATED VERTICAL TEXT ALONG RIGHT BORDER (Matches Reference "RANDY © 2025") */}
+      <div className="hidden xl:block absolute right-4 top-1/2 -translate-y-1/2 rotate-90 origin-right text-[10.5px] font-mono tracking-[0.28em] text-[#5A5955] uppercase select-none pointer-events-none">
+        {currentLang === 'te'
+          ? 'శివరామిరెడ్డి © 2026'
+          : 'SIVARAMI © 2026'}
+      </div>
+
+      {/* 3. MAIN HERO STAGE */}
+      <div className="max-w-7xl mx-auto w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center relative z-10 py-4 sm:py-6">
+        
+        {/* LEFT COLUMN: Editorial Massive Typography & Hand-Drawn SVG Doodles */}
+        <div className="lg:col-span-7 flex flex-col justify-center relative">
           
-          {/* Rotating Stamp Badge (Top-Right) */}
-          <div className="hidden lg:block absolute -top-8 right-2 z-30">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
-              className="relative w-28 h-28 rounded-full bg-charcoal-950 text-amberGold-400 p-2.5 shadow-2xl flex items-center justify-center border-2 border-amberGold-500/60"
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full absolute inset-0">
-                <path
-                  id="circlePathHeroElevated"
-                  d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                  fill="none"
-                />
-                <text className="text-[8.5px] font-bold tracking-[0.16em] uppercase fill-amberGold-400">
-                  <textPath href="#circlePathHeroElevated">
-                    {currentLang === 'te'
-                      ? '• గౌరవం స్వార్జితం • వారసత్వం శాశ్వతం •'
-                      : '• HONOUR IS EARNED • LEGACY LEFT BEHIND •'}
-                  </textPath>
-                </text>
-              </svg>
-              <div className="w-9 h-9 rounded-full bg-amberGold-500 text-charcoal-950 flex items-center justify-center font-bold">
-                <Award className="w-4 h-4" />
-              </div>
-            </motion.div>
+          {/* Subtle Ghosted Number "01" in Background Behind Bottom Area */}
+          <div className="absolute -left-4 sm:-left-8 -bottom-10 text-[140px] sm:text-[190px] lg:text-[230px] font-black text-[#1E1E1E]/[0.05] select-none pointer-events-none leading-none z-0">
+            01
           </div>
 
-          {/* Left Column: Affiliations & Trust Card */}
-          <motion.div
-            initial={{ opacity: 0, x: -25 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:flex lg:col-span-3 flex-col justify-center space-y-6 z-20"
-          >
-            <div>
-              <p className={`text-xs font-bold uppercase tracking-wider text-charcoal-500 mb-2.5 ${
-                currentLang === 'te' ? 'font-telugu' : ''
-              }`}>
-                {currentLang === 'te' ? 'అధికారిక అనుబంధాలు' : 'Verified Affiliations'}
-              </p>
-              <div className="flex items-center space-x-2">
-                <span className="w-10 h-10 rounded-full bg-white border border-cream-400 shadow-md flex items-center justify-center text-charcoal-800 font-extrabold text-xs hover-lift">
-                  LIC
-                </span>
-                <span className="w-10 h-10 rounded-full bg-white border border-cream-400 shadow-md flex items-center justify-center text-amberGold-600 font-extrabold text-xs hover-lift">
-                  LIAFI
-                </span>
-                <span className="w-10 h-10 rounded-full bg-white border border-cream-400 shadow-md flex items-center justify-center text-charcoal-900 font-extrabold text-xs hover-lift">
-                  CLIA
-                </span>
-                <span className="w-10 h-10 rounded-full bg-amberGold-500 text-charcoal-950 shadow-md flex items-center justify-center font-extrabold text-xs hover-lift">
-                  #3
-                </span>
-              </div>
-            </div>
+          {/* DOODLE 1: Top-Left Screen with Shield/Gear (Matches Reference Screen Doodle) */}
+          <div className="absolute -top-7 left-14 hidden sm:block pointer-events-none z-0 text-[#2C2C2A] rotate-[-6deg]">
+            <svg width="46" height="42" viewBox="0 0 46 42" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-current stroke-[1.75]">
+              <rect x="2" y="2" width="42" height="28" rx="4" />
+              <line x1="23" y1="30" x2="23" y2="38" />
+              <line x1="15" y1="38" x2="31" y2="38" strokeLinecap="round" />
+              {/* Shield & Sprout inside */}
+              <path d="M23 8v14M17 12c3 0 6-3 6-3s3 3 6 3" strokeLinecap="round" />
+            </svg>
+          </div>
 
-            <div className="p-4 sm:p-5 rounded-2xl bg-white/90 border border-cream-400 shadow-md backdrop-blur-sm">
-              <div className="flex items-center space-x-1 text-amberGold-500 mb-1.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-current" />
-                ))}
-              </div>
-              <p className={`font-bold text-sm text-charcoal-950 ${
-                currentLang === 'te' ? 'font-telugu' : ''
-              }`}>
-                {currentLang === 'te' ? '2+ దశాబ్దాల ప్రజా విశ్వసనీయత' : '2+ Decades of Trust'}
-              </p>
-              <p className={`text-xs text-charcoal-500 mt-1 leading-relaxed ${
-                currentLang === 'te' ? 'font-telugu' : ''
-              }`}>
-                {currentLang === 'te'
-                  ? 'కడప జిల్లా, జమ్మలమడుగు పరిసర ప్రాంతాల కుటుంబాల ఆర్థిక భద్రత'
-                  : 'Serving generations of families across Kadapa Division'}
-              </p>
-            </div>
-          </motion.div>
+          {/* DOODLE 2: Top-Right Clapperboard / Certificate with Sparkles (Matches Reference Film Doodle) */}
+          <div className="absolute -top-4 right-16 hidden sm:block pointer-events-none z-0 text-[#2C2C2A] rotate-[10deg]">
+            <svg width="44" height="42" viewBox="0 0 44 42" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-current stroke-[1.75]">
+              <rect x="3" y="10" width="38" height="28" rx="3" />
+              <line x1="3" y1="18" x2="41" y2="18" />
+              <path d="M11 10L14 18M21 10L24 18M31 10L34 18" />
+              {/* Lightbulb / Idea / Sparkle */}
+              <circle cx="22" cy="28" r="4" />
+              <path d="M22 21v2M29 25l-1.5 1M15 25l1.5 1" strokeLinecap="round" />
+            </svg>
+          </div>
 
-          {/* Center Column: CINEMATIC ELEVATED BIGGER PORTRAIT */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
-            className="lg:col-span-6 flex flex-col items-center relative z-10"
-          >
-            {/* Cinematic Elevated Pedestal Frame */}
-            <div className="relative w-full max-w-[440px] sm:max-w-[500px] md:max-w-[540px] lg:max-w-[580px] h-[480px] sm:h-[550px] md:h-[600px] lg:h-[640px] flex items-end justify-center">
-              
-              {/* Golden Ambient Halo (Cinematic Backlight Glow) */}
-              <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 sm:w-88 h-72 sm:h-88 bg-[radial-gradient(circle_at_center,_rgba(245,166,35,0.45)_0%,_rgba(232,137,19,0.2)_50%,_transparent_75%)] rounded-full blur-2xl pointer-events-none z-0" />
+          {/* DOODLE 3: Pen Tool Bezier Handles (Matches Reference Pen Tool Doodle) */}
+          <div className="absolute top-36 right-6 hidden md:block pointer-events-none z-0 text-[#2C2C2A] rotate-[8deg]">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-current stroke-[1.75]">
+              <path d="M28 6l6 6-18 18-8 2 2-8L28 6z" strokeLinejoin="round" />
+              <circle cx="12" cy="30" r="2" fill="currentColor" />
+              <path d="M8 22c6-4 12-4 18 0" strokeDasharray="2 2" strokeLinecap="round" />
+            </svg>
+          </div>
 
-              {/* Elevated Pedestal Arch Frame */}
-              <div className="absolute inset-x-2 bottom-0 top-6 rounded-t-[180px] sm:rounded-t-[210px] rounded-b-[44px] bg-gradient-to-b from-amberGold-400/30 via-cream-200 to-cream-300/80 border-2 border-amberGold-500/30 shadow-[0_25px_60px_-15px_rgba(232,137,19,0.25)] z-0" />
+          {/* DOODLE 4: Camera Icon Under Title (Matches Reference Camera Doodle) */}
+          <div className="absolute bottom-20 left-48 hidden sm:block pointer-events-none z-0 text-[#2C2C2A] rotate-[-12deg]">
+            <svg width="42" height="34" viewBox="0 0 42 34" fill="none" xmlns="http://www.w3.org/2000/svg" className="stroke-current stroke-[1.75]">
+              <rect x="2" y="8" width="38" height="24" rx="4" />
+              <path d="M12 8l3-5h12l3 5H12z" strokeLinejoin="round" />
+              <circle cx="21" cy="20" r="6" />
+              <circle cx="33" cy="13" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
 
-              {/* Portrait Image (Elevated, Crisp, Significantly Bigger Size) */}
-              <div className="relative w-full h-full z-10 flex items-end justify-center pb-1">
-                <Image
-                  src="/images/sivarami_portrait.png"
-                  alt="G Sivarami Reddy - LIC Chief Advisor"
-                  width={560}
-                  height={650}
-                  priority
-                  className="object-contain object-bottom drop-shadow-[0_25px_35px_rgba(0,0,0,0.3)] max-h-[98%] w-auto transition-transform duration-300 hover:scale-[1.02] filter contrast-105 brightness-105"
-                />
-              </div>
-
-              {/* Overlapping Action Buttons at Base of Pedestal */}
-              <div className="absolute -bottom-6 inset-x-0 flex items-center justify-center space-x-3 z-30">
-                <button
-                  onClick={() => scrollToSection('roots')}
-                  className="inline-flex items-center space-x-2 px-6 sm:px-7 py-3 rounded-full bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 font-extrabold text-xs sm:text-sm shadow-xl hover-lift button-press transition-all"
-                >
-                  <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                    {currentLang === 'te' ? 'ప్రస్థానాన్ని చూడండి' : 'Explore Journey'}
-                  </span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <button
-                  onClick={onOpenVerificationModal}
-                  className="inline-flex items-center space-x-2 px-5 sm:px-6 py-3 rounded-full bg-white hover:bg-cream-100 text-charcoal-950 border border-charcoal-900/20 font-bold text-xs sm:text-sm shadow-md hover-lift button-press transition-all"
-                >
-                  <ShieldCheck className="w-4 h-4 text-amberGold-600" />
-                  <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                    {currentLang === 'te' ? 'ధృవీకరణ రికార్డు' : 'Archival Record'}
-                  </span>
-                </button>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Column: Pure Language Quote & Pill Badges */}
-          <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:flex lg:col-span-3 flex-col justify-center space-y-6 z-20"
-          >
-            {/* Pure Language Quote */}
-            <div className="relative p-5 rounded-2xl bg-white/90 border border-cream-400 shadow-md backdrop-blur-sm">
-              <span className="text-3xl font-serif text-amberGold-500 absolute -top-3 left-3 select-none leading-none">
+          <div className="relative z-10 space-y-3">
+            
+            {/* Double Quotes & Massive Title Layout */}
+            <div className="flex items-start space-x-2 sm:space-x-3">
+              <span className="text-5xl sm:text-7xl lg:text-8xl font-serif text-[#F59E0B] leading-none select-none -mt-3 sm:-mt-5">
                 “
               </span>
-              <p className={`text-xs sm:text-sm text-charcoal-700 leading-relaxed pt-2 font-medium ${
-                currentLang === 'te' ? 'font-telugu leading-relaxed' : ''
-              }`}>
-                {currentLang === 'te'
-                  ? 'ప్రతి ఒక్క కుటుంబానికి ఆర్థిక రక్షణ, నైతిక విలువలు మరియు తరతరాల భరోసా కల్పించడమే నా ధ్యేయం.'
-                  : 'Dedicated to the financial security, quiet integrity, and generational peace of mind of every household.'}
-              </p>
-            </div>
 
-            {/* Pure Language Pill Badges */}
-            <div>
-              <p className={`text-xs font-bold uppercase tracking-wider text-charcoal-500 mb-2.5 ${
-                currentLang === 'te' ? 'font-telugu' : ''
-              }`}>
-                {currentLang === 'te' ? 'ప్రధాన అర్హతలు' : 'Core Distinctions'}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {pillTags.map((tag, tIdx) => (
-                  <span
-                    key={tIdx}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold shadow-sm ${
-                      tIdx % 2 === 0
-                        ? 'bg-charcoal-900 text-white'
-                        : 'bg-amberGold-500 text-charcoal-950'
-                    } ${currentLang === 'te' ? 'font-telugu' : ''}`}
-                  >
-                    {tag}
+              <div className="flex flex-col">
+                
+                {/* FIRST WORD: Yellow Capsule Pill (Exact Match to Reference "PORTO") */}
+                <div className="inline-block bg-[#F59E0B] text-[#1E1E1E] px-6 sm:px-10 py-1.5 sm:py-2.5 rounded-full shadow-md w-fit">
+                  <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-none font-sans m-0">
+                    {currentLang === 'te' ? 'శివరామి' : 'SIVARAMI'}
+                  </h1>
+                </div>
+
+                {/* NESTLED SUB-BADGE (Exact Match to Reference "Creative Visual") */}
+                <div className="-mt-1 sm:-mt-2 mb-1 ml-1 sm:ml-2">
+                  <span className="inline-block bg-[#F59E0B] text-[#1E1E1E] font-black uppercase text-[10px] sm:text-xs tracking-wider px-3.5 py-1 rounded-full shadow-sm">
+                    {currentLang === 'te' ? 'చీఫ్ అడ్వైజర్' : 'Creative Advisor'}
                   </span>
-                ))}
+                </div>
+
+                {/* SECOND WORD: Giant Black Text with Amber Dot (Exact Match to Reference "FOLIO.") */}
+                <div className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight text-[#1E1E1E] leading-none font-sans">
+                  {currentLang === 'te' ? 'రెడ్డి' : 'REDDY'}
+                  <span className="text-[#F59E0B]">.</span>
+                </div>
+
               </div>
             </div>
-          </motion.div>
+
+            {/* Narrative Editorial Sub-Copy */}
+            <p className={`text-sm sm:text-base md:text-lg text-[#3A3A38] font-medium max-w-xl pt-2 pl-3 sm:pl-8 border-l-2 border-[#F59E0B] ${
+              currentLang === 'te' ? 'font-telugu leading-relaxed' : ''
+            }`}>
+              {currentLang === 'te'
+                ? 'రెండు ఎకరాల వ్యవసాయ నేల నుండి కడప డివిజన్ జమ్మలమడుగు బ్రాంచ్ చీఫ్ అడ్వైజర్ స్థాయి వరకు... శ్రమ, నిజాయితీతో నిర్మితమైన గౌరవప్రదమైన జీవన ప్రస్థానం.'
+                : 'From two-acre agricultural roots to LIC Chief Advisor, Jammalamadugu Branch. Decades of uncompromised service, quiet integrity, and earned honour.'}
+            </p>
+
+            {/* BOTTOM CTAs (Matches Reference "> Randy Fahmi" style button) */}
+            <div className="pt-4 pl-3 sm:pl-8 flex flex-wrap items-center gap-4">
+              
+              {/* Circular Arrow Button (Matches Reference ( > ) Button) */}
+              <button
+                onClick={() => scrollToSection('roots')}
+                className="inline-flex items-center space-x-3 px-5 py-2.5 rounded-full bg-[#1E1E1E] text-white hover:bg-black text-xs sm:text-sm font-bold shadow-md hover-lift transition-all group"
+              >
+                <div className="w-6 h-6 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center font-black group-hover:translate-x-0.5 transition-transform">
+                  <ChevronRight className="w-4 h-4 stroke-[3]" />
+                </div>
+                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                  {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. Sivarami Reddy'}
+                </span>
+              </button>
+
+              {/* Archival Verification Link Button */}
+              <button
+                onClick={onOpenVerificationModal}
+                className="inline-flex items-center space-x-2 px-4 py-2.5 rounded-full bg-white hover:bg-[#F7F5F0] text-[#1E1E1E] border border-[#C8C5BD] text-xs sm:text-sm font-bold shadow-sm hover-lift transition-all"
+              >
+                <ShieldCheck className="w-4 h-4 text-[#F59E0B]" />
+                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                  {currentLang === 'te' ? 'ధృవీకరణ రికార్డు' : 'Archival Verification'}
+                </span>
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: Layered Portrait + Yellow Block + Circular Ring (Exact Match to Reference Image) */}
+        <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center relative">
+          
+          <div className="relative w-full max-w-[360px] sm:max-w-[440px] h-[480px] sm:h-[540px] flex items-end justify-center">
+            
+            {/* 1. Large Thin Circle Outline Behind Head / Torso (Matches Reference Circle) */}
+            <div className="absolute top-2 sm:top-0 left-0 sm:left-2 w-[280px] sm:w-[340px] h-[280px] sm:h-[340px] rounded-full border-2 border-[#1E1E1E]/80 pointer-events-none z-0" />
+
+            {/* 2. Bold Warm Amber/Yellow Solid Block with Rounded Top (Matches Reference Yellow Box) */}
+            <div className="absolute bottom-0 right-1 sm:right-2 w-[220px] sm:w-[270px] h-[270px] sm:h-[330px] rounded-[36px] bg-[#F59E0B] shadow-lg z-0" />
+
+            {/* 3. Sivarami Reddy Cutout Transparent Portrait Popping Out in Front */}
+            <div className="relative z-10 w-full h-full flex items-end justify-center">
+              <Image
+                src="/images/sivarami_portrait.png"
+                alt="G Sivarami Reddy - LIC Chief Advisor"
+                width={480}
+                height={560}
+                priority
+                className="object-contain object-bottom drop-shadow-[0_20px_25px_rgba(0,0,0,0.28)] max-h-[98%] w-auto transition-transform duration-300 hover:scale-[1.02]"
+              />
+            </div>
+
+            {/* 4. Editorial Caption Under Graphic (Matches Reference "Selected Best / Graphic Design Until 2025") */}
+            <div className="absolute -bottom-7 right-2 text-right pointer-events-none">
+              <p className={`text-[10px] sm:text-[11px] font-sans font-bold uppercase tracking-wider text-[#3A3A38] leading-tight ${
+                currentLang === 'te' ? 'font-telugu' : ''
+              }`}>
+                {currentLang === 'te'
+                  ? 'ధృవీకరించబడిన సేవలు • జమ్మలమడుగు'
+                  : 'Selected & Honoured Life Advisory'}
+              </p>
+              <p className={`text-[9.5px] sm:text-[10px] font-mono text-[#6B6A66] uppercase tracking-wider ${
+                currentLang === 'te' ? 'font-telugu' : ''
+              }`}>
+                {currentLang === 'te'
+                  ? 'కడప డివిజన్ • ఆంధ్రప్రదేశ్'
+                  : 'Kadapa Division Until 2026'}
+              </p>
+            </div>
+
+          </div>
 
         </div>
+
       </div>
+
+      {/* 4. BOTTOM FRAMING LINE */}
+      <div className="max-w-7xl mx-auto w-full border-b border-[#C8C5BD] mt-6" />
     </section>
   );
 };
