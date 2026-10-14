@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Language } from '@/types';
-import { Globe, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Globe, Menu, X, ArrowUpRight, PhoneCall } from 'lucide-react';
 
 interface NavbarProps {
   currentLang: Language;
@@ -17,30 +17,26 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenVerificationModal,
   activeSection,
 }) => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isShrunk, setIsShrunk] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Smart collapsible and recoverable scroll listener
+  // Dynamic scroll listener: shrink on scroll down, expand on scroll up or at top
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Always show near the top
       if (currentScrollY < 60) {
-        setIsVisible(true);
-        setIsScrolled(false);
+        // At the very top: fully expanded
+        setIsShrunk(false);
       } else {
-        setIsScrolled(true);
-        // If scrolling down by more than 8px, collapse/hide
-        if (currentScrollY > lastScrollY + 8 && currentScrollY > 100) {
-          setIsVisible(false);
-          setMobileMenuOpen(false); // Close mobile drawer if open
+        // Scrolling down: shrink navbar into compact logo + Request a Call pill
+        if (currentScrollY > lastScrollY + 4) {
+          setIsShrunk(true);
         } 
-        // If scrolling up by more than 8px, recover/show
-        else if (currentScrollY < lastScrollY - 8) {
-          setIsVisible(true);
+        // Scrolling up: expand navbar back to show all section links
+        else if (currentScrollY < lastScrollY - 4) {
+          setIsShrunk(false);
         }
       }
 
@@ -70,63 +66,68 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${
-        isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'
-      } ${
-        isScrolled
-          ? 'py-2.5 sm:py-3'
-          : 'py-4 sm:py-5'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className={`flex items-center justify-between px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-cream-100/90 backdrop-blur-md shadow-lg border border-cream-400/60'
-            : 'bg-cream-100/60 backdrop-blur-sm border border-cream-300/40'
-        }`}>
+    <header className="fixed top-0 left-0 w-full z-50 py-3 sm:py-4 transition-all duration-300">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex justify-center">
+        
+        {/* Dynamic Nav Capsule: Expands or Shrinks on Scroll */}
+        <div
+          className={`flex items-center justify-between transition-all duration-500 ease-out rounded-full shadow-lg border backdrop-blur-md ${
+            isShrunk
+              ? 'w-auto min-w-[280px] sm:min-w-[340px] px-3.5 py-1.5 sm:py-2 bg-cream-100/95 border-cream-400 shadow-xl'
+              : 'w-full px-4 sm:px-6 py-2 sm:py-2.5 bg-cream-100/90 border-cream-300/80'
+          }`}
+        >
           
-          {/* Minimal Brand Monogram */}
+          {/* Logo / Name (Always visible in both shrunk and expanded states) */}
           <button
             onClick={() => scrollTo('hero')}
-            className="flex items-center space-x-2.5 group focus-visible:outline-none"
+            className="flex items-center space-x-2.5 group focus-visible:outline-none flex-shrink-0"
             aria-label="Return to top"
           >
             <div className="w-8 h-8 rounded-full bg-amberGold-500 text-charcoal-950 flex items-center justify-center font-bold text-xs shadow-sm group-hover:scale-105 transition-transform">
               SRG
             </div>
-            <span className="font-bold text-sm sm:text-base tracking-tight text-charcoal-950 font-sans group-hover:text-amberGold-600 transition-colors">
-              {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'Sivarami'}<span className="text-amberGold-500">.</span>
+            <span className="font-extrabold text-sm sm:text-base tracking-tight text-charcoal-950 font-sans group-hover:text-amberGold-600 transition-colors">
+              {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'Sivarami'}
+              <span className="text-amberGold-500">.</span>
             </span>
           </button>
 
-          {/* Minimal Desktop Nav Capsule */}
-          <nav className="hidden md:flex items-center space-x-1" aria-label="Main Navigation">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <button
-                  key={link.id}
-                  onClick={() => scrollTo(link.id)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                    isActive
-                      ? 'bg-charcoal-950 text-amberGold-400 shadow-sm'
-                      : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-cream-200'
-                  } ${currentLang === 'te' ? 'font-telugu' : ''}`}
-                >
-                  {link.label[currentLang]}
-                </button>
-              );
-            })}
-          </nav>
+          {/* Center Links: Visible when expanded, collapses when shrunk */}
+          <div
+            className={`overflow-hidden transition-all duration-500 ease-in-out ${
+              isShrunk
+                ? 'max-w-0 opacity-0 pointer-events-none'
+                : 'max-w-[650px] opacity-100 hidden md:flex items-center space-x-1 mx-2'
+            }`}
+          >
+            <nav className="flex items-center space-x-1" aria-label="Main Navigation">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => scrollTo(link.id)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                      isActive
+                        ? 'bg-charcoal-950 text-amberGold-400 shadow-sm'
+                        : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-cream-200'
+                    } ${currentLang === 'te' ? 'font-telugu' : ''}`}
+                  >
+                    {link.label[currentLang]}
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
 
-          {/* Minimal Right Actions: Language Switch & Reach Out CTA */}
-          <div className="flex items-center space-x-2">
+          {/* Right Action: Language Toggle + Request a Call Button */}
+          <div className="flex items-center space-x-2 flex-shrink-0 ml-2">
             
             {/* Language Switcher */}
             <button
               onClick={() => onLanguageChange(currentLang === 'en' ? 'te' : 'en')}
-              className="flex items-center space-x-1 px-2.5 py-1.5 rounded-full text-xs font-bold text-charcoal-900 bg-cream-200 hover:bg-cream-300 border border-cream-400/80 transition-all button-press"
+              className="flex items-center space-x-1 px-2.5 py-1.5 rounded-full text-xs font-bold text-charcoal-900 bg-cream-200 hover:bg-cream-300 border border-cream-400 transition-all button-press"
               aria-label={`Switch to ${currentLang === 'en' ? 'Telugu' : 'English'}`}
             >
               <Globe className="w-3.5 h-3.5 text-amberGold-600" />
@@ -135,16 +136,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             </button>
 
-            {/* Reach Out CTA Pill */}
+            {/* "Request a Call" Button: Redirects to #reach-out (Always visible!) */}
             <button
               onClick={() => scrollTo('reach-out')}
-              className="hidden sm:inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 shadow-sm hover-lift button-press transition-all"
+              className="inline-flex items-center space-x-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 shadow-sm hover-lift button-press transition-all whitespace-nowrap"
             >
-              <span>{currentLang === 'te' ? 'సంప్రదించండి' : 'Reach Out'}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <PhoneCall className="w-3.5 h-3.5" />
+              <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                {currentLang === 'te' ? 'కాల్ చేయండి' : 'Request a Call'}
+              </span>
             </button>
 
-            {/* Mobile Hamburger */}
+            {/* Mobile Hamburger (Only visible on small screens when expanded) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-1.5 rounded-full text-charcoal-900 bg-cream-200 hover:bg-cream-300"
@@ -155,9 +158,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
         </div>
+
       </div>
 
-      {/* Clean Mobile Drawer */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden max-w-sm mx-auto mt-2 px-4">
           <div className="bg-cream-100 border border-cream-300 rounded-2xl p-4 shadow-xl space-y-1.5 animate-in slide-in-from-top-2">
@@ -182,11 +186,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenVerificationModal();
+                  scrollTo('reach-out');
                 }}
-                className="w-full text-center py-2 rounded-full bg-charcoal-950 text-white text-xs font-semibold"
+                className="w-full text-center py-2.5 rounded-full bg-amberGold-500 text-charcoal-950 text-xs font-bold flex items-center justify-center space-x-1.5"
               >
-                {currentLang === 'te' ? 'సత్య ప్రమాణాలు పరిశీలించండి' : 'Archival Verification Protocol'}
+                <PhoneCall className="w-3.5 h-3.5" />
+                <span>{currentLang === 'te' ? 'కాల్ కొరకు అభ్యర్థించండి' : 'Request a Call (8919358526)'}</span>
               </button>
             </div>
           </div>

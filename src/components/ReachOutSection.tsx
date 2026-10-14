@@ -10,9 +10,10 @@ import {
   MapPin, 
   Send, 
   CheckCircle2, 
-  MessageSquare,
-  Sparkles,
-  ShieldCheck
+  MessageSquare, 
+  Sparkles, 
+  ShieldCheck,
+  PhoneCall
 } from 'lucide-react';
 
 interface ReachOutSectionProps {
@@ -54,12 +55,12 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
     <section id="reach-out" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative overflow-hidden border-t border-cream-300">
       
       {/* Background radial glow */}
-      <div className="absolute top-1/3 right-0 w-80 h-80 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-96 h-96 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Arched Container with Portrait (Suitably Sized) */}
+          {/* Left Column: Big Thumbs-Up Portrait Filling the Card (Matches Reference Image) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -67,49 +68,47 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[310px] sm:max-w-[330px] aspect-[4/5] rounded-[36px] bg-gradient-to-b from-amberGold-500 via-amberGold-600 to-amberGold-700 p-3.5 shadow-2xl flex items-end justify-center">
+            <div className="relative w-full max-w-[360px] sm:max-w-[400px] h-[480px] sm:h-[550px] rounded-[36px] overflow-hidden shadow-2xl border-4 border-amberGold-500/30 group">
               
-              {/* Inner Decorative Arch Border */}
-              <div className="absolute inset-2.5 rounded-[28px] border border-amberGold-400/40 pointer-events-none z-20" />
+              {/* Thumbs-Up Image Filling the Card */}
+              <Image
+                src="/images/sivarami_thumbsup.jpg"
+                alt="G Sivarami Reddy giving thumbs up"
+                fill
+                priority
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
 
-              {/* Portrait Image Cutout */}
-              <div className="relative z-10 w-full h-[95%] flex items-end justify-center">
-                <Image
-                  src="/images/sivarami_portrait.png"
-                  alt="G Sivarami Reddy"
-                  width={320}
-                  height={400}
-                  className="object-contain object-bottom drop-shadow-2xl"
-                />
-              </div>
-
-              {/* Floating Pill Tags */}
-              <div className="absolute -bottom-4 inset-x-2 z-30 flex flex-wrap justify-center gap-1.5 pointer-events-none">
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-charcoal-950 text-white shadow-xl border border-charcoal-800 animate-float-gentle">
-                  {pillTags[0]}
-                </span>
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-amberGold-400 text-charcoal-950 shadow-xl border border-amberGold-300 animate-float-gentle [animation-delay:1s]">
-                  {pillTags[1]}
-                </span>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-charcoal-900 text-amberGold-400 shadow-xl border border-charcoal-700">
-                  {pillTags[2]}
-                </span>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white text-charcoal-950 shadow-xl border border-cream-400">
-                  {pillTags[3]}
-                </span>
-              </div>
+              {/* Gradient Vignette at Bottom for High-Contrast Text / Pill Badges */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/30 to-transparent pointer-events-none" />
 
               {/* Top-Right Badge: Since 2011 */}
-              <div className="absolute -top-3 -right-3 z-30 px-3 py-1 rounded-full bg-white text-charcoal-950 text-xs font-extrabold shadow-xl border border-cream-400 flex items-center space-x-1">
+              <div className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-white/95 text-charcoal-950 text-xs font-extrabold shadow-lg border border-cream-300 flex items-center space-x-1 backdrop-blur-sm">
                 <ShieldCheck className="w-3.5 h-3.5 text-amberGold-600" />
                 <span className={currentLang === 'te' ? 'font-telugu text-[11px]' : ''}>
                   {currentLang === 'te' ? '2011 నుండి' : 'Since: 2011'}
                 </span>
               </div>
+
+              {/* Floating Pill Badges Overlapping Image (Matches Reference Image) */}
+              <div className="absolute bottom-5 inset-x-3 z-20 flex flex-wrap justify-center gap-1.5">
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-charcoal-950 text-white shadow-xl border border-charcoal-800 animate-float-gentle">
+                  {pillTags[0]}
+                </span>
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-amberGold-500 text-charcoal-950 shadow-xl border border-amberGold-300 animate-float-gentle [animation-delay:1s]">
+                  {pillTags[1]}
+                </span>
+                <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-white text-charcoal-950 shadow-xl">
+                  {pillTags[2]}
+                </span>
+                <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-amberGold-400 text-charcoal-950 shadow-xl">
+                  {pillTags[3]}
+                </span>
+              </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Pure Language Verified Contact Information */}
+          {/* Right Column: Verified Contact Information & Direct Hotline Form */}
           <motion.div
             initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -148,7 +147,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                 : 'Chief Advisor • Jammalamadugu Branch • Kadapa Division'}
             </p>
 
-            {/* Business Card Detail Badges */}
+            {/* Direct Contact Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               
               {/* Phone / Call */}
@@ -191,7 +190,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                 </div>
               </a>
 
-              {/* Office & Residential Address */}
+              {/* Office Address */}
               <div className="sm:col-span-2 p-3.5 rounded-xl bg-white border border-cream-400 shadow-sm flex items-start space-x-3">
                 <div className="w-10 h-10 rounded-full bg-cream-200 text-amberGold-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <MapPin className="w-5 h-5" />
@@ -221,14 +220,14 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
 
             </div>
 
-            {/* Quick Reach Out Form */}
+            {/* Quick Request a Call / Advisory Form */}
             <div className="p-5 sm:p-6 rounded-2xl bg-white border border-cream-400 shadow-sm">
               <p className={`text-xs font-bold uppercase tracking-wider text-charcoal-950 mb-3 flex items-center space-x-1.5 ${
                 currentLang === 'te' ? 'font-telugu' : ''
               }`}>
-                <MessageSquare className="w-4 h-4 text-amberGold-600" />
+                <PhoneCall className="w-4 h-4 text-amberGold-600" />
                 <span>
-                  {currentLang === 'te' ? 'నేరుగా సందేశం లేదా సలహా కోరండి' : 'Request Advisory Consultation'}
+                  {currentLang === 'te' ? 'కాల్ లేదా సలహా కొరకు అభ్యర్థించండి' : 'Request a Callback / Consultation'}
                 </span>
               </p>
 
@@ -237,8 +236,8 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                   <span className={currentLang === 'te' ? 'font-telugu' : ''}>
                     {currentLang === 'te'
-                      ? 'ధన్యవాదాలు! మీ సందేశం విజయవంతంగా చేరింది. మేము త్వరలోనే సంప్రదిస్తాము.'
-                      : 'Thank you! Your message has been sent. We will get in touch shortly.'}
+                      ? 'ధన్యవాదాలు! మీ అభ్యర్థన విజయవంతంగా చేరింది. మేము త్వరలోనే సంప్రదిస్తాము.'
+                      : 'Thank you! Your call request has been received. We will get in touch shortly.'}
                   </span>
                 </div>
               ) : (
@@ -284,7 +283,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                           <option value="Policy Guidance">Policy Advisory Consultation</option>
                           <option value="Claim Assistance">Claim Guidance & Assistance</option>
                           <option value="Archival Contribution">Archival Record Contribution</option>
-                          <option value="General Consultation">General Inquiry</option>
+                          <option value="General Consultation">General Callback</option>
                         </>
                       )}
                     </select>
@@ -294,7 +293,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                       className="flex-1 py-2.5 px-5 rounded-xl bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover-lift button-press transition-all"
                     >
                       <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                        {currentLang === 'te' ? 'నేరుగా సంప్రదించండి' : 'Connect Directly'}
+                        {currentLang === 'te' ? 'కాల్ రిక్వెస్ట్ పంపండి' : 'Request Callback'}
                       </span>
                       <Send className="w-3.5 h-3.5" />
                     </button>
@@ -303,7 +302,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
               )}
             </div>
 
-            {/* Official Motto (100% Pure Language) */}
+            {/* Official Motto */}
             <div className="pt-2 text-center">
               <div className="inline-flex items-center space-x-2 px-5 py-2 rounded-full bg-cream-200 border border-cream-400 shadow-sm">
                 <span className="text-amberGold-600 font-serif">❧</span>
