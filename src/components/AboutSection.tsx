@@ -37,13 +37,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   return (
     <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal-950 text-white relative overflow-hidden">
       
-      {/* Background glow */}
+      {/* Background ambient glow */}
       <div className="absolute top-1/2 left-0 w-80 h-80 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Portrait Inside Arched Card (Suitably Sized) */}
+          {/* Left Column: Authentic High-Resolution Conversational Portrait (Perfect Fill & Size) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -51,42 +51,39 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[300px] sm:max-w-[320px] aspect-[4/5] rounded-[32px] bg-gradient-to-b from-amberGold-500 via-amberGold-600 to-amberGold-700 p-3 shadow-2xl flex items-end justify-center">
+            <div className="relative w-full max-w-[380px] sm:max-w-[420px] aspect-[932/1024] rounded-[28px] overflow-hidden border-2 border-amberGold-500/40 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] group bg-charcoal-900">
               
-              {/* Inner frame */}
-              <div className="absolute inset-2 rounded-[26px] border border-amberGold-400/40 pointer-events-none z-20" />
+              {/* Full-Fill Conversational Photo */}
+              <Image
+                src="/images/sivarami_conversational.jpg"
+                alt="G Sivarami Reddy in Conversation"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
+                priority
+                className="object-cover object-[center_20%] transition-transform duration-700 ease-out group-hover:scale-105"
+              />
 
-              {/* Portrait */}
-              <div className="relative z-10 w-full h-[95%] flex items-end justify-center">
-                <Image
-                  src="/images/sivarami_portrait.png"
-                  alt="G Sivarami Reddy"
-                  width={300}
-                  height={380}
-                  className="object-contain object-bottom drop-shadow-2xl"
-                />
-              </div>
+              {/* Subtle bottom gradient to highlight pill badge */}
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/40 via-transparent to-transparent pointer-events-none" />
+
+              {/* Inner refined gold hairline frame */}
+              <div className="absolute inset-2.5 rounded-[22px] border border-white/20 pointer-events-none z-10" />
 
               {/* Floating Pill Tags (100% pure language) */}
-              <div className="absolute -bottom-3 -left-3 z-30 px-3 py-1 rounded-full bg-charcoal-900 text-amberGold-400 text-xs font-bold border border-amberGold-500/50 shadow-xl flex items-center space-x-1.5 animate-float-gentle">
-                <span className="w-1.5 h-1.5 rounded-full bg-amberGold-400" />
+              <div className="absolute bottom-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-charcoal-950/90 backdrop-blur-md text-amberGold-400 text-xs font-bold border border-amberGold-500/50 shadow-xl flex items-center space-x-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amberGold-400 animate-pulse" />
                 <span className={currentLang === 'te' ? 'font-telugu' : ''}>
                   {currentLang === 'te' ? 'రెండు ఎకరాల నేల' : 'Two-Acre Soil'}
                 </span>
               </div>
 
-              <div className="absolute -top-3 -right-3 z-30 px-3 py-1 rounded-full bg-white text-charcoal-950 text-xs font-bold shadow-xl border border-cream-400 flex items-center space-x-1.5 animate-float-gentle [animation-delay:1.5s]">
-                <ShieldCheck className="w-3.5 h-3.5 text-amberGold-600" />
+              <div className="absolute top-4 right-4 z-20 px-3 py-1.5 rounded-full bg-amberGold-500 text-charcoal-950 text-xs font-black shadow-xl flex items-center space-x-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-charcoal-950" />
                 <span className={currentLang === 'te' ? 'font-telugu' : ''}>
                   {currentLang === 'te' ? 'చీఫ్ అడ్వైజర్' : 'Chief Advisor'}
                 </span>
               </div>
 
-              <div className="absolute top-1/2 -left-4 z-30 px-2.5 py-0.5 rounded-full bg-charcoal-950 text-white text-[10px] font-semibold border border-charcoal-800 shadow-xl hidden sm:flex items-center space-x-1">
-                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                  {currentLang === 'te' ? 'కడప డివిజన్' : 'Kadapa Division'}
-                </span>
-              </div>
             </div>
           </motion.div>
 
