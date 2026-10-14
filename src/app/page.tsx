@@ -10,7 +10,6 @@ import { MilestonesAccordion } from '@/components/MilestonesAccordion';
 import { AboutSection } from '@/components/AboutSection';
 import { RecognitionsShowcase } from '@/components/RecognitionsShowcase';
 import { HumanImpactSection } from '@/components/HumanImpactSection';
-import { LegacyClosing } from '@/components/LegacyClosing';
 import { ReachOutSection } from '@/components/ReachOutSection';
 import { ArchivalVerificationModal } from '@/components/ArchivalVerificationModal';
 
@@ -28,7 +27,6 @@ export default function Home() {
       'about',
       'recognitions',
       'impact',
-      'legacy',
       'reach-out',
     ];
 
@@ -100,13 +98,7 @@ export default function Home() {
       {/* 06: Human Impact & Confidentiality Notice */}
       <HumanImpactSection currentLang={currentLang} />
 
-      {/* 07: Legacy & Closing Documentary Statement */}
-      <LegacyClosing
-        currentLang={currentLang}
-        onOpenVerificationModal={() => setIsVerificationModalOpen(true)}
-      />
-
-      {/* THE VERY LAST SECTION: Reach Out & Connect (From Business Card & Image 1 Reference) */}
+      {/* Reach Out & Connect (The Final Section) */}
       <ReachOutSection currentLang={currentLang} />
 
       {/* Clean Colophon Footer */}

@@ -61,7 +61,6 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'milestones', label: { en: 'Milestones', te: 'మైలురాళ్లు' } },
     { id: 'about', label: { en: 'About', te: 'పరిచయం' } },
     { id: 'recognitions', label: { en: 'Honours', te: 'గౌరవాలు' } },
-    { id: 'legacy', label: { en: 'Legacy', te: 'వారసత్వం' } },
     { id: 'reach-out', label: { en: 'Reach Out', te: 'సంప్రదించండి' } },
   ];
 
