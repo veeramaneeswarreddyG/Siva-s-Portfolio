@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navLinks = [
     { id: 'hero', label: { en: 'Home', te: 'హోమ్' } },
     { id: 'roots', label: { en: 'Origins', te: 'మూలాలు' } },
-    { id: 'milestones', label: { en: 'Milestones', te: 'మైలురాళ్లు' } },
+    { id: 'milestones', label: { en: 'Q&A', te: 'సందేహాలు' } },
     { id: 'about', label: { en: 'About', te: 'పరిచయం' } },
     { id: 'recognitions', label: { en: 'Honours', te: 'గౌరవాలు' } },
     { id: 'reach-out', label: { en: 'Reach Out', te: 'సంప్రదించండి' } },

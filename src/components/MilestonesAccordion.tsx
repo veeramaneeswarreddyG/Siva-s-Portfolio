@@ -3,204 +3,231 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language } from '@/types';
-import { ArrowUpRight, Sparkles, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, Sparkles } from 'lucide-react';
 
 interface MilestonesAccordionProps {
   currentLang: Language;
-  onOpenVerificationModal: () => void;
+  onOpenVerificationModal?: () => void;
 }
 
 export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
   currentLang,
-  onOpenVerificationModal,
 }) => {
-  const [activeItem, setActiveItem] = useState<number>(1); // Default to item 2 (index 1) like Image 1
+  // Default to item index 1 (02.) expanded, matching user reference image
+  const [activeItem, setActiveItem] = useState<number>(1);
 
   const items = [
     {
       number: '01.',
-      title: {
-        en: 'Agricultural Foundations & Two-Acre Heritage',
-        te: 'రెండు ఎకరాల వ్యవసాయ పునాదులు & శ్రమ సంస్కృతి',
+      question: {
+        en: 'Why choose LIC insurance over physical assets like land or gold?',
+        te: 'భూమి లేదా బంగారం కంటే ఎల్.ఐ.సి భరోసాను ఎందుకు ప్రాధాన్యతగా ఎంచుకోవాలి?',
       },
       tags: {
-        en: ['Patience & Endurance', 'Seasonal Discipline', 'Rayalaseema Soil'],
-        te: ['ఓర్పు & సహనం', 'రుతువుల క్రమశిక్షణ', 'రాయలసీమ మట్టి'],
+        en: ['Immediate Liquidity', 'Distress Sale Protection', 'Sovereign Guarantee'],
+        te: ['తక్షణ ఆర్థిక వెసులుబాటు', 'ఆస్తుల పరిరక్షణ', 'సార్వభౌమ రక్షణ'],
       },
-      description: {
-        en: 'Life began in the fertile, honest soil of Andhra Pradesh. The land taught that growth cannot be rushed, and whatever is sown with integrity and tended with consistency will stand unshakeable through every season.',
-        te: 'ఆంధ్రప్రదేశ్ నేలల్లో రెండు ఎకరాల వ్యవసాయ నేపథ్యంతో మొదలైన జీవనం. భూమి తొందరపాటుకు లొంగదు; నిజాయితీతో నాటి, క్రమశిక్షణతో పోషించిన విత్తనం మాత్రమే కాలపరీక్షను తట్టుకుని నిలుస్తుందని నేల నేర్పింది.',
+      answer: {
+        en: 'Gold and agricultural land cannot be liquidated overnight without heavy distress discounts during sudden family emergencies. An LIC policy guarantees immediate, irrevocable financial security to the family within days — preserving your ancestral property from forced distress sales.',
+        te: 'ఆకస్మిక ఆపదలో భూమి లేదా నగలు వెంటనే ద్రవ్యరూపంలోకి మారవు; ఒత్తిడిలో తక్కువ ధరకు అమ్ముకోవాల్సి వస్తుంది. కానీ ఎల్.ఐ.సి క్లెయిమ్ కొద్ది రోజుల్లోనే కుటుంబానికి తక్షణ ఆర్థిక భరోసా అందించి, పూర్వీకుల ఆస్తులు చేజారకుండా కాపాడుతుంది.',
       },
     },
     {
       number: '02.',
-      title: {
-        en: 'The Inception (Early 2000s) — Stepping into LIC',
-        te: '2000ల ప్రారంభం — ఎల్.ఐ.సి రంగంలోకి తొలి అడుగులు',
+      question: {
+        en: 'How is our money protected against market crashes and recessions?',
+        te: 'మార్కెట్ పతనాలు మరియు ఆర్థిక మాంద్యం సమయాల్లో మా సంపాదన ఎలా సురక్షితం?',
       },
       tags: {
-        en: ['Early 2000s Inception', 'Public Insurance', 'Family Stewardship', 'Jammalamadugu'],
-        te: ['2000ల ప్రారంభ ప్రవేశం', 'ప్రజా భద్రత', 'కుటుంబ సంక్షేమం', 'జమ్మలమడుగు'],
+        en: ['Section 37 Guarantee', 'Zero Speculation', 'Capital Protection'],
+        te: ['సెక్షన్ 37 హామీ', 'ప్రభుత్వ రక్షణ', 'నూరుశాతం మూలధన భద్రత'],
       },
-      description: {
-        en: 'A decisive turning point in the early 2000s. Moving from cultivating crops to safeguarding families was an organic progression: both required patient long-term nurturing, reliability, and an unwavering respect for the future.',
-        te: '2000ల ప్రారంభంలో ప్రారంభమైన ఈ ప్రయాణంలో... మట్టిని సేద్యం చేయడం నుండి మనుషుల భవిష్యత్తును రక్షించే సేవలోకి మారడం సహజ పరిణామమే అయింది. రెండింటికీ కావలసింది దీర్ఘకాలిక సంరక్షణ, ఆప్యాయత మరియు భరోసా.',
+      answer: {
+        en: 'Unlike speculative private or market-linked schemes, every LIC policy carries the Sovereign Guarantee of the Government of India under Section 37 of the LIC Act. The sum assured and all declared bonuses are 100% legally guaranteed, keeping family savings completely insulated from market downturns.',
+        te: 'ప్రైవేట్ లేదా ఊహాజనిత మార్కెట్ పెట్టుబడులలా కాకుండా, ఎల్.ఐ.సి చట్టం సెక్షన్ 37 ప్రకారం భారత ప్రభుత్వం పూర్తి సార్వభౌమ హామీ ఇస్తుంది. మీ పాలసీ హామీ మొత్తం మరియు బోనస్ ప్రతి పైసా చట్టబద్ధంగా నూరుశాతం సురక్షితం.',
       },
     },
     {
       number: '03.',
-      title: {
-        en: 'Grassroots Agent Practice — Direct Community Trust',
-        te: 'ఏజెంట్‌గా క్షేత్రస్థాయి అంకితభావం & ప్రజల నమ్మకం',
+      question: {
+        en: 'What happens if drought or crop failure halts premium payments?',
+        te: 'కరువు లేదా పంట నష్టాల కారణంగా ప్రీమియం చెల్లించలేకపోతే పాలసీ రద్దవుతుందా?',
       },
       tags: {
-        en: ['Grassroots Presence', 'Direct Household Trust', 'Ethical Advice'],
-        te: ['క్షేత్రస్థాయి సేవ', 'గడపగడపకూ భరోసా', 'నైతిక మార్గదర్శకత్వం'],
+        en: ['Grace Periods', 'Special Revival Schemes', 'Policy Loan Facility'],
+        te: ['గ్రేస్ పీరియడ్', 'పునరుద్ధరణ పథకాలు', 'పాలసీ రుణ సదుపాయం'],
       },
-      description: {
-        en: 'Serving at the grassroots across Jammalamadugu, sitting with families, listening to their hopes and fears, and ensuring their financial security was protected by solid policy instruments.',
-        te: 'జమ్మలమడుగు పరిసర ప్రాంతాల్లోని ప్రజల ముంగిటకు వెళ్లి, వారి కష్టసుఖాలు తెలుసుకుని, కుటుంబ భద్రతకు రక్షణ కవచంలా నిలిచిన అత్యంత కీలకమైన పునాది కాలం.',
+      answer: {
+        en: 'Coming from an agricultural background, I understand seasonal hardship. We guide families through grace period extensions, official revival campaigns with interest concessions, and low-interest policy loans to ensure hard-earned coverage never lapses during difficult seasons.',
+        te: 'వ్యవసాయ నేపథ్యం నుండి వచ్చిన వ్యక్తిగా కరువు కష్టాలు నాకు తెలుసు. గ్రేస్ పీరియడ్, వడ్డీ రాయితీతో కూడిన ప్రత్యేక రివైవల్ ప్రచారాలు మరియు పాలసీ రుణ సదుపాయాల ద్వారా పాలసీ రద్దు కాకుండా ఆదుకుంటాం.',
       },
     },
     {
       number: '04.',
-      title: {
-        en: 'LIAFI Affiliation — National Federation Standards',
-        te: 'ఎల్.ఐ.ఎ.ఎఫ్.ఐ (LIAFI) జాతీయ సమాఖ్య అనుబంధం',
+      question: {
+        en: 'When tragedy strikes, how fast are claims settled without bureaucratic delays?',
+        te: 'కుటుంబంలో అనుకోని విషాదం జరిగినప్పుడు, క్లెయిమ్ పరిష్కారం ఆలస్యం కాకుండా ఎలా జరుగుతుంది?',
       },
       tags: {
-        en: ['LIAFI Member', 'Advisor Ethics', 'Federation Solidarity'],
-        te: ['సమాఖ్య సభ్యత్వం', 'వృత్తి విలువల పరిరక్షణ', 'సహచర సమైక్యత'],
+        en: ['Doorstep Service', 'Direct Jammalamadugu Liaison', 'Dignified Handover'],
+        te: ['ఇంటివద్దే సేవలు', 'బ్రాంచ్ అనుసంధానం', 'త్వరిత పరిష్కారం'],
       },
-      description: {
-        en: 'Association with the Life Insurance Agents Federation of India (LIAFI), upholding ethical service benchmarks, peer solidarity, and policyholder welfare across the region.',
-        te: 'భారతదేశ జీవిత బీమా ప్రతినిధుల ప్రతిష్టాత్మక జాతీయ సమాఖ్యతో అనుబంధం, వృత్తిపరమైన నైతిక విలువల పరిరక్షణ మరియు పాలసీదారుల హక్కుల పరిరక్షణ.',
+      answer: {
+        en: 'We never abandon grieving families to navigate paperwork alone. We personally visit homes to gather documents, coordinate directly with Jammalamadugu Branch and Kadapa Divisional Office, and ensure settlement cheques reach the nominees with dignity, speed, and zero friction.',
+        te: 'బాధలో ఉన్న కుటుంబాలను ఆఫీసుల చుట్టూ తిప్పం. స్వయంగా ఇంటి వద్దే పత్రాలు సేకరించి, జమ్మలమడుగు బ్రాంచ్ & కడప డివిజన్ అధికారులతో సమన్వయం చేసి క్లెయిమ్ మొత్తాన్ని త్వరితగతిన అందిస్తాం.',
       },
     },
     {
       number: '05.',
-      title: {
-        en: '#3 Diamond Brigade & CLIA Leadership — Elite Recognition',
-        te: '#3 డైమండ్ బ్రిగేడ్ & సి.ఎల్.ఐ.ఎ (CLIA) నాయకత్వం',
+      question: {
+        en: 'Why choose a Chief Life Insurance Advisor (CLIA) over direct online portals?',
+        te: 'ఆన్‌లైన్ పాలసీల కంటే చీఫ్ లైఫ్ ఇన్సూరెన్స్ అడ్వైజర్ (CLIA) మార్గదర్శకత్వం ఎందుకు ముఖ్యం?',
       },
       tags: {
-        en: ['#3 Diamond Brigade', 'CLIA Executive', 'Mentorship & Guidance'],
-        te: ['#3 డైమండ్ బ్రిగేడ్', 'చీఫ్ అడ్వైజర్ నాయకత్వం', 'యువ ఏజెంట్లకు మార్గదర్శనం'],
+        en: ['2+ Decades Standing', 'Lifelong Servicing', 'Institutional Ethics'],
+        te: ['రెండు దశాబ్దాల అనుభవం', 'నిరంతర సేవ', 'నమ్మకమైన తోడు'],
       },
-      description: {
-        en: 'Achieving the distinguished #3 Diamond Brigade honor through exceptional service consistency, alongside appointment as Chief Life Insurance Advisor (CLIA) to train and mentor the next generation of advisors.',
-        te: 'అత్యుత్తమ ఫలితాలు మరియు నిరంతర కృషికి గాను విశిష్టమైన "#3 డైమండ్ బ్రిగేడ్" పురస్కారం మరియు యువ సలహాదారులను తీర్చిదిద్దే చీఫ్ లైఫ్ ఇన్సూరెన్స్ అడ్వైజర్ (CLIA) ఉన్నత నాయకత్వ బాధ్యత.',
+      answer: {
+        en: 'An online algorithm cannot visit a hospital bed or stand beside a family at midnight. Over two decades of continuous presence in Jammalamadugu means you are not buying an isolated paper policy; you have an institutional ally who actively services and defends your financial security for life.',
+        te: 'ఆన్‌లైన్ వెబ్‌సైట్లు కష్టకాలంలో ఇంటికి వచ్చి నిలబడలేవు. రెండు దశాబ్దాలుగా జమ్మలమడుగులో సంపాదించుకున్న విశ్వసనీయతతో... మీరు కేవలం పాలసీ కొనడం లేదు, జీవితాంతం ఒక బాధ్యతాయుతమైన సంరక్షకుడిని పొందుతున్నారు.',
       },
     },
   ];
 
   return (
-    <section id="milestones" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-200 relative">
-      <div className="max-w-6xl mx-auto">
+    <section id="milestones" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#ECEAE5] relative select-none">
+      <div className="max-w-5xl mx-auto">
         
-        {/* Header Block (Matches Image 1 "My Services / How I Bring Ideas to Life") */}
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amberGold-500" />
-              <span>{currentLang === 'te' ? 'సేవా మైలురాళ్లు' : 'Documented Milestones'}</span>
+            <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
+              <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                {currentLang === 'te' ? 'ప్రజా సవాళ్లు & వాస్తవ పరిష్కారాలు' : 'Public Concerns & Advisory Solutions'}
+              </span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-charcoal-950 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] tracking-tight font-sans">
               {currentLang === 'te' ? (
                 <>
-                  మట్టి నుండి <span className="text-amberGold-500">మహోన్నత రక్షణ వరకు</span>
+                  ప్రజలు అడిగే సవాళ్లు & <span className="text-[#F59E0B]">స్పష్టమైన సమాధానాలు</span>
                 </>
               ) : (
                 <>
-                  How Roots Turned Into <span className="text-amberGold-500">Lifelong Protection</span>
+                  Challenges People Face & <span className="text-[#F59E0B]">Honest Answers</span>
                 </>
               )}
-              <Sparkles className="inline-block w-6 h-6 ml-2 text-amberGold-500 align-baseline" />
+              <Sparkles className="inline-block w-6 h-6 ml-2 text-[#F59E0B] align-baseline" />
             </h2>
           </div>
 
-          <button
-            onClick={onOpenVerificationModal}
-            className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 font-bold text-xs uppercase tracking-wider shadow-sm hover-lift button-press transition-all self-start md:self-end"
-          >
-            <span>{currentLang === 'te' ? 'అన్ని రికార్డులను పరిశీలించండి' : 'View All Records'}</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </button>
+          <div className="text-xs sm:text-sm font-mono uppercase tracking-wider text-[#6B6A66] self-start md:self-end">
+            {currentLang === 'te' ? 'కడప డివిజన్ • జమ్మలమడుగు' : 'Kadapa Division • Jammalamadugu'}
+          </div>
         </div>
 
-        {/* Stacked Accordion Items (Replicating exact card style from Image 1) */}
-        <div className="space-y-4">
+        {/* Stacked Accordion with the EXACT stepped tabbed notch shape from reference image */}
+        <div className="space-y-4 sm:space-y-5">
           {items.map((item, index) => {
             const isExpanded = activeItem === index;
+
+            // Exact polygon formula matching reference image stepped notch profile
+            const clipStyle = {
+              clipPath: isExpanded
+                ? 'polygon(18px 10px, 175px 10px, 195px 0px, calc(100% - 18px) 0px, 100% 18px, 100% calc(100% - 18px), calc(100% - 18px) 100%, 105px 100%, 85px calc(100% - 10px), 18px calc(100% - 10px), 0px calc(100% - 24px), 0px 24px)'
+                : 'polygon(16px 8px, 85px 8px, 102px 0px, calc(100% - 16px) 0px, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 80px 100%, 65px calc(100% - 8px), 16px calc(100% - 8px), 0px calc(100% - 20px), 0px 20px)',
+            };
 
             return (
               <div
                 key={index}
-                onClick={() => setActiveItem(isExpanded ? -1 : index)}
-                className={`cursor-pointer rounded-2xl transition-all duration-300 overflow-hidden ${
-                  isExpanded
-                    ? 'bg-charcoal-950 text-white shadow-xl border border-charcoal-800'
-                    : 'bg-white hover:bg-cream-100 text-charcoal-900 border border-cream-400 shadow-sm hover-lift'
-                }`}
+                className="filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:drop-shadow-[0_6px_16px_rgba(0,0,0,0.1)] transition-all duration-300"
               >
-                <div className="p-6 sm:p-8">
-                  {/* Top Row: Number + Title + Arrow Button */}
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="flex items-baseline space-x-4 sm:space-x-8">
-                      <span className={`font-mono text-sm sm:text-base font-bold ${
-                        isExpanded ? 'text-amberGold-400' : 'text-amberGold-600'
-                      }`}>
+                <div
+                  onClick={() => setActiveItem(isExpanded ? -1 : index)}
+                  style={clipStyle}
+                  className={`cursor-pointer transition-all duration-300 ${
+                    isExpanded
+                      ? 'bg-[#1C1A18] text-white py-6 sm:py-8 px-6 sm:px-10'
+                      : 'bg-white hover:bg-[#FBF9F5] text-[#1E1E1E] py-4 sm:py-5 px-6 sm:px-10'
+                  }`}
+                >
+                  
+                  {/* Row Top: Number + Dotted Guide + Question Title + Orange Action Circle */}
+                  <div className="flex items-center justify-between gap-3 sm:gap-6">
+                    
+                    <div className="flex items-center flex-1 min-w-0">
+                      
+                      {/* Number in Amber Gold (Matches Reference "01.", "02.") */}
+                      <span className="font-mono text-sm sm:text-base font-extrabold text-[#F59E0B] flex-shrink-0 tracking-wider">
                         {item.number}
                       </span>
-                      <h3 className={`font-bold text-lg sm:text-2xl tracking-tight ${
-                        isExpanded ? 'text-white' : 'text-charcoal-900'
-                      }`}>
-                        {item.title[currentLang]}
+
+                      {/* Dotted Connecting Guide Line (Matches Reference Dotted Line) */}
+                      <div
+                        className={`hidden sm:block w-10 md:w-16 border-b-2 border-dotted mx-3 md:mx-5 flex-shrink-0 ${
+                          isExpanded ? 'border-white/25' : 'border-[#C8C5BD]'
+                        }`}
+                      />
+
+                      {/* Question Title */}
+                      <h3
+                        className={`font-black text-sm sm:text-base md:text-lg tracking-tight truncate sm:whitespace-normal font-sans ${
+                          isExpanded ? 'text-white' : 'text-[#1E1E1E]'
+                        } ${currentLang === 'te' ? 'font-telugu leading-snug' : ''}`}
+                      >
+                        {item.question[currentLang]}
                       </h3>
                     </div>
 
-                    {/* Circular Arrow Button (Matches Image 1 orange circle arrow) */}
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
-                      isExpanded
-                        ? 'bg-amberGold-500 text-charcoal-950 rotate-45'
-                        : 'bg-cream-300 text-charcoal-800 group-hover:bg-amberGold-500'
-                    }`}>
-                      <ArrowUpRight className="w-5 h-5" />
+                    {/* Orange Circular Action Button with Up-Right Arrow (Matches Reference) */}
+                    <div
+                      className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center flex-shrink-0 font-black shadow-sm transition-transform duration-300 ${
+                        isExpanded ? 'rotate-90 scale-105' : 'group-hover:scale-105'
+                      }`}
+                    >
+                      <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.75]" />
                     </div>
+
                   </div>
 
-                  {/* Expanded Content (Matches Image 1 expanded card with tags & description) */}
+                  {/* Expanded Content: Pill Badges + In-Depth Reassuring Answer */}
                   <AnimatePresence>
                     {isExpanded && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.35, ease: 'easeInOut' }}
-                        className="mt-6 pt-6 border-t border-charcoal-800 space-y-4"
+                        transition={{ duration: 0.25, ease: 'easeInOut' }}
+                        className="mt-5 pt-5 border-t border-white/10 space-y-3"
                       >
-                        {/* Pill tags */}
+                        {/* Pill Tags (Matches Reference Row 02 Pills) */}
                         <div className="flex flex-wrap gap-2">
                           {item.tags[currentLang].map((tag, tIdx) => (
                             <span
                               key={tIdx}
-                              className="px-3 py-1 rounded-full text-xs font-semibold bg-charcoal-800 text-cream-300 border border-charcoal-700"
+                              className={`px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-white/10 text-white/90 border border-white/15 ${
+                                currentLang === 'te' ? 'font-telugu' : ''
+                              }`}
                             >
                               {tag}
                             </span>
                           ))}
                         </div>
 
-                        {/* Description */}
-                        <p className={`text-sm sm:text-base text-cream-300/90 leading-relaxed font-light ${
-                          currentLang === 'te' ? 'font-telugu' : ''
-                        }`}>
-                          {item.description[currentLang]}
+                        {/* Detailed Answer Narrative */}
+                        <p
+                          className={`text-xs sm:text-sm md:text-[15px] text-[#D8D4CA] leading-relaxed font-light pt-1 ${
+                            currentLang === 'te' ? 'font-telugu leading-relaxed text-sm' : ''
+                          }`}
+                        >
+                          {item.answer[currentLang]}
                         </p>
                       </motion.div>
                     )}
                   </AnimatePresence>
+
                 </div>
               </div>
             );

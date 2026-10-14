@@ -25,8 +25,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
       label: { en: 'Diamond Brigade Merit Standing', te: 'డైమండ్ బ్రిగేడ్ విశిష్ట గౌరవం' },
     },
     {
-      value: { en: '2 Acres', te: '2 ఎకరాలు' },
-      label: { en: 'Agricultural Farming Roots', te: 'రైతు పునాది & శ్రమ సంస్కృతి' },
+      value: { en: 'Kadapa Div.', te: 'కడప డివిజన్' },
+      label: { en: 'Jammalamadugu Branch Standing', te: 'జమ్మలమడుగు బ్రాంచ్ కేంద్రం' },
     },
     {
       value: { en: 'CLIA & LIAFI', te: 'నాయకత్వ హోదాలు' },
@@ -43,7 +43,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Authentic High-Resolution Conversational Portrait (Perfect Fill & Size) */}
+          {/* Left Column: Authentic High-Resolution Conversational Portrait (No Soil Capsule) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -63,21 +63,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                 className="object-cover object-[center_20%] transition-transform duration-700 ease-out group-hover:scale-105"
               />
 
-              {/* Subtle bottom gradient to highlight pill badge */}
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/40 via-transparent to-transparent pointer-events-none" />
-
               {/* Inner refined gold hairline frame */}
               <div className="absolute inset-2.5 rounded-[22px] border border-white/20 pointer-events-none z-10" />
 
-              {/* Floating Pill Tags (100% pure language) */}
-              <div className="absolute bottom-4 left-4 z-20 px-3.5 py-1.5 rounded-full bg-charcoal-950/90 backdrop-blur-md text-amberGold-400 text-xs font-bold border border-amberGold-500/50 shadow-xl flex items-center space-x-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-amberGold-400 animate-pulse" />
-                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                  {currentLang === 'te' ? 'రెండు ఎకరాల నేల' : 'Two-Acre Soil'}
-                </span>
-              </div>
-
-              <div className="absolute top-4 right-4 z-20 px-3 py-1.5 rounded-full bg-amberGold-500 text-charcoal-950 text-xs font-black shadow-xl flex items-center space-x-1.5">
+              {/* Chief Advisor Badge in Top Corner Only */}
+              <div className="absolute top-4 right-4 z-20 px-3.5 py-1.5 rounded-full bg-amberGold-500 text-charcoal-950 text-xs font-black shadow-xl flex items-center space-x-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-charcoal-950" />
                 <span className={currentLang === 'te' ? 'font-telugu' : ''}>
                   {currentLang === 'te' ? 'చీఫ్ అడ్వైజర్' : 'Chief Advisor'}
@@ -118,13 +108,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             }`}>
               <p>
                 {currentLang === 'te'
-                  ? 'బిరుదులు, పదవుల కంటే ముందే... నేలను నమ్ముకున్న ఒక సాధారణ రైతు పుత్రుడు. కడప జిల్లా కమలాపురంలో రెండు ఎకరాల వ్యవసాయ నేపథ్యంతో మొదలైన ఆయన ప్రయాణం, కష్టపడే తత్వానికీ, అంకితభావానికీ నిలువెత్తు నిదర్శనం.'
-                  : 'Before executive titles and advisory honors, G Sivarami Reddy was rooted in the fertile red earth of Kamalapuram, Kadapa district, connected to a two-acre agricultural heritage.'}
+                  ? 'బిరుదులు, పదవుల కంటే ముందే... నేలను నమ్ముకున్న ఒక సాధారణ రైతు పుత్రుడు. కడప జిల్లా కమలాపురం గ్రామీణ నేపథ్యంతో మొదలైన ఆయన ప్రయాణం, కష్టపడే తత్వానికీ, అంకితభావానికీ నిలువెత్తు నిదర్శనం.'
+                  : 'Before executive titles and advisory honors, G Sivarami Reddy was rooted in the fertile land of Kamalapuram, Kadapa district, guided by patience, discipline, and honest service.'}
               </p>
               <p>
                 {currentLang === 'te'
                   ? 'వ్యవసాయంలో నేర్చుకున్న ఓర్పు, క్రమశిక్షణ, మరియు ఇచ్చిన మాటకు కట్టుబడి ఉండే నైతికతను ఆయన తన ఎల్.ఐ.సి వృత్తిలోనూ ఆచరించారు. జమ్మలమడుగు బ్రాంచ్ కేంద్రంగా వేలాది కుటుంబాల భవిష్యత్తుకు భరోసానిచ్చారు.'
-                  : 'The soil taught him that meaningful growth cannot be rushed. Moving into public insurance advisory, he brought that exact agrarian discipline into protecting households across Jammalamadugu Branch, Kadapa Division.'}
+                  : 'Moving into public insurance advisory, he brought an unshakeable agrarian discipline into protecting households across Jammalamadugu Branch, Kadapa Division.'}
               </p>
             </div>
 
