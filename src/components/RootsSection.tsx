@@ -169,8 +169,6 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
   // Exactly 2 duplicates for mathematically seamless 50% translation without glitch
   const marqueeItems = [...facts, ...facts];
 
-  const isAnyCardHovered = hoveredCardId !== null;
-
   return (
     <section id="roots" className="py-14 sm:py-18 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden">
       
@@ -185,8 +183,8 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Pure Bilingual Section Header: No pause button, no arrows, no mixed English */}
-        <div className="mb-8 sm:mb-10 text-center sm:text-left">
+        {/* Pure Bilingual Section Header */}
+        <div className="mb-6 sm:mb-8 text-center sm:text-left">
           <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10">
             <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
             <span className={currentLang === 'te' ? 'font-telugu' : ''}>
@@ -214,26 +212,24 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
             currentLang === 'te' ? 'font-telugu leading-relaxed' : ''
           }`}>
             {currentLang === 'te'
-              ? 'ప్రజల సంక్షేమం కోసం స్థాపించబడిన ఎల్.ఐ.సి చారిత్రక రక్షణ ప్రస్థానం. వివరాలు చూడటానికి కార్డ్ పై కర్సర్ ఉంచండి.'
-              : 'Discover the sovereign journey of India’s most trusted institution. Hover on any card to explore.'}
+              ? 'ప్రజల సంక్షేమం కోసం స్థాపించబడిన ఎల్.ఐ.సి చారిత్రక రక్షణ ప్రస్థానం.'
+              : 'Discover the sovereign journey of India’s most trusted institution.'}
           </p>
         </div>
 
-        {/* ULTRA-SMOOTH GPU-ACCELERATED CAROUSEL (ZERO SCROLLBAR, ZERO LAG) */}
-        <div className="relative w-full py-2 overflow-hidden no-scrollbar">
+        {/* ULTRA-SMOOTH CONTINUOUS SCROLLING CAROUSEL WITH BLUR FOCUS EFFECT */}
+        <div className="relative w-full py-8 sm:py-10 overflow-hidden no-scrollbar">
           <div
-            className={`flex items-start gap-5 sm:gap-6 w-max will-change-transform ${
-              isAnyCardHovered ? '[animation-play-state:paused]' : 'animate-marquee'
+            className={`carousel-track flex items-center gap-6 w-max animate-marquee will-change-transform ${
+              hoveredCardId ? 'has-card-hover' : ''
             }`}
             style={{
-              animationDuration: '42s',
+              animationDuration: '40s',
               transform: 'translate3d(0, 0, 0)',
             }}
           >
             {marqueeItems.map((card, idx) => {
               const cardKey = `${card.id}-${idx}`;
-              const isHovered = hoveredCardId === cardKey;
-              const isSiblingDimmed = isAnyCardHovered && !isHovered;
               const IconComp = card.icon;
 
               return (
@@ -241,28 +237,17 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                   key={cardKey}
                   onMouseEnter={() => setHoveredCardId(cardKey)}
                   onMouseLeave={() => setHoveredCardId(null)}
-                  onClick={() => setHoveredCardId(isHovered ? null : cardKey)}
-                  className={`group apple-press relative w-[290px] xs:w-[320px] sm:w-[350px] rounded-2xl bg-white/95 backdrop-blur-md border transition-all duration-300 ease-out cursor-pointer flex flex-col flex-shrink-0 ${
-                    isHovered
-                      ? 'scale-[1.03] shadow-[0_20px_45px_rgba(245,158,11,0.22)] border-[#F59E0B] z-30 opacity-100'
-                      : isSiblingDimmed
-                      ? 'scale-[0.98] opacity-40 border-[#E2DFD7] z-10'
-                      : 'shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-lg border-[#E2DFD7] z-10 opacity-100'
-                  }`}
-                  style={{
-                    transformOrigin: 'center center',
-                  }}
+                  className="carousel-card relative w-[300px] sm:w-[350px] h-[450px] sm:h-[470px] rounded-2xl bg-white/95 backdrop-blur-md border border-[#E2DFD7] shadow-[0_4px_16px_rgba(0,0,0,0.06)] cursor-pointer flex flex-col flex-shrink-0 overflow-hidden"
                 >
-                  
-                  {/* Top Image: Rounded Corners */}
-                  <div className="relative w-full aspect-[16/10] overflow-hidden rounded-t-2xl bg-charcoal-900">
+                  {/* Top Image: Fixed Height & Aspect */}
+                  <div className="relative w-full h-[185px] sm:h-[200px] overflow-hidden rounded-t-2xl bg-charcoal-900 flex-shrink-0">
                     <Image
                       src={card.image}
                       alt={card.headline[currentLang]}
                       fill
                       priority={idx < 4}
                       sizes="(max-width: 640px) 300px, 350px"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                      className="object-cover transition-transform duration-500 ease-out hover:scale-105"
                     />
 
                     {/* Gradient Overlay */}
@@ -280,72 +265,38 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                     </div>
                   </div>
 
-                  {/* Card Bottom: Headline & Full Explanation */}
+                  {/* Card Bottom: Headline, Summary & Pinned Footer - 100% Uniform & Even Across Every Card */}
                   <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
                     <div>
-                      {/* Short Hook Headline */}
-                      <h3 className={`text-sm sm:text-base font-bold text-[#1E1E1E] tracking-tight leading-snug group-hover:text-amber-600 transition-colors ${
+                      {/* Short Hook Headline (2 lines max, uniform height) */}
+                      <h3 className={`text-sm sm:text-base font-bold text-[#1E1E1E] tracking-tight leading-snug line-clamp-2 min-h-[2.5rem] sm:min-h-[2.85rem] ${
                         currentLang === 'te' ? 'font-telugu font-semibold leading-snug' : ''
                       }`}>
                         {card.headline[currentLang]}
                       </h3>
 
-                      {/* Summary Text */}
-                      <p className={`mt-2 text-xs text-[#5A5955] leading-relaxed font-normal ${
+                      {/* Summary Text (3 lines max, uniform height) */}
+                      <p className={`mt-2.5 text-xs text-[#5A5955] leading-relaxed font-normal line-clamp-3 min-h-[3.75rem] sm:min-h-[4rem] ${
                         currentLang === 'te' ? 'font-telugu text-[12px] leading-relaxed' : ''
                       }`}>
                         {card.shortSummary[currentLang]}
                       </p>
                     </div>
 
-                    {/* EXPANDED IN-DEPTH EXPLANATION: Shown Smoothly on Hover */}
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ease-out ${
-                        isHovered ? 'max-h-[260px] opacity-100 mt-3 pt-3 border-t border-[#C8C5BD]/60' : 'max-h-0 opacity-0'
-                      }`}
-                    >
-                      <p className={`text-xs text-[#3A3A38] leading-relaxed font-normal ${
-                        currentLang === 'te' ? 'font-telugu leading-relaxed text-xs' : ''
+                    {/* Key Historic Fact Highlight: Perfectly aligned baseline across all cards */}
+                    <div className="mt-auto pt-3 border-t border-black/5 flex items-center space-x-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#F59E0B] flex-shrink-0" />
+                      <span className={`text-[11px] font-semibold text-[#1E1E1E] truncate ${
+                        currentLang === 'te' ? 'font-telugu text-[11px]' : ''
                       }`}>
-                        {card.fullExplanation[currentLang]}
-                      </p>
-
-                      {/* Key Historic Fact Highlight */}
-                      <div className="mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center space-x-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#F59E0B] flex-shrink-0" />
-                        <span className={`text-[11px] font-semibold text-[#1E1E1E] ${
-                          currentLang === 'te' ? 'font-telugu text-[11px]' : ''
-                        }`}>
-                          {card.keyFact[currentLang]}
-                        </span>
-                      </div>
+                        {card.keyFact[currentLang]}
+                      </span>
                     </div>
-
-                    {/* Subtly animated prompt when card is not hovered */}
-                    {!isHovered && (
-                      <div className="mt-3 pt-2 border-t border-black/5 flex items-center justify-between text-[11px] font-mono text-[#8C857B]">
-                        <span className={currentLang === 'te' ? 'font-telugu text-[11px]' : ''}>
-                          {currentLang === 'te' ? 'వివరాలు చూడండి' : 'Hover to learn more'}
-                        </span>
-                        <span className="text-[#F59E0B] font-bold">→</span>
-                      </div>
-                    )}
                   </div>
 
                 </div>
               );
             })}
-          </div>
-        </div>
-
-        {/* Mobile Interactive Pill Indicator (Apple style) */}
-        <div className="md:hidden flex items-center justify-center mt-3">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 backdrop-blur-md text-[11px] font-bold text-[#5A5955]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] animate-pulse" />
-            <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-              {currentLang === 'te' ? 'కార్డ్ తాకి వివరాలు చూడండి' : 'Tap any card to expand full story'}
-            </span>
-            <span className="text-[#F59E0B] font-bold">›</span>
           </div>
         </div>
 
