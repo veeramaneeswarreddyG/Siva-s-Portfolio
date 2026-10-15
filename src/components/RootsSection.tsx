@@ -220,7 +220,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
         {/* ULTRA-SMOOTH CONTINUOUS SCROLLING CAROUSEL WITH BLUR FOCUS EFFECT */}
         <div className="relative w-full py-8 sm:py-10 overflow-hidden no-scrollbar">
           <div
-            className={`carousel-track flex items-center gap-6 w-max animate-marquee will-change-transform ${
+            className={`carousel-track flex items-center gap-6 w-max animate-marquee hover:[animation-play-state:paused] will-change-transform ${
               hoveredCardId ? 'has-card-hover' : ''
             }`}
             style={{

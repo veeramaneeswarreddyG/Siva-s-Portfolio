@@ -227,6 +227,12 @@ h4.font-telugu-heading {
   align-items: center;
 }
 
+/* Pause marquee scroll cleanly on hover so the user can comfortably stop and read */
+.carousel-track:hover,
+.carousel-track.has-card-hover {
+  animation-play-state: paused !important;
+}
+
 .carousel-card {
   transition: transform 400ms cubic-bezier(0.25, 0.8, 0.25, 1),
               filter 400ms cubic-bezier(0.25, 0.8, 0.25, 1),
