@@ -1,115 +1,93 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export const MotionBackground: React.FC = () => {
-  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-
-    // Subtle desktop cursor luminescence tracking with throttling
-    let rafId: number;
-    let targetX = -1000;
-    let targetY = -1000;
-    let currentX = -1000;
-    let currentY = -1000;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      targetX = e.clientX;
-      targetY = e.clientY;
-    };
-
-    const updatePosition = () => {
-      // Butter-smooth lerp interpolation (Apple style smooth follow)
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      setMousePos({ x: Math.round(currentX), y: Math.round(currentY) });
-      rafId = requestAnimationFrame(updatePosition);
-    };
-
-    // Only enable mouse tracker on pointer devices
-    if (window.matchMedia('(pointer: fine)').matches) {
-      window.addEventListener('mousemove', handleMouseMove, { passive: true });
-      rafId = requestAnimationFrame(updatePosition);
-    }
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
-
   return (
     <div 
       aria-hidden="true" 
-      className="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none"
+      className="fixed inset-0 -z-10 overflow-hidden pointer-events-none select-none bg-[#FAF7F0]"
       style={{ transform: 'translate3d(0, 0, 0)' }}
     >
-      {/* 1. Base Subtle Ambient Tint */}
-      <div className="absolute inset-0 bg-[#FAF7F2]" />
-
-      {/* 2. Floating Luminous Light Orbs (Hardware-accelerated translate3d) */}
-      
-      {/* Orb 1: Warm Golden Amber (Top Left Drifter) */}
+      {/* 1. Luminous Solar Sunrise Core (Top-Left Bright Morning Radiance) */}
       <div 
-        className="absolute -top-[10%] -left-[10%] w-[520px] sm:w-[720px] h-[520px] sm:h-[720px] rounded-full bg-gradient-to-br from-[#F59E0B]/18 via-[#FBBF24]/10 to-transparent blur-[90px] sm:blur-[130px] animate-orb-1"
-        style={{
-          transform: 'translate3d(0, 0, 0)',
-          willChange: 'transform',
-        }}
-      />
-
-      {/* Orb 2: Champagne Gold (Center Right Drifter) */}
-      <div 
-        className="absolute top-[35%] -right-[15%] w-[480px] sm:w-[680px] h-[480px] sm:h-[680px] rounded-full bg-gradient-to-bl from-[#FCD34D]/16 via-[#F59E0B]/08 to-transparent blur-[85px] sm:blur-[120px] animate-orb-2"
-        style={{
-          transform: 'translate3d(0, 0, 0)',
-          willChange: 'transform',
-        }}
-      />
-
-      {/* Orb 3: Soft Terracotta Peach (Bottom Left Drifter) */}
-      <div 
-        className="absolute bottom-[10%] -left-[10%] w-[500px] sm:w-[650px] h-[500px] sm:h-[650px] rounded-full bg-gradient-to-tr from-[#EA580C]/10 via-[#F59E0B]/12 to-transparent blur-[95px] sm:blur-[130px] animate-orb-3"
-        style={{
-          transform: 'translate3d(0, 0, 0)',
-          willChange: 'transform',
-        }}
-      />
-
-      {/* Orb 4: Center Breathing Ambient Glow */}
-      <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[850px] h-[450px] sm:h-[600px] rounded-full bg-gradient-to-r from-[#F59E0B]/08 via-[#FEF3C7]/20 to-[#F59E0B]/06 blur-[100px] sm:blur-[150px] animate-pulse-glow"
+        className="absolute -top-[20%] -left-[15%] w-[700px] sm:w-[950px] lg:w-[1200px] h-[700px] sm:h-[950px] lg:h-[1200px] rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.95)_0%,rgba(254,243,199,0.7)_25%,rgba(251,191,36,0.22)_45%,rgba(245,158,11,0.08)_65%,transparent_80%)] blur-[50px] sm:blur-[70px] animate-sun-pulse"
         style={{
           transform: 'translate3d(0, 0, 0)',
           willChange: 'opacity, transform',
         }}
       />
 
-      {/* 3. Interactive Desktop Cursor Luminescence Halo */}
-      {isClient && mousePos.x > 0 && (
-        <div 
-          className="hidden md:block absolute w-[400px] h-[400px] rounded-full bg-gradient-to-r from-[#F59E0B]/10 via-[#FBBF24]/06 to-transparent blur-[80px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 ease-out pointer-events-none"
-          style={{
-            left: `${mousePos.x}px`,
-            top: `${mousePos.y}px`,
-            willChange: 'left, top',
-          }}
-        />
-      )}
-
-      {/* 4. Apple-grade Tactile Silk Grain Filter (SVG Turbulence) */}
-      <div 
-        className="absolute inset-0 opacity-[0.028] mix-blend-overlay pointer-events-none"
+      {/* 2. Minimal Ethereal Sunrays (Diagonal Morning Light Shafts) */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-85 animate-sunrays"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          transform: 'translate3d(0, 0, 0)',
+          willChange: 'opacity, transform',
         }}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          {/* Luminous Warm Sunlight Beam Gradients */}
+          <linearGradient id="sunbeam-wide" x1="0%" y1="0%" x2="65%" y2="100%">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.75" />
+            <stop offset="25%" stopColor="#FFFBEB" stopOpacity="0.45" />
+            <stop offset="55%" stopColor="#FEF3C7" stopOpacity="0.18" />
+            <stop offset="85%" stopColor="#F59E0B" stopOpacity="0.04" />
+            <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+          </linearGradient>
+
+          <linearGradient id="sunbeam-bright" x1="10%" y1="0%" x2="80%" y2="100%">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
+            <stop offset="30%" stopColor="#FEF3C7" stopOpacity="0.4" />
+            <stop offset="70%" stopColor="#FDE68A" stopOpacity="0.12" />
+            <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+          </linearGradient>
+
+          <linearGradient id="sunbeam-soft" x1="0%" y1="10%" x2="60%" y2="100%">
+            <stop offset="0%" stopColor="#FFFBEB" stopOpacity="0.6" />
+            <stop offset="40%" stopColor="#FDE68A" stopOpacity="0.22" />
+            <stop offset="80%" stopColor="#F59E0B" stopOpacity="0.05" />
+            <stop offset="100%" stopColor="#F59E0B" stopOpacity="0" />
+          </linearGradient>
+
+          {/* Soft Atmospheric Blur for Natural Sunlight Diffusion */}
+          <filter id="sunray-diffusion" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="30" />
+          </filter>
+        </defs>
+
+        <g filter="url(#sunray-diffusion)">
+          {/* Ray 1: Gentle Upper Beam */}
+          <polygon points="-50,-30 180,-30 820,950 510,950" fill="url(#sunbeam-soft)" />
+
+          {/* Ray 2: Dominant Center Sunbeam */}
+          <polygon points="100,-40 360,-40 1300,950 960,950" fill="url(#sunbeam-bright)" />
+
+          {/* Ray 3: Warm Slender Ray */}
+          <polygon points="260,-30 420,-30 1520,890 1280,890" fill="url(#sunbeam-wide)" />
+
+          {/* Ray 4: Low Angle Early Beam */}
+          <polygon points="-80,60 120,60 680,950 420,950" fill="url(#sunbeam-soft)" />
+
+          {/* Ray 5: Distant Ambient Ray */}
+          <polygon points="380,-40 560,-40 1620,740 1390,740" fill="url(#sunbeam-bright)" />
+        </g>
+      </svg>
+
+      {/* 3. Subtle Warm Daylight Ambient Tint (Clean, Uplifting, Bright) */}
+      <div 
+        className="absolute inset-0 bg-gradient-to-br from-amber-50/40 via-transparent to-amber-100/20 pointer-events-none"
       />
 
-      {/* 5. Minimal Vignette Frame */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.035)_100%)] pointer-events-none" />
+      {/* 4. Delicate Floating Golden Sunlight Motes (Subtle Living Atmosphere) */}
+      <div className="absolute top-[18%] left-[28%] w-2 h-2 rounded-full bg-amber-200/60 blur-[0.5px] animate-float-gentle" />
+      <div className="absolute top-[32%] left-[45%] w-1.5 h-1.5 rounded-full bg-amber-300/50 blur-[0.5px] animate-float-gentle [animation-delay:2s]" />
+      <div className="absolute top-[48%] left-[62%] w-2.5 h-2.5 rounded-full bg-amber-100/70 blur-[0.5px] animate-float-gentle [animation-delay:4s]" />
+      <div className="absolute top-[68%] left-[30%] w-1.5 h-1.5 rounded-full bg-amber-200/50 blur-[0.5px] animate-float-gentle [animation-delay:3s]" />
+      <div className="absolute top-[22%] left-[75%] w-2 h-2 rounded-full bg-amber-200/40 blur-[0.5px] animate-float-gentle [animation-delay:5s]" />
     </div>
   );
 };

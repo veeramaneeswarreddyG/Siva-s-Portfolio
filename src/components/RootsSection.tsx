@@ -172,7 +172,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
   const isAnyCardHovered = hoveredCardId !== null;
 
   return (
-    <section id="roots" className="py-14 sm:py-18 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5]/75 backdrop-blur-[2px] relative select-none overflow-hidden">
+    <section id="roots" className="py-14 sm:py-18 px-4 sm:px-6 lg:px-10 bg-[#FAF7F0]/40 backdrop-blur-[1px] relative select-none overflow-hidden">
       
       {/* Background Subtle Gradient Glow & Rangoli Watermarks */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />

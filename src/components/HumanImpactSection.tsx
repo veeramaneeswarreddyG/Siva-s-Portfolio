@@ -16,7 +16,7 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
   const icons = [Lock, HeartHandshake, Users2];
 
   return (
-    <section id="impact" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100/75 backdrop-blur-[2px] relative overflow-hidden">
+    <section id="impact" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#FAF7F0]/40 backdrop-blur-[1px] relative overflow-hidden">
       {/* Rangoli Watermark Motifs */}
       <div className="absolute top-8 left-8 pointer-events-none">
         <RangoliMotif variant="corner" size={90} opacity={0.14} />

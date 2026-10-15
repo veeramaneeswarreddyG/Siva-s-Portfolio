@@ -67,10 +67,8 @@ const config: Config = {
         "pulse-subtle": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "float-gentle": "float 5s ease-in-out infinite",
         "marquee": "marquee 35s linear infinite",
-        "orb-1": "orbOne 24s ease-in-out infinite alternate",
-        "orb-2": "orbTwo 28s ease-in-out infinite alternate",
-        "orb-3": "orbThree 22s ease-in-out infinite alternate",
-        "pulse-glow": "pulseGlow 14s ease-in-out infinite alternate",
+        "sun-pulse": "sunPulse 12s ease-in-out infinite alternate",
+        "sunrays": "sunRays 18s ease-in-out infinite alternate",
       },
       keyframes: {
         float: {
@@ -81,24 +79,15 @@ const config: Config = {
           "0%": { transform: "translate3d(0%, 0, 0)" },
           "100%": { transform: "translate3d(-50%, 0, 0)" },
         },
-        orbOne: {
-          "0%": { transform: "translate3d(0px, 0px, 0) scale(1)" },
-          "50%": { transform: "translate3d(80px, 60px, 0) scale(1.12)" },
-          "100%": { transform: "translate3d(-50px, 110px, 0) scale(0.95)" },
+        sunPulse: {
+          "0%": { transform: "translate3d(0, 0, 0) scale(1)", opacity: "0.85" },
+          "50%": { transform: "translate3d(20px, 15px, 0) scale(1.08)", opacity: "1" },
+          "100%": { transform: "translate3d(-15px, -10px, 0) scale(0.96)", opacity: "0.8" },
         },
-        orbTwo: {
-          "0%": { transform: "translate3d(0px, 0px, 0) scale(1)" },
-          "50%": { transform: "translate3d(-100px, -80px, 0) scale(1.15)" },
-          "100%": { transform: "translate3d(60px, -40px, 0) scale(0.92)" },
-        },
-        orbThree: {
-          "0%": { transform: "translate3d(0px, 0px, 0) scale(1)" },
-          "50%": { transform: "translate3d(70px, -90px, 0) scale(1.08)" },
-          "100%": { transform: "translate3d(-40px, -50px, 0) scale(0.96)" },
-        },
-        pulseGlow: {
-          "0%": { opacity: "0.6", transform: "translate3d(-50%, -50%, 0) scale(0.95)" },
-          "100%": { opacity: "1", transform: "translate3d(-50%, -50%, 0) scale(1.08)" },
+        sunRays: {
+          "0%": { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: "0.6" },
+          "50%": { transform: "translate3d(15px, 10px, 0) rotate(1.2deg)", opacity: "0.9" },
+          "100%": { transform: "translate3d(-10px, -5px, 0) rotate(-0.8deg)", opacity: "0.65" },
         },
       },
       backgroundImage: {

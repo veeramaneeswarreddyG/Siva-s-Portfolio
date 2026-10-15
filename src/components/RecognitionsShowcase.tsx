@@ -18,7 +18,7 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
   const items = siteContent.chapters.chapter5.recognitions;
 
   return (
-    <section id="recognitions" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-200/75 backdrop-blur-[2px] relative overflow-hidden select-none">
+    <section id="recognitions" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#FAF7F0]/40 backdrop-blur-[1px] relative overflow-hidden select-none">
       
       {/* Traditional Minimal Line-Art Rangoli Corner Motifs */}
       <div className="absolute top-4 left-4 pointer-events-none hidden sm:block">

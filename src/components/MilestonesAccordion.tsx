@@ -96,7 +96,7 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
   ];
 
   return (
-    <section id="milestones" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#ECEAE5]/75 backdrop-blur-[2px] relative select-none overflow-hidden">
+    <section id="milestones" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#FAF7F0]/40 backdrop-blur-[1px] relative select-none overflow-hidden">
       {/* Subtle Rangoli corner background */}
       <div className="absolute top-6 right-6 pointer-events-none -scale-x-100">
         <RangoliMotif variant="corner" size={90} opacity={0.14} />
