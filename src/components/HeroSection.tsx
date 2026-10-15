@@ -73,16 +73,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="relative z-10 space-y-3 sm:space-y-4">
             
             {/* Double Quotes & Headline Typography */}
-            <div className="flex items-start space-x-2 sm:space-x-3">
-              <span className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#F59E0B] leading-none select-none -mt-2 sm:-mt-3">
+            <div className="flex items-start space-x-2 sm:space-x-3.5">
+              <span className="text-5xl sm:text-6xl lg:text-7xl font-serif text-[#F59E0B] leading-none select-none -mt-1 sm:-mt-2">
                 “
               </span>
 
               <div className="flex flex-col">
                 
                 {/* EYEBROW BADGE ABOVE NAME */}
-                <div className="mb-2">
-                  <span className={`inline-flex items-center space-x-1.5 bg-[#F59E0B] text-[#1E1E1E] uppercase text-[10px] sm:text-xs tracking-wider px-3.5 py-1 rounded-full shadow-sm ${
+                <div className="mb-2 sm:mb-2.5">
+                  <span className={`inline-flex items-center space-x-2 bg-[#F59E0B] text-[#1E1E1E] uppercase text-[11px] sm:text-xs md:text-[13px] tracking-wider px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-sm ${
                     currentLang === 'te' ? 'font-telugu font-semibold' : 'font-black'
                   }`}>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#1E1E1E]" />
@@ -91,8 +91,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
 
                 {/* LINE 1: FATHER'S NAME "SIVARAMI REDDY" IN ONE UNBROKEN LINE */}
-                <div className="inline-block bg-gradient-to-r from-amber-500 via-[#F59E0B] to-amber-500 text-[#1E1E1E] px-4 xs:px-5 sm:px-7 lg:px-9 py-1.5 sm:py-2.5 rounded-full shadow-[0_8px_30px_rgba(245,158,11,0.28)] ring-1 ring-amber-400/40 w-fit max-w-full">
-                  <h1 className={`text-[19px] xs:text-[23px] sm:text-4xl md:text-5xl lg:text-[52px] uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
+                <div className="inline-block bg-gradient-to-r from-amber-500 via-[#F59E0B] to-amber-500 text-[#1E1E1E] px-4.5 xs:px-6 sm:px-8 lg:px-10 py-2 sm:py-3 rounded-full shadow-[0_8px_30px_rgba(245,158,11,0.28)] ring-1 ring-amber-400/40 w-fit max-w-full">
+                  <h1 className={`text-[25px] xs:text-[28px] sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
                     currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-sans font-black'
                   }`}>
                     {currentLang === 'te' ? 'శివరామిరెడ్డి' : 'SIVARAMI REDDY'}
@@ -100,7 +100,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
 
                 {/* LINE 2: "GADIKOTA." DIRECTLY BENEATH WITH UNBROKEN CONTINUITY */}
-                <div className={`text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[76px] uppercase tracking-tight text-[#1E1E1E] leading-[1.05] mt-1.5 sm:mt-2.5 whitespace-nowrap ${
+                <div className={`text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[82px] xl:text-[90px] uppercase tracking-tight text-[#1E1E1E] leading-[1.05] mt-1.5 sm:mt-2.5 whitespace-nowrap ${
                   currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal' : 'font-sans font-black'
                 }`}>
                   {currentLang === 'te' ? 'గడికోట' : 'GADIKOTA'}
