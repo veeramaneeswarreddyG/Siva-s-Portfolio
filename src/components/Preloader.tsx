@@ -57,8 +57,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
             {/* Subtle Gold Hairline Accent */}
             <div className="w-24 sm:w-36 h-[1px] bg-gradient-to-r from-transparent via-[#F59E0B]/50 to-transparent mb-3" />
 
-            {/* Name on ONE Single Line */}
-            <h2 className="font-serif text-xs sm:text-sm md:text-base font-bold text-[#FAF5EB] tracking-[0.25em] sm:tracking-[0.42em] whitespace-nowrap uppercase text-center pl-[0.25em] sm:pl-[0.42em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+            {/* Name on ONE Single Line: Classical Regular Weight */}
+            <h2 className="font-serif text-xs sm:text-sm md:text-base font-normal text-[#FAF5EB] tracking-[0.28em] sm:tracking-[0.45em] whitespace-nowrap uppercase text-center pl-[0.28em] sm:pl-[0.45em]">
               GADIKOTA SIVARAMI REDDY
             </h2>
 
