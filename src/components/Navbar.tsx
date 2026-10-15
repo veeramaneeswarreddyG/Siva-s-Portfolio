@@ -185,7 +185,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.04 }}
                   onClick={() => scrollTo(link.id)}
-                  className={`w-full text-left px-3.5 py-2.5 text-xs font-bold rounded-xl transition-all flex items-center justify-between active:scale-[0.98] ${
+                  className={`apple-press w-full text-left px-3.5 py-2.5 text-xs font-bold rounded-xl transition-all flex items-center justify-between active:scale-[0.98] ${
                     activeSection === link.id
                       ? 'bg-[#F59E0B] text-[#1E1E1E] shadow-sm'
                       : 'text-[#3A3A38] hover:bg-black/5'

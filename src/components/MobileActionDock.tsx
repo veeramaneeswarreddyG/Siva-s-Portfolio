@@ -49,12 +49,12 @@ export const MobileActionDock: React.FC<MobileActionDockProps> = ({
           transition={{ type: 'spring', damping: 25, stiffness: 350 }}
           className="fixed bottom-4 inset-x-4 z-40 md:hidden pointer-events-auto"
         >
-          <div className="max-w-md mx-auto bg-[#1E1E1E]/90 backdrop-blur-2xl border border-white/15 rounded-full p-2 shadow-[0_12px_40px_rgba(0,0,0,0.35)] flex items-center justify-between">
+          <div className="relative max-w-md mx-auto bg-[#181816]/90 backdrop-blur-2xl border border-white/20 rounded-full p-2 shadow-[0_16px_45px_rgba(0,0,0,0.45)] flex items-center justify-between before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:pointer-events-none">
             
-            {/* 1. Direct Call CTA Button (Dominant Action) */}
+            {/* 1. Direct Call CTA Button (Radiant Apple Pill) */}
             <a
               href="tel:8919358526"
-              className="flex-1 flex items-center justify-center space-x-2 py-2.5 px-4 rounded-full bg-[#F59E0B] text-[#1E1E1E] font-black text-xs shadow-md active:scale-95 transition-transform"
+              className="apple-press relative z-10 flex-1 flex items-center justify-center space-x-2 py-2.5 px-4 rounded-full bg-gradient-to-r from-amber-400 via-[#F59E0B] to-amber-500 text-[#1E1E1E] font-black text-xs shadow-[0_4px_16px_rgba(245,158,11,0.35)] active:scale-95 transition-transform"
               aria-label="Call Sivarami Reddy directly"
             >
               <span className="relative flex h-2.5 w-2.5">
@@ -62,7 +62,7 @@ export const MobileActionDock: React.FC<MobileActionDockProps> = ({
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#1E1E1E]" />
               </span>
               <Phone className="w-3.5 h-3.5 fill-[#1E1E1E]" />
-              <span className={`whitespace-nowrap ${currentLang === 'te' ? 'font-telugu' : ''}`}>
+              <span className={`whitespace-nowrap font-bold ${currentLang === 'te' ? 'font-telugu' : ''}`}>
                 {currentLang === 'te' ? 'నేరుగా కాల్' : 'Call Advisor'}
               </span>
             </a>
@@ -72,7 +72,7 @@ export const MobileActionDock: React.FC<MobileActionDockProps> = ({
               href={`https://wa.me/918919358526?text=${encodeURIComponent(whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 mx-1 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center active:scale-90 transition-transform"
+              className="apple-press relative z-10 p-2.5 mx-1 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center active:scale-90 transition-transform"
               aria-label="Send WhatsApp Message"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366]" />
@@ -81,7 +81,7 @@ export const MobileActionDock: React.FC<MobileActionDockProps> = ({
             {/* 3. Language Quick Switch */}
             <button
               onClick={() => onLanguageChange(currentLang === 'en' ? 'te' : 'en')}
-              className="p-2.5 mx-1 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center active:scale-90 transition-transform font-bold text-xs"
+              className="apple-press relative z-10 p-2.5 mx-1 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center active:scale-90 transition-transform font-bold text-xs"
               aria-label="Toggle language"
             >
               <Globe className="w-3.5 h-3.5 text-[#F59E0B] mr-1" />
@@ -93,7 +93,7 @@ export const MobileActionDock: React.FC<MobileActionDockProps> = ({
             {/* 4. Scroll To Top */}
             <button
               onClick={scrollToTop}
-              className="p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center active:scale-90 transition-transform"
+              className="apple-press relative z-10 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center active:scale-90 transition-transform"
               aria-label="Scroll to top"
             >
               <ChevronUp className="w-4 h-4 text-[#C8C5BD]" />

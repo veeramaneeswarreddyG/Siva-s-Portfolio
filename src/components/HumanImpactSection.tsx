@@ -16,7 +16,7 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
   const icons = [Lock, HeartHandshake, Users2];
 
   return (
-    <section id="impact" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative overflow-hidden">
+    <section id="impact" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100/75 backdrop-blur-[2px] relative overflow-hidden">
       {/* Rangoli Watermark Motifs */}
       <div className="absolute top-8 left-8 pointer-events-none">
         <RangoliMotif variant="corner" size={90} opacity={0.14} />
@@ -71,7 +71,7 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.6, delay: idx * 0.15 }}
-                className="p-6 sm:p-8 rounded-2xl bg-white border border-cream-400 shadow-sm hover-lift cursor-pointer transition-all hover:border-amberGold-500/50"
+                className="apple-press p-6 sm:p-8 rounded-2xl bg-white/90 backdrop-blur-md border border-cream-400 shadow-sm hover-lift cursor-pointer transition-all hover:border-amberGold-500/50"
               >
                 <div className="w-12 h-12 rounded-xl bg-cream-200 text-amberGold-600 flex items-center justify-center mb-6">
                   <Icon className="w-6 h-6" />

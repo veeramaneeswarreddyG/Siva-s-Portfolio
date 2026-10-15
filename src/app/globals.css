@@ -80,7 +80,7 @@ body {
   color: #FFFFFF;
 }
 
-/* Micro-interaction classes */
+/* Micro-interaction & Apple-grade physics classes */
 .hover-lift {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
 }
@@ -89,11 +89,37 @@ body {
   box-shadow: 0 12px 24px -10px rgba(232, 137, 19, 0.22);
 }
 
-.button-press {
-  transition: transform 0.1s ease;
+.button-press,
+.apple-press {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
-.button-press:active {
-  transform: scale(0.97);
+.button-press:active,
+.apple-press:active {
+  transform: scale(0.96);
+}
+
+/* Apple Liquid Glass Effect */
+.apple-glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
+}
+
+.apple-glass-dark {
+  background: rgba(30, 30, 30, 0.82);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Hardware accelerated smooth momentum scrolling */
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom Telugu Typography Rules and Laws */

@@ -18,7 +18,7 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
   const items = siteContent.chapters.chapter5.recognitions;
 
   return (
-    <section id="recognitions" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-200 relative overflow-hidden select-none">
+    <section id="recognitions" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-200/75 backdrop-blur-[2px] relative overflow-hidden select-none">
       
       {/* Traditional Minimal Line-Art Rangoli Corner Motifs */}
       <div className="absolute top-4 left-4 pointer-events-none hidden sm:block">
@@ -69,10 +69,10 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className={`group relative p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 hover-lift snap-center flex-shrink-0 w-[82vw] xs:w-[300px] sm:w-auto ${
+                className={`group apple-press relative p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 hover-lift snap-center flex-shrink-0 w-[82vw] xs:w-[300px] sm:w-auto ${
                   isDiamond
-                    ? 'bg-charcoal-950 text-white border-2 border-amberGold-500 shadow-xl'
-                    : 'bg-white hover:bg-cream-100 text-charcoal-900 border border-cream-400 shadow-sm'
+                    ? 'bg-charcoal-950/95 backdrop-blur-md text-white border-2 border-amberGold-500 shadow-xl'
+                    : 'bg-white/90 backdrop-blur-md hover:bg-cream-100 text-charcoal-900 border border-cream-400 shadow-sm'
                 }`}
               >
                 <div>

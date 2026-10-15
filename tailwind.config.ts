@@ -67,6 +67,10 @@ const config: Config = {
         "pulse-subtle": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "float-gentle": "float 5s ease-in-out infinite",
         "marquee": "marquee 35s linear infinite",
+        "orb-1": "orbOne 24s ease-in-out infinite alternate",
+        "orb-2": "orbTwo 28s ease-in-out infinite alternate",
+        "orb-3": "orbThree 22s ease-in-out infinite alternate",
+        "pulse-glow": "pulseGlow 14s ease-in-out infinite alternate",
       },
       keyframes: {
         float: {
@@ -76,6 +80,25 @@ const config: Config = {
         marquee: {
           "0%": { transform: "translate3d(0%, 0, 0)" },
           "100%": { transform: "translate3d(-50%, 0, 0)" },
+        },
+        orbOne: {
+          "0%": { transform: "translate3d(0px, 0px, 0) scale(1)" },
+          "50%": { transform: "translate3d(80px, 60px, 0) scale(1.12)" },
+          "100%": { transform: "translate3d(-50px, 110px, 0) scale(0.95)" },
+        },
+        orbTwo: {
+          "0%": { transform: "translate3d(0px, 0px, 0) scale(1)" },
+          "50%": { transform: "translate3d(-100px, -80px, 0) scale(1.15)" },
+          "100%": { transform: "translate3d(60px, -40px, 0) scale(0.92)" },
+        },
+        orbThree: {
+          "0%": { transform: "translate3d(0px, 0px, 0) scale(1)" },
+          "50%": { transform: "translate3d(70px, -90px, 0) scale(1.08)" },
+          "100%": { transform: "translate3d(-40px, -50px, 0) scale(0.96)" },
+        },
+        pulseGlow: {
+          "0%": { opacity: "0.6", transform: "translate3d(-50%, -50%, 0) scale(0.95)" },
+          "100%": { opacity: "1", transform: "translate3d(-50%, -50%, 0) scale(1.08)" },
         },
       },
       backgroundImage: {

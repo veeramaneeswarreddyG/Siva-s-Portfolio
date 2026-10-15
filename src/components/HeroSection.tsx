@@ -25,7 +25,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
-      className="relative w-full pt-16 sm:pt-20 pb-6 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
+      className="relative w-full pt-16 sm:pt-20 pb-6 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5]/75 backdrop-blur-[2px] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
     >
       {/* Traditional Minimal Line-Art Rangoli Watermarks (Cultural Depth & Warmth) */}
       <div className="absolute -top-12 -left-12 pointer-events-none">
@@ -85,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 </div>
 
                 {/* LINE 1: FULL FATHER'S NAME "G. SIVARAMI REDDY" IN ONE UNBROKEN LINE */}
-                <div className="inline-block bg-[#F59E0B] text-[#1E1E1E] px-4 xs:px-5 sm:px-7 lg:px-9 py-1.5 sm:py-2.5 rounded-full shadow-md w-fit max-w-full">
+                <div className="inline-block bg-gradient-to-r from-amber-500 via-[#F59E0B] to-amber-500 text-[#1E1E1E] px-4 xs:px-5 sm:px-7 lg:px-9 py-1.5 sm:py-2.5 rounded-full shadow-[0_8px_30px_rgba(245,158,11,0.28)] ring-1 ring-amber-400/40 w-fit max-w-full">
                   <h1 className={`text-[19px] xs:text-[23px] sm:text-4xl md:text-5xl lg:text-[52px] uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
                     currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-sans font-black'
                   }`}>
@@ -113,13 +113,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 : 'Over two decades of uncompromised service, quiet integrity, and earned honour across Jammalamadugu Branch, Kadapa Division.'}
             </p>
 
-            {/* ACTION CTA with Micro-Interaction Spring */}
+            {/* ACTION CTA with Apple Tactile Spring */}
             <div className="pt-2 pl-3 sm:pl-7 flex items-center">
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ scale: 1.02 }}
                 onClick={() => scrollToSection('roots')}
-                className="inline-flex items-center space-x-3 px-5 py-2.5 rounded-full bg-[#1E1E1E] text-white hover:bg-black text-xs sm:text-sm font-bold shadow-md hover-lift transition-all group"
+                className="apple-press inline-flex items-center space-x-3 px-5 py-2.5 rounded-full bg-[#1E1E1E] text-white hover:bg-black text-xs sm:text-sm font-bold shadow-md hover-lift transition-all group active:scale-95"
               >
                 <div className="w-6 h-6 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center font-black group-hover:translate-x-0.5 transition-transform">
                   <ChevronRight className="w-4 h-4 stroke-[3]" />
@@ -138,23 +138,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           
           <div className="relative w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[460px] lg:max-w-[520px] h-[360px] xs:h-[400px] sm:h-[470px] lg:h-[520px] flex items-end justify-center overflow-visible">
             
+            {/* Ambient Warm Golden Halo Glow behind Portrait (Apple style depth) */}
+            <div className="absolute inset-0 bg-[#F59E0B]/18 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
+
             {/* 1. Circle Outline Behind Head / Shoulders */}
             <div className="absolute top-0 sm:-top-2 left-2 sm:left-6 w-[250px] xs:w-[280px] sm:w-[350px] lg:w-[410px] h-[250px] xs:h-[280px] sm:h-[350px] lg:h-[410px] rounded-full border-2 border-[#1E1E1E]/80 pointer-events-none z-0" />
 
             {/* 2. Bold Warm Amber/Yellow Block Behind Torso */}
             <div className="absolute bottom-0 right-2 sm:right-6 w-[200px] xs:w-[220px] sm:w-[270px] lg:w-[320px] h-[220px] xs:h-[250px] sm:h-[310px] lg:h-[360px] rounded-[36px] bg-[#F59E0B] shadow-xl z-0" />
 
-            {/* Floating Mobile Interactive Badges (Rich Micro-Interactions on Tap) */}
+            {/* Floating Mobile Interactive Badges (Apple Liquid Glass with Micro-Interactions) */}
             <motion.div
               whileTap={{ scale: 0.92 }}
-              className="absolute -top-3 right-4 z-20 px-3 py-1 rounded-full bg-[#1E1E1E] text-[#F59E0B] border border-[#F59E0B]/30 shadow-lg text-[10px] sm:text-xs font-mono font-bold tracking-wider cursor-pointer animate-float-gentle"
+              className="apple-press absolute -top-3 right-4 z-20 px-3 py-1 rounded-full bg-[#1E1E1E]/90 backdrop-blur-xl text-[#F59E0B] border border-white/20 shadow-lg text-[10px] sm:text-xs font-mono font-bold tracking-wider cursor-pointer animate-float-gentle"
             >
               20+ YRS STANDING
             </motion.div>
 
             <motion.div
               whileTap={{ scale: 0.92 }}
-              className="absolute bottom-8 -left-2 z-20 px-3 py-1 rounded-full bg-white text-[#1E1E1E] border border-[#C8C5BD] shadow-lg text-[10px] sm:text-xs font-bold tracking-tight cursor-pointer animate-float-gentle [animation-delay:1.5s]"
+              className="apple-press absolute bottom-8 -left-2 z-20 px-3 py-1 rounded-full bg-white/95 backdrop-blur-xl text-[#1E1E1E] border border-white/60 shadow-lg text-[10px] sm:text-xs font-bold tracking-tight cursor-pointer animate-float-gentle [animation-delay:1.5s]"
             >
               ⭐ 3× DIAMOND BRIGADE
             </motion.div>

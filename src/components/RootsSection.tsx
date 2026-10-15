@@ -172,7 +172,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
   const isAnyCardHovered = hoveredCardId !== null;
 
   return (
-    <section id="roots" className="py-14 sm:py-18 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden">
+    <section id="roots" className="py-14 sm:py-18 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5]/75 backdrop-blur-[2px] relative select-none overflow-hidden">
       
       {/* Background Subtle Gradient Glow & Rangoli Watermarks */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
@@ -242,7 +242,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                   onMouseEnter={() => setHoveredCardId(cardKey)}
                   onMouseLeave={() => setHoveredCardId(null)}
                   onClick={() => setHoveredCardId(isHovered ? null : cardKey)}
-                  className={`group relative w-[290px] xs:w-[320px] sm:w-[350px] rounded-2xl bg-white border transition-all duration-300 ease-out cursor-pointer flex flex-col flex-shrink-0 ${
+                  className={`group apple-press relative w-[290px] xs:w-[320px] sm:w-[350px] rounded-2xl bg-white/95 backdrop-blur-md border transition-all duration-300 ease-out cursor-pointer flex flex-col flex-shrink-0 ${
                     isHovered
                       ? 'scale-[1.03] shadow-[0_20px_45px_rgba(245,158,11,0.22)] border-[#F59E0B] z-30 opacity-100'
                       : isSiblingDimmed
@@ -338,13 +338,15 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
           </div>
         </div>
 
-        {/* Mobile Swipe / Tap Hint */}
-        <div className="md:hidden flex items-center justify-center space-x-2 text-[11px] font-bold text-[#8C857B] mt-3">
-          <span className="text-[#F59E0B] animate-pulse">‹</span>
-          <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-            {currentLang === 'te' ? 'కార్డ్ తాకి వివరాలు చూడండి' : 'Tap any card to view details'}
-          </span>
-          <span className="text-[#F59E0B] animate-pulse">›</span>
+        {/* Mobile Interactive Pill Indicator (Apple style) */}
+        <div className="md:hidden flex items-center justify-center mt-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/10 backdrop-blur-md text-[11px] font-bold text-[#5A5955]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] animate-pulse" />
+            <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+              {currentLang === 'te' ? 'కార్డ్ తాకి వివరాలు చూడండి' : 'Tap any card to expand full story'}
+            </span>
+            <span className="text-[#F59E0B] font-bold">›</span>
+          </div>
         </div>
 
       </div>
