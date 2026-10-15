@@ -223,7 +223,9 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
             </div>
             
             {/* Header Title: "Do You know?" */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] tracking-tight font-sans">
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] tracking-tight ${
+              currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : 'font-sans'
+            }`}>
               {currentLang === 'te' ? (
                 <>
                   మీకు తెలుసా? <span className="text-[#F59E0B] font-serif text-2xl sm:text-4xl">Do You Know?</span>

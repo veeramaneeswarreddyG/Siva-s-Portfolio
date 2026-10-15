@@ -84,13 +84,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
                 {/* LINE 1: FULL FATHER'S NAME "G. SIVARAMI REDDY" IN ONE UNBROKEN LINE */}
                 <div className="inline-block bg-[#F59E0B] text-[#1E1E1E] px-4 xs:px-5 sm:px-7 lg:px-9 py-1.5 sm:py-2.5 rounded-full shadow-md w-fit max-w-full">
-                  <h1 className="text-[19px] xs:text-[23px] sm:text-4xl md:text-5xl lg:text-[52px] font-black uppercase tracking-tight leading-none font-sans whitespace-nowrap m-0 select-none">
+                  <h1 className={`text-[19px] xs:text-[23px] sm:text-4xl md:text-5xl lg:text-[52px] font-black uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
+                    currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : 'font-sans'
+                  }`}>
                     {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. SIVARAMI REDDY'}
                   </h1>
                 </div>
 
                 {/* LINE 2: "GADIKOTA." DIRECTLY BENEATH WITH UNBROKEN CONTINUITY */}
-                <div className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#1E1E1E] leading-[1.02] mt-1.5 sm:mt-2.5 font-sans whitespace-nowrap">
+                <div className={`text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#1E1E1E] leading-[1.05] mt-1.5 sm:mt-2.5 whitespace-nowrap ${
+                  currentLang === 'te' ? 'font-telugu-heading tracking-normal' : 'font-sans'
+                }`}>
                   {currentLang === 'te' ? 'గడికోట' : 'GADIKOTA'}
                   <span className="text-[#F59E0B]">.</span>
                 </div>

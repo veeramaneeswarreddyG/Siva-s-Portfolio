@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import { Cinzel, Plus_Jakarta_Sans, Noto_Sans_Telugu } from "next/font/google";
 import "./globals.css";
 
@@ -21,6 +22,20 @@ const notoSansTelugu = Noto_Sans_Telugu({
   variable: "--font-noto-telugu",
   display: "swap",
   weight: ["400", "500", "600", "700"],
+});
+
+// Custom Telugu Heading Font: Syamala Ramana Regular (Regal, Display, Calligraphic)
+const syamalaRamana = localFont({
+  src: "./fonts/syamala_ramana_regular.otf",
+  variable: "--font-telugu-heading",
+  display: "swap",
+});
+
+// Custom Telugu Body Font: Potti Sreeramulu Regular (Clean, Highly Legible, Graceful)
+const pottiSreeramulu = localFont({
+  src: "./fonts/potti-sreeramulu-regular.otf",
+  variable: "--font-telugu-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -48,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cinzel.variable} ${plusJakarta.variable} ${notoSansTelugu.variable}`}>
+    <html lang="en" className={`${cinzel.variable} ${plusJakarta.variable} ${notoSansTelugu.variable} ${syamalaRamana.variable} ${pottiSreeramulu.variable}`}>
       <body className="bg-soil-900 text-ivory-200 antialiased selection:bg-gold-500 selection:text-soil-900">
         {children}
       </body>

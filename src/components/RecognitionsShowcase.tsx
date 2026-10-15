@@ -39,8 +39,8 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
             </span>
           </div>
           
-          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black text-charcoal-950 tracking-tight font-sans ${
-            currentLang === 'te' ? 'font-telugu' : ''
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black text-charcoal-950 tracking-tight ${
+            currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : 'font-sans'
           }`}>
             {currentLang === 'te' ? 'వృత్తి గౌరవాలు & గుర్తింపులు' : 'Honours & Distinctions'}
           </h2>

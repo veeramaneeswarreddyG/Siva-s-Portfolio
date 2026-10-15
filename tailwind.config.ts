@@ -58,7 +58,9 @@ const config: Config = {
       fontFamily: {
         serif: ["var(--font-cinzel)", "Georgia", "serif"],
         sans: ["var(--font-plus-jakarta)", "system-ui", "-apple-system", "sans-serif"],
-        telugu: ["var(--font-noto-telugu)", "var(--font-plus-jakarta)", "sans-serif"],
+        telugu: ["var(--font-telugu-body)", "var(--font-noto-telugu)", "sans-serif"],
+        "telugu-heading": ["var(--font-telugu-heading)", "var(--font-noto-telugu)", "serif"],
+        "telugu-body": ["var(--font-telugu-body)", "var(--font-noto-telugu)", "sans-serif"],
       },
       animation: {
         "spin-slow": "spin 20s linear infinite",

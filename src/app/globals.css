@@ -85,7 +85,37 @@ body {
   transform: scale(0.97);
 }
 
+/* Custom Telugu Typography Rules and Laws */
+:root {
+  --font-telugu-heading-family: var(--font-telugu-heading), var(--font-noto-telugu), serif;
+  --font-telugu-body-family: var(--font-telugu-body), var(--font-noto-telugu), sans-serif;
+}
+
+.font-telugu-heading {
+  font-family: var(--font-telugu-heading), var(--font-noto-telugu), serif !important;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+.font-telugu-body,
 .font-telugu {
-  font-family: var(--font-telugu), var(--font-sans), sans-serif;
-  line-height: 1.8;
+  font-family: var(--font-telugu-body), var(--font-noto-telugu), sans-serif;
+  line-height: 1.85;
+  letter-spacing: 0.015em;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* Typography Law: Automatically route Telugu headings to Syamala Ramana */
+h1 .font-telugu,
+h2 .font-telugu,
+h3 .font-telugu,
+h4 .font-telugu,
+h1.font-telugu,
+h2.font-telugu,
+h3.font-telugu,
+h4.font-telugu {
+  font-family: var(--font-telugu-heading), var(--font-noto-telugu), serif !important;
+  line-height: 1.3;
+  letter-spacing: normal;
 }

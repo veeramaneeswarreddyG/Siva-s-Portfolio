@@ -100,10 +100,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
 
             {/* Title: Father's Name in Unbroken Continuity on New Line (No Sparkles) */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-              <span className="block text-cream-300 text-lg sm:text-xl font-medium mb-1">
+              <span className={`block text-cream-300 text-lg sm:text-xl font-medium mb-1 ${
+                currentLang === 'te' ? 'font-telugu-heading tracking-normal' : ''
+              }`}>
                 {currentLang === 'te' ? 'పరిచయం' : 'About'}
               </span>
-              <span className="block text-amberGold-500 whitespace-nowrap font-black font-sans">
+              <span className={`block text-amberGold-500 whitespace-nowrap font-black ${
+                currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : 'font-sans'
+              }`}>
                 {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. Sivarami Reddy'}
               </span>
             </h2>
