@@ -16,6 +16,10 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
 }) => {
   // Default to item index 1 (02.) expanded, matching user reference image
   const [activeItem, setActiveItem] = useState<number>(1);
+  const [hoveredItem, setHoveredItem] = useState<number | null>(null);
+
+  const cardShapePolygon =
+    'polygon(0 22px, 14px 10px, var(--tab-w) 10px, calc(var(--tab-w) + 14px) 0px, calc(100% - 18px) 0px, calc(100% - 6px) 5px, calc(100% - 1px) 14px, 100% 22px, 100% calc(100% - 10px - 22px), calc(100% - 1px) calc(100% - 10px - 14px), calc(100% - 6px) calc(100% - 10px - 5px), calc(100% - 18px) calc(100% - 10px), calc(var(--tab-w) + 14px) calc(100% - 10px), var(--tab-w) 100%, 14px 100%, 0 calc(100% - 14px))';
 
   const items = [
     {
@@ -137,24 +141,35 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
           </div>
         </div>
 
-        {/* Stacked Accordion: Clean Spacious Rounded Cards on Mobile, Stepped Notch on Desktop */}
+        {/* Stacked Accordion: Stepped Shape Matching User Reference Image */}
         <div className="space-y-4 sm:space-y-5">
           {items.map((item, index) => {
             const isExpanded = activeItem === index;
+            const isHovered = hoveredItem === index;
 
             return (
               <motion.div
                 key={index}
                 whileTap={{ scale: 0.99 }}
-                className="filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.05)] transition-all duration-300"
+                onMouseEnter={() => setHoveredItem(index)}
+                onMouseLeave={() => setHoveredItem(null)}
+                className="[--tab-w:56px] sm:[--tab-w:130px] filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.06)] transition-all duration-300"
+                style={{
+                  clipPath: cardShapePolygon,
+                  backgroundColor: isExpanded ? '#F59E0B' : (isHovered ? '#F59E0B' : '#E2DFD7'),
+                  padding: '1.5px',
+                }}
               >
                 <div
                   onClick={() => setActiveItem(isExpanded ? -1 : index)}
-                  className={`cursor-pointer rounded-2xl md:rounded-3xl border transition-all duration-300 p-5 sm:p-7 md:p-8 ${
+                  className={`cursor-pointer transition-all duration-300 p-5 sm:p-7 md:p-8 ${
                     isExpanded
-                      ? 'bg-[#1C1A18] text-white border-[#F59E0B]/50 shadow-xl'
-                      : 'bg-white hover:bg-[#FBF9F5] text-[#1E1E1E] border-[#E2DFD7] hover:border-[#F59E0B]/50'
+                      ? 'bg-[#1C1A18] text-white shadow-xl'
+                      : 'bg-white hover:bg-[#FBF9F5] text-[#1E1E1E]'
                   }`}
+                  style={{
+                    clipPath: cardShapePolygon,
+                  }}
                 >
                   
                   {/* Row Top: Number + Dotted Guide + Question Title + Orange Action Circle */}
