@@ -84,7 +84,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="flex items-center group focus-visible:outline-none flex-shrink-0 relative z-10"
             aria-label="Return to top"
           >
-            <span className="font-extrabold text-sm sm:text-base tracking-tight text-[#1E1E1E] font-sans group-hover:text-amber-600 transition-colors">
+            <span
+              className={`tracking-tight text-[#1E1E1E] group-hover:text-amber-600 transition-colors ${
+                currentLang === 'te'
+                  ? 'font-telugu-heading font-normal text-base sm:text-lg'
+                  : 'font-sans font-extrabold text-sm sm:text-base'
+              }`}
+            >
               {currentLang === 'te' ? 'శివరామి' : 'Sivarami'}
               <span className="text-[#F59E0B]">.</span>
             </span>
@@ -105,9 +111,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <button
                     key={link.id}
                     onClick={() => scrollTo(link.id)}
-                    className={`nav-link-btn text-[12px] sm:text-[13px] tracking-wider whitespace-nowrap ${
-                      isActive ? 'nav-active font-black' : ''
-                    } ${currentLang === 'te' ? 'font-telugu normal-case' : ''}`}
+                    lang={currentLang}
+                    className={`nav-link-btn whitespace-nowrap ${
+                      isActive ? 'nav-active' : ''
+                    } ${
+                      currentLang === 'te'
+                        ? 'is-telugu font-telugu-heading font-normal text-[15px]'
+                        : 'font-sans text-[12px] sm:text-[13px] tracking-wider'
+                    }`}
                   >
                     {link.label[currentLang]}
                   </button>
@@ -126,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label={`Switch to ${currentLang === 'en' ? 'Telugu' : 'English'}`}
             >
               <Globe className="w-3.5 h-3.5 text-[#F59E0B]" />
-              <span className={currentLang === 'en' ? 'font-telugu text-xs font-bold text-amber-700' : 'font-sans text-xs'}>
+              <span className={currentLang === 'en' ? 'font-telugu-heading font-normal text-xs text-amber-700' : 'font-sans text-xs'}>
                 {currentLang === 'en' ? 'తెలుగు' : 'EN'}
               </span>
             </button>
@@ -134,10 +145,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* "Request a Call" Button: Desktop/Tablet view */}
             <button
               onClick={() => scrollTo('reach-out')}
-              className="hidden sm:inline-flex items-center space-x-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-black bg-[#F59E0B] hover:bg-amber-500 text-[#1E1E1E] shadow-sm hover:scale-[1.02] active:scale-95 transition-all whitespace-nowrap"
+              className={`hidden sm:inline-flex items-center space-x-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-[#F59E0B] hover:bg-amber-500 text-[#1E1E1E] shadow-sm hover:scale-[1.02] active:scale-95 transition-all whitespace-nowrap ${
+                currentLang === 'te'
+                  ? 'font-telugu-heading font-normal text-[14px]'
+                  : 'font-sans font-black text-xs'
+              }`}
             >
               <PhoneCall className="w-3.5 h-3.5" />
-              <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+              <span>
                 {currentLang === 'te' ? 'కాల్ చేయండి' : 'Request a Call'}
               </span>
             </button>
@@ -183,13 +198,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.04 }}
                   onClick={() => scrollTo(link.id)}
-                  className={`apple-press w-full text-left px-3.5 py-2.5 text-xs font-bold rounded-xl transition-all flex items-center justify-between active:scale-[0.98] ${
+                  className={`apple-press w-full text-left px-3.5 py-2.5 rounded-xl transition-all flex items-center justify-between active:scale-[0.98] ${
                     activeSection === link.id
                       ? 'bg-[#F59E0B] text-[#1E1E1E] shadow-sm'
                       : 'text-[#3A3A38] hover:bg-black/5'
+                  } ${
+                    currentLang === 'te'
+                      ? 'font-telugu-heading font-normal text-sm'
+                      : 'font-sans font-bold text-xs'
                   }`}
                 >
-                  <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                  <span>
                     {link.label[currentLang]}
                   </span>
                   {activeSection === link.id && <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />}
@@ -199,7 +218,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="pt-3 border-t border-black/10 space-y-2">
                 <a
                   href="tel:8919358526"
-                  className="w-full text-center py-2.5 rounded-full bg-[#F59E0B] text-[#1E1E1E] text-xs font-extrabold flex items-center justify-center space-x-2 shadow-sm active:scale-95 transition-transform"
+                  className={`w-full text-center py-2.5 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center space-x-2 shadow-sm active:scale-95 transition-transform ${
+                    currentLang === 'te'
+                      ? 'font-telugu-heading font-normal text-sm'
+                      : 'font-sans font-extrabold text-xs'
+                  }`}
                 >
                   <PhoneCall className="w-3.5 h-3.5" />
                   <span>{currentLang === 'te' ? 'నేరుగా కాల్: 8919358526' : 'Direct Call: 8919358526'}</span>

@@ -194,6 +194,15 @@ h4.font-telugu-heading {
   justify-content: center;
 }
 
+.nav-link-btn.is-telugu,
+.nav-link-btn[lang="te"] {
+  font-family: var(--font-telugu-heading), var(--font-noto-telugu), serif !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-size: 15px !important;
+}
+
 .nav-link-btn:focus,
 .nav-link-btn:hover {
   color: #1E1E1E;
