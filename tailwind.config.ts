@@ -67,8 +67,6 @@ const config: Config = {
         "pulse-subtle": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "float-gentle": "float 5s ease-in-out infinite",
         "marquee": "marquee 35s linear infinite",
-        "sun-pulse": "sunPulse 12s ease-in-out infinite alternate",
-        "sunrays": "sunRays 18s ease-in-out infinite alternate",
       },
       keyframes: {
         float: {
@@ -78,16 +76,6 @@ const config: Config = {
         marquee: {
           "0%": { transform: "translate3d(0%, 0, 0)" },
           "100%": { transform: "translate3d(-50%, 0, 0)" },
-        },
-        sunPulse: {
-          "0%": { transform: "translate3d(0, 0, 0) scale(1)", opacity: "0.85" },
-          "50%": { transform: "translate3d(20px, 15px, 0) scale(1.08)", opacity: "1" },
-          "100%": { transform: "translate3d(-15px, -10px, 0) scale(0.96)", opacity: "0.8" },
-        },
-        sunRays: {
-          "0%": { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: "0.6" },
-          "50%": { transform: "translate3d(15px, 10px, 0) rotate(1.2deg)", opacity: "0.9" },
-          "100%": { transform: "translate3d(-10px, -5px, 0) rotate(-0.8deg)", opacity: "0.65" },
         },
       },
       backgroundImage: {

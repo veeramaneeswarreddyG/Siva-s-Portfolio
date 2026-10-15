@@ -25,7 +25,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
-      className="relative w-full pt-16 sm:pt-20 pb-6 px-4 sm:px-8 lg:px-14 bg-[#FAF7F0]/40 backdrop-blur-[1px] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
+      className="relative w-full pt-16 sm:pt-20 pb-6 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
     >
       {/* Traditional Minimal Line-Art Rangoli Watermarks (Cultural Depth & Warmth) */}
       <div className="absolute -top-12 -left-12 pointer-events-none">

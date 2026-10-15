@@ -7,8 +7,6 @@ import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { MarqueeStrip } from '@/components/MarqueeStrip';
 
-import { MotionBackground } from '@/components/MotionBackground';
-
 // Lazy load below-the-fold components entirely for blazing-fast mobile performance
 const RootsSection = dynamic(
   () => import('@/components/RootsSection').then((mod) => mod.RootsSection),
@@ -118,11 +116,8 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-transparent text-charcoal-950 font-sans selection:bg-amberGold-500 selection:text-white overflow-x-hidden">
+    <main className="relative min-h-screen bg-cream-200 text-charcoal-950 font-sans selection:bg-amberGold-500 selection:text-white overflow-x-hidden">
       
-      {/* Global Apple-Grade Dynamic Motion Background (Floating luminous orbs & tactile silk grain) */}
-      <MotionBackground />
-
       {/* Minimal, Collapsible & Recoverable Navbar */}
       <Navbar
         currentLang={currentLang}

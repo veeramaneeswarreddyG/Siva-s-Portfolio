@@ -50,7 +50,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
       ];
 
   return (
-    <section id="reach-out" className="py-24 px-4 sm:px-6 lg:px-8 bg-[#FAF7F0]/40 backdrop-blur-[1px] relative overflow-hidden border-t border-amber-200/40">
+    <section id="reach-out" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative overflow-hidden border-t border-cream-300">
       
       {/* Background radial glow & Rangoli Motifs */}
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
