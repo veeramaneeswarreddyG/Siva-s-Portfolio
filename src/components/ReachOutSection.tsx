@@ -367,28 +367,16 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                         />
                       </button>
 
-                      {/* Liquid Glass Dropdown Menu Popup */}
+                      {/* Minimal Sleek Modern Dropdown Menu Popup */}
                       <AnimatePresence>
                         {dropdownOpen && (
                           <motion.div
                             initial={{ opacity: 0, y: 6, scale: 0.98 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 6, scale: 0.98 }}
-                            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl bg-[#1C1A18]/95 backdrop-blur-2xl border border-amberGold-500/35 shadow-[0_22px_60px_rgba(0,0,0,0.45)] p-2 overflow-hidden ring-1 ring-white/10"
+                            transition={{ duration: 0.18, ease: 'easeOut' }}
+                            className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl bg-[#1C1A18]/95 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-1.5 overflow-hidden ring-1 ring-white/10"
                           >
-                            {/* Ambient Top Golden Rim Light */}
-                            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-amberGold-400/70 to-transparent" />
-
-                            <div className="px-2.5 py-1.5 mb-1.5 border-b border-white/10 flex items-center justify-between">
-                              <span className="text-[10px] font-bold uppercase tracking-wider text-amberGold-400">
-                                {currentLang === 'te' ? 'సేవను ఎంచుకోండి' : 'Select Service Type'}
-                              </span>
-                              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-amberGold-500/20 text-amberGold-300 border border-amberGold-500/30 font-semibold">
-                                Liquid Glass
-                              </span>
-                            </div>
-
                             <div className="space-y-1">
                               {inquiryOptions.map((option) => {
                                 const Icon = option.icon;
@@ -401,13 +389,13 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                                       setFormData({ ...formData, inquiryType: option.value });
                                       setDropdownOpen(false);
                                     }}
-                                    className={`w-full px-2.5 py-2 rounded-xl flex items-center justify-between text-left transition-all duration-150 group ${
+                                    className={`w-full px-3 py-2.5 rounded-xl flex items-center justify-between text-left transition-all duration-150 group ${
                                       isSelected
-                                        ? 'bg-amberGold-500/20 border border-amberGold-500/40 text-amberGold-300'
+                                        ? 'bg-amberGold-500/15 border border-amberGold-500/30 text-amberGold-300'
                                         : 'hover:bg-white/10 text-cream-100 hover:text-white border border-transparent'
                                     }`}
                                   >
-                                    <div className="flex items-center space-x-2.5 min-w-0 pr-2">
+                                    <div className="flex items-center space-x-3 min-w-0 pr-2">
                                       <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                                         isSelected
                                           ? 'bg-amberGold-500 text-charcoal-950 font-bold shadow-md'
@@ -421,7 +409,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                                         } ${isSelected ? 'text-amberGold-300' : 'text-cream-100 group-hover:text-white'}`}>
                                           {currentLang === 'te' ? option.labelTe : option.labelEn}
                                         </div>
-                                        <div className="text-[10px] text-cream-200/60 truncate">
+                                        <div className="text-[10px] text-cream-200/50 truncate">
                                           {currentLang === 'te' ? option.descTe : option.descEn}
                                         </div>
                                       </div>
