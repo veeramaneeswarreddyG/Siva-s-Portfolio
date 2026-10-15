@@ -123,7 +123,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
       ];
 
   return (
-    <section id="reach-out" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative overflow-hidden border-t border-cream-300">
+    <section id="reach-out" className="pt-24 pb-36 px-4 sm:px-6 lg:px-8 bg-cream-100 relative border-t border-cream-300">
       
       {/* Background radial glow & Rangoli Motifs */}
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -375,7 +375,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 6, scale: 0.98 }}
                             transition={{ duration: 0.18, ease: 'easeOut' }}
-                            className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl bg-[#1C1A18]/95 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-1.5 overflow-hidden ring-1 ring-white/10"
+                            className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl bg-[#1C1A18]/95 backdrop-blur-2xl border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.55)] p-1.5 max-h-[320px] overflow-y-auto ring-1 ring-white/10"
                           >
                             <div className="space-y-1">
                               {inquiryOptions.map((option) => {
@@ -389,7 +389,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                                       setFormData({ ...formData, inquiryType: option.value });
                                       setDropdownOpen(false);
                                     }}
-                                    className={`w-full px-3 py-2.5 rounded-xl flex items-center justify-between text-left transition-all duration-150 group ${
+                                    className={`w-full px-3 py-2 rounded-xl flex items-center justify-between text-left transition-all duration-150 group ${
                                       isSelected
                                         ? 'bg-amberGold-500/15 border border-amberGold-500/30 text-amberGold-300'
                                         : 'hover:bg-white/10 text-cream-100 hover:text-white border border-transparent'

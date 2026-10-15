@@ -81,12 +81,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   </span>
                 </div>
 
-                {/* LINE 1: FULL FATHER'S NAME "G. SIVARAMI REDDY" IN ONE UNBROKEN LINE */}
+                {/* LINE 1: FATHER'S NAME "SIVARAMI REDDY" IN ONE UNBROKEN LINE */}
                 <div className="inline-block bg-gradient-to-r from-amber-500 via-[#F59E0B] to-amber-500 text-[#1E1E1E] px-4 xs:px-5 sm:px-7 lg:px-9 py-1.5 sm:py-2.5 rounded-full shadow-[0_8px_30px_rgba(245,158,11,0.28)] ring-1 ring-amber-400/40 w-fit max-w-full">
                   <h1 className={`text-[19px] xs:text-[23px] sm:text-4xl md:text-5xl lg:text-[52px] uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
                     currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-sans font-black'
                   }`}>
-                    {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. SIVARAMI REDDY'}
+                    {currentLang === 'te' ? 'శివరామిరెడ్డి' : 'SIVARAMI REDDY'}
                   </h1>
                 </div>
 
@@ -130,43 +130,43 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Significantly Enlarged, Heroic Person Portrait with Traditional Aura & Interactive Badges */}
-        <div className="lg:col-span-6 flex flex-col items-center lg:items-end justify-center relative mt-6 lg:mt-0">
+        {/* RIGHT COLUMN: Perfectly Balanced, Distinguished Person Portrait with Traditional Aura */}
+        <div className="lg:col-span-6 flex flex-col items-center lg:items-end justify-center relative mt-4 lg:mt-0">
           
-          <div className="relative w-full max-w-[380px] xs:max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] h-[460px] xs:h-[500px] sm:h-[560px] lg:h-[640px] flex items-end justify-center overflow-visible">
+          <div className="relative w-full max-w-[330px] xs:max-w-[360px] sm:max-w-[420px] lg:max-w-[490px] h-[400px] xs:h-[430px] sm:h-[480px] lg:h-[560px] flex items-end justify-center overflow-visible">
             
-            {/* Ambient Warm Golden Halo Glow behind Portrait (Apple style depth) */}
-            <div className="absolute inset-0 bg-[#F59E0B]/25 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
+            {/* Ambient Warm Golden Halo Glow behind Portrait */}
+            <div className="absolute inset-0 bg-[#F59E0B]/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
 
             {/* Traditional Golden Mandala Aura directly behind Shiva */}
-            <div className="absolute top-1/2 -translate-y-[45%] left-1/2 -translate-x-1/2 pointer-events-none -z-10 opacity-30 sm:opacity-40">
-              <RangoliMotif variant="mandala" size={380} color="#F59E0B" opacity={0.35} />
+            <div className="absolute top-4 sm:top-2 left-1/2 -translate-x-1/2 pointer-events-none -z-10 opacity-25 sm:opacity-35">
+              <RangoliMotif variant="mandala" size={320} color="#F59E0B" opacity={0.25} />
             </div>
 
-            {/* 1. Circle Outline Behind Head / Shoulders - Centered on Mobile */}
-            <div className="absolute top-1/2 -translate-y-[48%] left-1/2 -translate-x-1/2 sm:top-2 sm:translate-y-0 sm:left-6 sm:translate-x-0 w-[280px] xs:w-[320px] sm:w-[360px] lg:w-[440px] h-[280px] xs:h-[320px] sm:h-[360px] lg:h-[440px] rounded-full border-2 border-[#1E1E1E]/80 pointer-events-none z-0" />
+            {/* 1. Circle Outline Behind Head / Shoulders */}
+            <div className="absolute top-4 sm:top-2 left-1/2 -translate-x-1/2 sm:left-6 sm:translate-x-0 w-[220px] xs:w-[250px] sm:w-[300px] lg:w-[380px] h-[220px] xs:h-[250px] sm:h-[300px] lg:h-[380px] rounded-full border-2 border-[#1E1E1E]/80 pointer-events-none z-0" />
 
             {/* 2. Bold Warm Amber/Yellow Block Behind Torso */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-[42%] sm:left-auto sm:right-6 sm:translate-x-0 w-[240px] xs:w-[270px] sm:w-[300px] lg:w-[360px] h-[270px] xs:h-[300px] sm:h-[340px] lg:h-[410px] rounded-[36px] bg-[#F59E0B] shadow-xl z-0" />
+            <div className="absolute bottom-0 right-2 sm:right-6 w-[200px] xs:w-[220px] sm:w-[260px] lg:w-[320px] h-[230px] xs:h-[250px] sm:h-[280px] lg:h-[340px] rounded-[36px] bg-[#F59E0B] shadow-xl z-0" />
 
             {/* Floating Mobile Interactive Badges (Apple Liquid Glass with Micro-Interactions) */}
             <motion.div
               whileTap={{ scale: 0.92 }}
-              className="apple-press absolute top-4 sm:-top-3 right-3 sm:right-4 z-20 px-3 py-1 rounded-full bg-[#1E1E1E]/90 backdrop-blur-xl text-[#F59E0B] border border-white/20 shadow-lg text-[10px] sm:text-xs font-mono font-bold tracking-wider cursor-pointer animate-float-gentle"
+              className="apple-press absolute top-1 sm:-top-3 right-2 sm:right-4 z-20 px-3 py-1 rounded-full bg-[#1E1E1E]/90 backdrop-blur-xl text-[#F59E0B] border border-white/20 shadow-lg text-[10px] sm:text-xs font-mono font-bold tracking-wider cursor-pointer animate-float-gentle"
             >
               20+ YRS STANDING
             </motion.div>
 
             <motion.div
               whileTap={{ scale: 0.92 }}
-              className="apple-press absolute bottom-10 left-3 sm:-left-2 z-20 px-3 py-1 rounded-full bg-white/95 backdrop-blur-xl text-[#1E1E1E] border border-white/60 shadow-lg text-[10px] sm:text-xs font-bold tracking-tight cursor-pointer animate-float-gentle [animation-delay:1.5s]"
+              className="apple-press absolute bottom-8 left-1 sm:-left-2 z-20 px-3 py-1 rounded-full bg-white/95 backdrop-blur-xl text-[#1E1E1E] border border-white/60 shadow-lg text-[10px] sm:text-xs font-bold tracking-tight cursor-pointer animate-float-gentle [animation-delay:1.5s]"
             >
               ⭐ 3× DIAMOND BRIGADE
             </motion.div>
 
-            {/* 3. Sivarami Reddy Cutout Portrait: Truly Heroic & Substantially Enlarged on Mobile */}
+            {/* 3. Sivarami Reddy Cutout Portrait: Beautifully Proportioned, Distinguished & Clear */}
             <motion.div
-              animate={{ y: [0, -8, 0] }}
+              animate={{ y: [0, -6, 0] }}
               transition={{
                 duration: 4.5,
                 repeat: Infinity,
@@ -184,7 +184,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 width={560}
                 height={520}
                 priority
-                className="object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] h-[125%] xs:h-[135%] sm:h-[115%] max-h-none w-auto scale-[1.95] xs:scale-[2.05] sm:scale-[1.45] lg:scale-[1.25] origin-bottom transition-transform duration-300 hover:scale-[1.30]"
+                className="object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] h-[105%] xs:h-[110%] sm:h-[110%] lg:h-[115%] max-h-none w-auto scale-[1.32] xs:scale-[1.36] sm:scale-[1.24] lg:scale-[1.18] origin-bottom transition-transform duration-300 hover:scale-[1.22]"
               />
             </motion.div>
 
