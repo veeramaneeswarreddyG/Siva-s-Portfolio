@@ -105,8 +105,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               }`}>
                 {currentLang === 'te' ? 'పరిచయం' : 'About'}
               </span>
-              <span className={`block text-amberGold-500 whitespace-nowrap font-black ${
-                currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : 'font-sans'
+              <span className={`block text-amberGold-500 whitespace-nowrap ${
+                currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-sans font-black'
               }`}>
                 {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. Sivarami Reddy'}
               </span>

@@ -91,11 +91,16 @@ body {
   --font-telugu-body-family: var(--font-telugu-body), var(--font-noto-telugu), sans-serif;
 }
 
-.font-telugu-heading {
+.font-telugu-heading,
+[class*="font-telugu-heading"] {
   font-family: var(--font-telugu-heading), var(--font-noto-telugu), serif !important;
+  font-weight: 400 !important;
   line-height: 1.35;
   letter-spacing: 0.01em;
   font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .font-telugu-body,
@@ -104,9 +109,11 @@ body {
   line-height: 1.85;
   letter-spacing: 0.015em;
   font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography Law: Automatically route Telugu headings to Syamala Ramana */
+/* Typography Law: Automatically route Telugu headings to Syamala Ramana with clean natural regular weight */
 h1 .font-telugu,
 h2 .font-telugu,
 h3 .font-telugu,
@@ -114,8 +121,19 @@ h4 .font-telugu,
 h1.font-telugu,
 h2.font-telugu,
 h3.font-telugu,
-h4.font-telugu {
+h4.font-telugu,
+h1 .font-telugu-heading,
+h2 .font-telugu-heading,
+h3 .font-telugu-heading,
+h4 .font-telugu-heading,
+h1.font-telugu-heading,
+h2.font-telugu-heading,
+h3.font-telugu-heading,
+h4.font-telugu-heading {
   font-family: var(--font-telugu-heading), var(--font-noto-telugu), serif !important;
+  font-weight: 400 !important;
   line-height: 1.3;
   letter-spacing: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

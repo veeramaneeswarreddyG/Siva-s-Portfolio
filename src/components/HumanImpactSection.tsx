@@ -36,8 +36,8 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
             </span>
           </div>
           
-          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-charcoal-950 tracking-tight ${
-            currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : ''
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl text-charcoal-950 tracking-tight ${
+            currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-extrabold'
           }`}>
             {currentLang === 'te' ? (
               <>

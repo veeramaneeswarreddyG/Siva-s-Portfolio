@@ -197,8 +197,8 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
             </span>
           </div>
           
-          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] tracking-tight ${
-            currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : 'font-sans'
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl text-[#1E1E1E] tracking-tight ${
+            currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-sans font-black'
           }`}>
             {currentLang === 'te' ? (
               <>

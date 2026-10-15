@@ -29,6 +29,7 @@ const syamalaRamana = localFont({
   src: "./fonts/syamala_ramana_regular.otf",
   variable: "--font-telugu-heading",
   display: "swap",
+  weight: "400",
 });
 
 // Custom Telugu Body Font: Potti Sreeramulu Regular (Clean, Highly Legible, Graceful)

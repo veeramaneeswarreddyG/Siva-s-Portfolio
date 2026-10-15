@@ -124,14 +124,16 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
             </div>
 
             {/* Headline: Father's Name on its own dedicated unbroken line (No Sparkles) */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-charcoal-950 tracking-tight">
-              <span className={`block text-xl sm:text-2xl md:text-3xl font-extrabold text-[#5A5955] ${
-                currentLang === 'te' ? 'font-telugu-heading tracking-normal' : ''
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl text-charcoal-950 tracking-tight ${
+              currentLang === 'te' ? 'font-telugu-heading font-normal' : 'font-black'
+            }`}>
+              <span className={`block text-xl sm:text-2xl md:text-3xl text-[#5A5955] ${
+                currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal' : 'font-extrabold'
               }`}>
                 {currentLang === 'te' ? 'సలహాల కొరకు సంప్రదించండి' : 'Connect With'}
               </span>
               <span className={`block text-[#F59E0B] whitespace-nowrap mt-1 ${
-                currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : ''
+                currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : ''
               }`}>
                 {currentLang === 'te' ? 'జి. శివరామిరెడ్డి గారితో' : 'G. Sivarami Reddy'}
               </span>

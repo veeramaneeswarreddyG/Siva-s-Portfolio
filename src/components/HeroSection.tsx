@@ -76,7 +76,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 
                 {/* EYEBROW BADGE ABOVE NAME */}
                 <div className="mb-2">
-                  <span className="inline-flex items-center space-x-1.5 bg-[#F59E0B] text-[#1E1E1E] font-black uppercase text-[10px] sm:text-xs tracking-wider px-3.5 py-1 rounded-full shadow-sm">
+                  <span className={`inline-flex items-center space-x-1.5 bg-[#F59E0B] text-[#1E1E1E] uppercase text-[10px] sm:text-xs tracking-wider px-3.5 py-1 rounded-full shadow-sm ${
+                    currentLang === 'te' ? 'font-telugu font-semibold' : 'font-black'
+                  }`}>
                     <span className="w-1.5 h-1.5 rounded-full bg-[#1E1E1E]" />
                     <span>{currentLang === 'te' ? 'ఎల్.ఐ.సి చీఫ్ అడ్వైజర్' : 'LIC Chief Advisor'}</span>
                   </span>
@@ -84,16 +86,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
                 {/* LINE 1: FULL FATHER'S NAME "G. SIVARAMI REDDY" IN ONE UNBROKEN LINE */}
                 <div className="inline-block bg-[#F59E0B] text-[#1E1E1E] px-4 xs:px-5 sm:px-7 lg:px-9 py-1.5 sm:py-2.5 rounded-full shadow-md w-fit max-w-full">
-                  <h1 className={`text-[19px] xs:text-[23px] sm:text-4xl md:text-5xl lg:text-[52px] font-black uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
-                    currentLang === 'te' ? 'font-telugu-heading tracking-normal py-0.5' : 'font-sans'
+                  <h1 className={`text-[19px] xs:text-[23px] sm:text-4xl md:text-5xl lg:text-[52px] uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
+                    currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-sans font-black'
                   }`}>
                     {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. SIVARAMI REDDY'}
                   </h1>
                 </div>
 
                 {/* LINE 2: "GADIKOTA." DIRECTLY BENEATH WITH UNBROKEN CONTINUITY */}
-                <div className={`text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#1E1E1E] leading-[1.05] mt-1.5 sm:mt-2.5 whitespace-nowrap ${
-                  currentLang === 'te' ? 'font-telugu-heading tracking-normal' : 'font-sans'
+                <div className={`text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-[76px] uppercase tracking-tight text-[#1E1E1E] leading-[1.05] mt-1.5 sm:mt-2.5 whitespace-nowrap ${
+                  currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal' : 'font-sans font-black'
                 }`}>
                   {currentLang === 'te' ? 'గడికోట' : 'GADIKOTA'}
                   <span className="text-[#F59E0B]">.</span>
