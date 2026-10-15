@@ -4,7 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Language } from '@/types';
-import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { RangoliMotif } from './RangoliMotif';
 
 interface AboutSectionProps {
   currentLang: Language;
@@ -34,15 +35,20 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   ];
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal-950 text-white relative overflow-hidden">
+    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-charcoal-950 text-white relative overflow-hidden select-none">
       
-      {/* Background ambient glow */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
+      {/* Traditional Minimal Line-Art Rangoli Watermark on Dark Canvas */}
+      <div className="absolute top-1/2 left-4 -translate-y-1/2 pointer-events-none hidden lg:block">
+        <RangoliMotif variant="mandala" size={360} color="#F59E0B" opacity={0.08} />
+      </div>
+      <div className="absolute bottom-4 right-8 pointer-events-none hidden md:block">
+        <RangoliMotif variant="corner" size={140} color="#F59E0B" opacity={0.12} />
+      </div>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Authentic High-Resolution Conversational Portrait (No Soil Capsule) */}
+          {/* Left Column: Authentic High-Resolution Conversational Portrait */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -86,19 +92,20 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           >
             {/* Eyebrow */}
             <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-amberGold-400">
-              <span className="w-2.5 h-2.5 rounded-full bg-amberGold-500" />
+              <span className="w-2 h-2 rounded-full bg-amberGold-500" />
               <span className={currentLang === 'te' ? 'font-telugu' : ''}>
                 {currentLang === 'te' ? 'జీవిత పరిచయం' : 'About The Advisor'}
               </span>
             </div>
 
-            {/* Title */}
+            {/* Title: Father's Name in Unbroken Continuity on New Line (No Sparkles) */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-              {currentLang === 'te' ? 'ఎవరు ఈ ' : 'Who is '}
-              <span className="text-amberGold-500">
-                {currentLang === 'te' ? 'జి. శివరామిరెడ్డి?' : 'G Sivarami Reddy?'}
+              <span className="block text-cream-300 text-lg sm:text-xl font-medium mb-1">
+                {currentLang === 'te' ? 'పరిచయం' : 'About'}
               </span>
-              <Sparkles className="inline-block w-6 h-6 ml-2 text-amberGold-500 align-baseline" />
+              <span className="block text-amberGold-500 whitespace-nowrap font-black font-sans">
+                {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. Sivarami Reddy'}
+              </span>
             </h2>
 
             {/* Narrative Paragraphs */}
@@ -107,12 +114,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             }`}>
               <p>
                 {currentLang === 'te'
-                  ? 'బిరుదులు, పదవుల కంటే ముందే... నేలను నమ్ముకున్న ఒక సాధారణ రైతు పుత్రుడు. కడప జిల్లా కమలాపురం గ్రామీణ నేపథ్యంతో మొదలైన ఆయన ప్రయాణం, కష్టపడే తత్వానికీ, అంకితభావానికీ నిలువెత్తు నిదర్శనం.'
-                  : 'Before executive titles and advisory honors, G Sivarami Reddy was rooted in the fertile land of Kamalapuram, Kadapa district, guided by patience, discipline, and honest service.'}
+                  ? 'కడప జిల్లా కమలాపురం గ్రామీణ నేపథ్యంతో మొదలైన ఆయన ప్రయాణం, కష్టపడే తత్వానికీ, అంకితభావానికీ నిలువెత్తు నిదర్శనం. వ్యవసాయంలో నేర్చుకున్న ఓర్పు మరియు క్రమశిక్షణ ఆయన సేవా ప్రస్థానానికి బలమైన పునాదిగా నిలిచాయి.'
+                  : 'Rooted in the fertile soil of Kamalapuram, Kadapa district, G. Sivarami Reddy was shaped by patient dedication and consistent discipline long before earning executive titles.'}
               </p>
               <p>
                 {currentLang === 'te'
-                  ? 'వ్యవసాయంలో నేర్చుకున్న ఓర్పు, క్రమశిక్షణ, మరియు ఇచ్చిన మాటకు కట్టుబడి ఉండే నైతికతను ఆయన తన ఎల్.ఐ.సి వృత్తిలోనూ ఆచరించారు. జమ్మలమడుగు బ్రాంచ్ కేంద్రంగా వేలాది కుటుంబాల భవిష్యత్తుకు భరోసానిచ్చారు.'
+                  ? 'ఇచ్చిన మాటకు కట్టుబడి ఉండే నైతికతను ఆయన తన ఎల్.ఐ.సి వృత్తిలోనూ ఆచరించారు. జమ్మలమడుగు బ్రాంచ్ కేంద్రంగా వేలాది కుటుంబాల భవిష్యత్తుకు భరోసానిచ్చారు.'
                   : 'Moving into public insurance advisory, he brought an unshakeable agrarian discipline into protecting households across Jammalamadugu Branch, Kadapa Division.'}
               </p>
             </div>

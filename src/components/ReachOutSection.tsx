@@ -10,9 +10,9 @@ import {
   MapPin, 
   Send, 
   CheckCircle2, 
-  Sparkles, 
   PhoneCall
 } from 'lucide-react';
+import { RangoliMotif } from './RangoliMotif';
 
 interface ReachOutSectionProps {
   currentLang: Language;
@@ -52,10 +52,16 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
   return (
     <section id="reach-out" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative overflow-hidden border-t border-cream-300">
       
-      {/* Background radial glow */}
+      {/* Background radial glow & Rangoli Motifs */}
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-6 right-6 pointer-events-none -scale-x-100">
+        <RangoliMotif variant="corner" size={90} opacity={0.16} />
+      </div>
+      <div className="absolute bottom-6 left-6 pointer-events-none">
+        <RangoliMotif variant="corner" size={90} opacity={0.16} />
+      </div>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Big, Crystal-Clear Thumbs-Up Portrait (100% Bright & Natural) */}
@@ -112,18 +118,19 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                 </span>
               </div>
 
-              <span className="text-xs font-bold text-charcoal-900 font-sans">
-                {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G Sivarami Reddy'}<span className="text-amberGold-500">.</span>
+              <span className="text-xs font-bold text-charcoal-900 font-sans whitespace-nowrap">
+                {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. Sivarami Reddy'}<span className="text-amberGold-500">.</span>
               </span>
             </div>
 
-            {/* Headline */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-charcoal-950 tracking-tight">
-              {currentLang === 'te' ? 'సలహాల కొరకు ' : 'Connect With '}
-              <span className="text-amberGold-500">
-                {currentLang === 'te' ? 'జి. శివరామిరెడ్డి గారిని' : 'G Sivarami Reddy'}
+            {/* Headline: Father's Name on its own dedicated unbroken line (No Sparkles) */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-charcoal-950 tracking-tight">
+              <span className="block text-xl sm:text-2xl md:text-3xl font-extrabold text-[#5A5955]">
+                {currentLang === 'te' ? 'సలహాల కొరకు సంప్రదించండి' : 'Connect With'}
               </span>
-              <Sparkles className="inline-block w-6 h-6 ml-2 text-amberGold-500 align-baseline" />
+              <span className="block text-[#F59E0B] whitespace-nowrap mt-1">
+                {currentLang === 'te' ? 'జి. శివరామిరెడ్డి గారితో' : 'G. Sivarami Reddy'}
+              </span>
             </h2>
 
             <p className={`text-xs sm:text-sm font-semibold uppercase tracking-wider text-charcoal-600 ${

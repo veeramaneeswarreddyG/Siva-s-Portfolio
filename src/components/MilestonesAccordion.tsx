@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language } from '@/types';
-import { ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { RangoliMotif } from './RangoliMotif';
 
 interface MilestonesAccordionProps {
   currentLang: Language;
@@ -95,8 +96,13 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
   ];
 
   return (
-    <section id="milestones" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#ECEAE5] relative select-none">
-      <div className="max-w-5xl mx-auto">
+    <section id="milestones" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#ECEAE5] relative select-none overflow-hidden">
+      {/* Subtle Rangoli corner background */}
+      <div className="absolute top-6 right-6 pointer-events-none -scale-x-100">
+        <RangoliMotif variant="corner" size={90} opacity={0.14} />
+      </div>
+
+      <div className="max-w-5xl mx-auto relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -118,7 +124,6 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
                   Challenges People Face & <span className="text-[#F59E0B]">Honest Answers</span>
                 </>
               )}
-              <Sparkles className="inline-block w-6 h-6 ml-2 text-[#F59E0B] align-baseline" />
             </h2>
           </div>
 

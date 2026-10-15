@@ -8,14 +8,14 @@ import {
   HeartHandshake, 
   Landmark, 
   Building2, 
-  Users, 
-  Sparkles, 
+  Users,
   ChevronLeft, 
   ChevronRight, 
   ArrowRight,
   Shield,
   Award
 } from 'lucide-react';
+import { RangoliMotif } from './RangoliMotif';
 
 interface RootsSectionProps {
   currentLang: Language;
@@ -165,13 +165,19 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
   return (
     <section id="roots" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden">
       
-      {/* Background Subtle Gradient Glow */}
+      {/* Background Subtle Gradient Glow & Rangoli Watermarks */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-8 left-8 pointer-events-none">
+        <RangoliMotif variant="corner" size={100} opacity={0.15} />
+      </div>
+      <div className="absolute top-8 right-8 pointer-events-none -scale-x-100">
+        <RangoliMotif variant="corner" size={100} opacity={0.15} />
+      </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10">
             <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
             <span className={currentLang === 'te' ? 'font-telugu' : ''}>
@@ -191,10 +197,11 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                 The LIC Story: <span className="text-[#F59E0B]">Why Millions Trust Us</span>
               </>
             )}
-            <Sparkles className="inline-block w-6 h-6 ml-2 text-[#F59E0B] align-baseline" />
           </h2>
 
-          <p className={`mt-3 text-sm sm:text-base text-[#5A5955] font-medium max-w-2xl mx-auto leading-relaxed ${
+          <RangoliMotif variant="divider" opacity={0.25} className="my-2" />
+
+          <p className={`mt-2 text-sm sm:text-base text-[#5A5955] font-medium max-w-2xl mx-auto leading-relaxed ${
             currentLang === 'te' ? 'font-telugu' : ''
           }`}>
             {currentLang === 'te'

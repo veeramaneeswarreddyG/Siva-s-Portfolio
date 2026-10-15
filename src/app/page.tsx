@@ -92,7 +92,7 @@ export default function Home() {
           <p>
             {currentLang === 'te'
               ? '© 2026 జి. శివరామిరెడ్డి అధికారిక డిజిటల్ లెగసీ. సర్వ హక్కులు ప్రత్యేకించబడ్డాయి.'
-              : '© 2026 G Sivarami Reddy Digital Legacy. All Rights Reserved.'}
+              : '© 2026 G. Sivarami Reddy Digital Legacy. All Rights Reserved.'}
           </p>
           <p className="font-semibold text-amberGold-400">
             {currentLang === 'te'

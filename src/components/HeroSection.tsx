@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Language } from '@/types';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
+import { RangoliMotif } from './RangoliMotif';
 
 interface HeroSectionProps {
   currentLang: Language;
@@ -24,9 +25,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
-      className="relative w-full pt-16 sm:pt-20 pb-4 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
+      className="relative w-full pt-16 sm:pt-20 pb-6 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
     >
-      {/* 1. TOP FRAMING LINE (Removed "Official Legacy Archive" label as requested) */}
+      {/* Traditional Minimal Line-Art Rangoli Watermarks (Cultural Depth & Warmth) */}
+      <div className="absolute -top-12 -left-12 pointer-events-none">
+        <RangoliMotif variant="mandala" size={280} color="#F59E0B" opacity={0.12} />
+      </div>
+      <div className="absolute top-1/3 -right-20 pointer-events-none hidden lg:block">
+        <RangoliMotif variant="mandala" size={320} color="#1E1E1E" opacity={0.06} />
+      </div>
+
+      {/* 1. TOP FRAMING LINE */}
       <div className="max-w-7xl mx-auto w-full border-t border-[#C8C5BD] pt-3 flex items-center justify-between z-10">
         {/* Overlapping Two-Circle Trademark (Black & Amber) */}
         <div className="flex items-center -space-x-2">
@@ -45,11 +54,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       {/* 2. ROTATED VERTICAL TEXT ALONG RIGHT BORDER */}
       <div className="hidden xl:block absolute right-4 top-1/2 -translate-y-1/2 rotate-90 origin-right text-[10.5px] font-mono tracking-[0.28em] text-[#5A5955] uppercase select-none pointer-events-none">
         {currentLang === 'te'
-          ? 'శివరామిరెడ్డి గడికోట © 2026'
-          : 'SIVARAMI REDDY GADIKOTA © 2026'}
+          ? 'జి. శివరామిరెడ్డి గడికోట © 2026'
+          : 'G. SIVARAMI REDDY GADIKOTA © 2026'}
       </div>
 
-      {/* 3. MAIN HERO STAGE: Clean, Moved Up, No 01 Watermark */}
+      {/* 3. MAIN HERO STAGE */}
       <div className="max-w-7xl mx-auto w-full mt-3 sm:mt-5 mb-3 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
         
         {/* LEFT COLUMN: Clean Editorial Typography */}
@@ -65,7 +74,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
               <div className="flex flex-col">
                 
-                {/* REPOSITIONED: "LIC CHIEF ADVISOR" AS EYEBROW BADGE ABOVE NAME */}
+                {/* EYEBROW BADGE ABOVE NAME */}
                 <div className="mb-2">
                   <span className="inline-flex items-center space-x-1.5 bg-[#F59E0B] text-[#1E1E1E] font-black uppercase text-[10px] sm:text-xs tracking-wider px-3.5 py-1 rounded-full shadow-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#1E1E1E]" />
@@ -73,15 +82,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   </span>
                 </div>
 
-                {/* LINE 1: "SIVARAMI REDDY" IN ONE LINE INSIDE AMBER CAPSULE */}
-                <div className="inline-block bg-[#F59E0B] text-[#1E1E1E] px-5 sm:px-7 lg:px-8 py-1.5 sm:py-2.5 rounded-full shadow-md w-fit">
+                {/* LINE 1: FULL FATHER'S NAME "G. SIVARAMI REDDY" IN ONE UNBROKEN LINE */}
+                <div className="inline-block bg-[#F59E0B] text-[#1E1E1E] px-5 sm:px-7 lg:px-9 py-2 sm:py-2.5 rounded-full shadow-md w-fit">
                   <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[52px] font-black uppercase tracking-tight leading-none font-sans whitespace-nowrap m-0">
-                    {currentLang === 'te' ? 'శివరామిరెడ్డి' : 'SIVARAMI REDDY'}
+                    {currentLang === 'te' ? 'జి. శివరామిరెడ్డి' : 'G. SIVARAMI REDDY'}
                   </h1>
                 </div>
 
-                {/* LINE 2: "GADIKOTA." DIRECTLY BENEATH WITH PERFECT LINE SPACING */}
-                <div className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#1E1E1E] leading-[1.02] mt-2 sm:mt-2.5 font-sans">
+                {/* LINE 2: "GADIKOTA." DIRECTLY BENEATH WITH UNBROKEN CONTINUITY */}
+                <div className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#1E1E1E] leading-[1.02] mt-2 sm:mt-2.5 font-sans whitespace-nowrap">
                   {currentLang === 'te' ? 'గడికోట' : 'GADIKOTA'}
                   <span className="text-[#F59E0B]">.</span>
                 </div>
@@ -94,11 +103,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               currentLang === 'te' ? 'font-telugu leading-relaxed' : ''
             }`}>
               {currentLang === 'te'
-                ? 'రెండు ఎకరాల వ్యవసాయ నేల నుండి కడప డివిజన్ జమ్మలమడుగు బ్రాంచ్ చీఫ్ అడ్వైజర్ స్థాయి వరకు... శ్రమ, నిజాయితీతో నిర్మితమైన గౌరవప్రదమైన జీవన ప్రస్థానం.'
-                : 'From two-acre agricultural roots to LIC Chief Advisor, Jammalamadugu Branch. Decades of uncompromised service, quiet integrity, and earned honour.'}
+                ? 'కడప డివిజన్ జమ్మలమడుగు బ్రాంచ్ చీఫ్ అడ్వైజర్ స్థాయి వరకు... శ్రమ, నిజాయితీతో నిర్మితమైన గౌరవప్రదమైన జీవన ప్రస్థానం.'
+                : 'Over two decades of uncompromised service, quiet integrity, and earned honour across Jammalamadugu Branch, Kadapa Division.'}
             </p>
 
-            {/* ACTION CTA (Removed Archival Verification Button as requested) */}
+            {/* ACTION CTA */}
             <div className="pt-2 pl-3 sm:pl-7 flex items-center">
               <button
                 onClick={() => scrollToSection('roots')}
@@ -107,8 +116,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <div className="w-6 h-6 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center font-black group-hover:translate-x-0.5 transition-transform">
                   <ChevronRight className="w-4 h-4 stroke-[3]" />
                 </div>
-                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                  {currentLang === 'te' ? 'ప్రస్థానాన్ని చూడండి' : 'Explore The Legacy'}
+                <span className={`whitespace-nowrap ${currentLang === 'te' ? 'font-telugu' : ''}`}>
+                  {currentLang === 'te' ? 'జి. శివరామిరెడ్డి ప్రస్థానం' : 'G. Sivarami Reddy Legacy'}
                 </span>
               </button>
             </div>
@@ -116,7 +125,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Elevated, Sized-Up Person Portrait */}
+        {/* RIGHT COLUMN: Elevated, Sized-Up Person Portrait with Smooth Minimal Float */}
         <div className="lg:col-span-6 flex flex-col items-center lg:items-end justify-center relative">
           
           <div className="relative w-full max-w-[380px] sm:max-w-[460px] lg:max-w-[520px] h-[400px] sm:h-[470px] lg:h-[520px] flex items-end justify-center overflow-visible">

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Language } from '@/types';
-import { Sparkles } from 'lucide-react';
+
 
 interface MarqueeStripProps {
   currentLang: Language;
@@ -43,7 +43,11 @@ export const MarqueeStrip: React.FC<MarqueeStripProps> = ({ currentLang }) => {
               }`}>
                 {name}
               </span>
-              <Sparkles className="w-3 h-3 text-[#F59E0B] fill-[#F59E0B] flex-shrink-0" />
+              {/* Minimal geometric diamond rangoli motif separator */}
+              <svg className="w-2.5 h-2.5 text-[#F59E0B] flex-shrink-0" viewBox="0 0 10 10" fill="currentColor">
+                <polygon points="5,0.8 9.2,5 5,9.2 0.8,5" opacity="0.9" />
+                <circle cx="5" cy="5" r="1.2" fill="#1A1A18" />
+              </svg>
             </div>
           ))}
         </div>

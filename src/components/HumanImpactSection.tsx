@@ -4,7 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Language } from '@/types';
 import { siteContent } from '@/data/content';
-import { Lock, HeartHandshake, Users2, Sparkles } from 'lucide-react';
+import { Lock, HeartHandshake, Users2 } from 'lucide-react';
+import { RangoliMotif } from './RangoliMotif';
 
 interface HumanImpactSectionProps {
   currentLang: Language;
@@ -15,8 +16,16 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
   const icons = [Lock, HeartHandshake, Users2];
 
   return (
-    <section id="impact" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative">
-      <div className="max-w-6xl mx-auto">
+    <section id="impact" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative overflow-hidden">
+      {/* Rangoli Watermark Motifs */}
+      <div className="absolute top-8 left-8 pointer-events-none">
+        <RangoliMotif variant="corner" size={90} opacity={0.14} />
+      </div>
+      <div className="absolute bottom-8 right-8 pointer-events-none rotate-180">
+        <RangoliMotif variant="corner" size={90} opacity={0.14} />
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -37,10 +46,11 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
                 Beyond Titles, <span className="text-amberGold-500">There Are People</span>
               </>
             )}
-            <Sparkles className="inline-block w-6 h-6 ml-2 text-amberGold-500 align-baseline" />
           </h2>
 
-          <p className={`mt-3 text-sm sm:text-base text-charcoal-600 font-medium ${
+          <RangoliMotif variant="divider" opacity={0.22} className="my-3" />
+
+          <p className={`mt-2 text-sm sm:text-base text-charcoal-600 font-medium ${
             currentLang === 'te' ? 'font-telugu' : ''
           }`}>
             {ch.tagline[currentLang]}

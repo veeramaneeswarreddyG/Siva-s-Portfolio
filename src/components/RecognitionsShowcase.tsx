@@ -4,7 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Language } from '@/types';
 import { siteContent } from '@/data/content';
-import { Award, Gem, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Award, Gem, CheckCircle2 } from 'lucide-react';
+import { RangoliMotif } from './RangoliMotif';
 
 interface RecognitionsShowcaseProps {
   currentLang: Language;
@@ -17,36 +18,41 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
   const items = siteContent.chapters.chapter5.recognitions;
 
   return (
-    <section id="recognitions" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-200 relative">
-      <div className="max-w-6xl mx-auto">
+    <section id="recognitions" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-200 relative overflow-hidden select-none">
+      
+      {/* Traditional Minimal Line-Art Rangoli Corner Motifs */}
+      <div className="absolute top-4 left-4 pointer-events-none hidden sm:block">
+        <RangoliMotif variant="corner" size={110} color="#F59E0B" opacity={0.15} />
+      </div>
+      <div className="absolute bottom-4 right-4 pointer-events-none hidden sm:block rotate-180">
+        <RangoliMotif variant="corner" size={110} color="#F59E0B" opacity={0.15} />
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-amberGold-500" />
+        {/* Minimal Section Header (No Sparkles, Prestigious & Clean) */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-charcoal-700 mb-2 px-3 py-1 rounded-full bg-black/5 border border-black/10">
+            <span className="w-2 h-2 rounded-full bg-amberGold-500" />
             <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-              {currentLang === 'te' ? 'కృషితో సంపాదించిన గౌరవం' : 'Career Progression & Honours'}
+              {currentLang === 'te' ? 'అధికారిక వృత్తి రికార్డు' : 'Official Advisory Record'}
             </span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-charcoal-950 tracking-tight">
-            {currentLang === 'te' ? (
-              <>
-                గుర్తింపుల వెనుక ఉన్న <span className="text-amberGold-500">నిజాయితీ & శ్రమ</span>
-              </>
-            ) : (
-              <>
-                From Field Practice to <span className="text-amberGold-500">Elite Distinction</span>
-              </>
-            )}
-            <Sparkles className="inline-block w-6 h-6 ml-2 text-amberGold-500 align-baseline" />
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-black text-charcoal-950 tracking-tight font-sans ${
+            currentLang === 'te' ? 'font-telugu' : ''
+          }`}>
+            {currentLang === 'te' ? 'వృత్తి గౌరవాలు & గుర్తింపులు' : 'Honours & Distinctions'}
           </h2>
 
-          <p className={`mt-3 text-sm sm:text-base text-charcoal-600 font-medium max-w-xl mx-auto ${
+          {/* Minimal Traditional Symmetrical Rangoli Divider */}
+          <RangoliMotif variant="divider" color="#F59E0B" opacity={0.3} className="my-3" />
+
+          <p className={`mt-2 text-sm sm:text-base text-charcoal-600 font-medium max-w-xl mx-auto leading-relaxed ${
             currentLang === 'te' ? 'font-telugu' : ''
           }`}>
             {currentLang === 'te'
-              ? 'గౌరవం అనేది కోరుకుంటే రాదు; ఏళ్ల తరబడి కుటుంబాలకు అందించిన నమ్మకానికి ఇది లభించిన ప్రతిఫలం.'
+              ? 'రెండు దశాబ్దాల సేవా ప్రస్థానం: ఏజెంట్ పునాది, సమాఖ్య అనుబంధం, చీఫ్ అడ్వైజర్ నాయకత్వం, మరియు 3 సార్లు డైమండ్ బ్రిగేడ్ క్లబ్ విశిష్ట గౌరవం.'
               : 'The documented progression of two decades: Agent foundation, Federation solidarity, Chief Advisory leadership, and 3-Time Diamond Brigade Club distinction.'}
           </p>
         </div>
@@ -108,7 +114,7 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
                   </p>
                 </div>
 
-                {/* Card Bottom: Clean Status Indicator (No Inspect Citations) */}
+                {/* Card Bottom: Clean Status Indicator */}
                 <div className={`mt-6 pt-4 border-t flex items-center justify-between ${
                   isDiamond ? 'border-charcoal-800' : 'border-cream-300'
                 }`}>
