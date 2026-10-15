@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { Language } from '@/types';
 import { 
@@ -19,7 +19,7 @@ interface RootsSectionProps {
 
 interface FactCard {
   id: string;
-  year: string;
+  year: { en: string; te: string };
   badge: { en: string; te: string };
   icon: React.ElementType;
   image: string;
@@ -31,13 +31,12 @@ interface FactCard {
 
 export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // 100% Authentic, customer-attracting LIC story milestones
+  // 100% Authentic, customer-attracting LIC story milestones with perfect bilingual translation
   const facts: FactCard[] = [
     {
       id: 'fact-1956-founding',
-      year: '1956',
+      year: { en: '1956', te: '1956' },
       badge: {
         en: 'PARLIAMENT ACT',
         te: 'పార్లమెంటు చట్టం',
@@ -54,7 +53,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
       },
       fullExplanation: {
         en: 'By amalgamating 245 private firms with ₹5 Crore initial capital, India created an untouchable sanctuary of public trust that has guarded families for 7 decades.',
-        te: '245 ప్రైవేట్ సంస్థలను ప్రభుత్వ అజమాయిషీలోకి తెచ్చి, ₹5 కోట్ల మూలధనంతో ప్రారంభమైన ఎల్.ఐ.సి నేడు కోట్లాది కుటుంబాలకు తిరుగులేని ఆర్థిక రక్షణ కవచం.',
+        te: '245 ప్రైవేట్ సంస్థలను ప్రభుత్వ అజమాయిషీలోకి తెచ్చి, ₹5 కోట్ల ప్రాథమిక మూలధనంతో ప్రారంభమైన ఎల్.ఐ.సి నేడు కోట్లాది భారతీయ కుటుంబాలకు తిరుగులేని ఆర్థిక రక్షణ కవచం.',
       },
       keyFact: {
         en: '245 Insurers Merged • ₹5 Cr Seed Capital • 100% Public Trust',
@@ -63,7 +62,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
     },
     {
       id: 'fact-section-37',
-      year: 'SEC 37',
+      year: { en: 'SEC 37', te: 'సెక్షన్ 37' },
       badge: {
         en: 'SOVEREIGN GUARANTEE',
         te: 'సార్వభౌమ హామీ',
@@ -76,11 +75,11 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
       },
       shortSummary: {
         en: 'Both Sum Assured and declared bonuses are legally backed by the Consolidated Fund of India by statutory law.',
-        te: 'పాలసీ మొత్తం మరియు బోనస్‌కు భారత రాజ్యాంగబద్ధ పార్లమెంటు చట్టమే స్వయంగా సార్వభౌమ హామీ ఇస్తుంది.',
+        te: 'పాలసీ హామీ మొత్తం మరియు బోనస్‌కు భారత రాజ్యాంగబద్ధ పార్లమెంటు చట్టమే స్వయంగా సార్వభౌమ హామీ ఇస్తుంది.',
       },
       fullExplanation: {
         en: 'Unlike private insurers, Section 37 makes the Government of India legally accountable for every policyholder rupee. Your money carries sovereign treasury security.',
-        te: 'ప్రపంచంలో ఏ ప్రైవేట్ సంస్థ ఇవ్వలేని చట్టబద్ధ రక్షణ ఇది. బ్యాంకులు లేదా ప్రైవేట్ సంస్థలు చేతులెత్తేసినా, ఎల్.ఐ.సి చెల్లింపులు కేంద్ర ప్రభుత్వ హామీతో రక్షించబడతాయి.',
+        te: 'ప్రపంచంలో ఏ ప్రైవేట్ సంస్థ ఇవ్వలేని చట్టబద్ధ రక్షణ ఇది. బ్యాంకులు లేదా ప్రైవేట్ సంస్థలు చేతులెత్తేసినా, ఎల్.ఐ.సి చెల్లింపులు కేంద్ర ప్రభుత్వ హామీతో నూరుశాతం రక్షించబడతాయి.',
       },
       keyFact: {
         en: 'Statutory Act • Sum Assured & Bonus Protected • Zero Default Risk',
@@ -89,7 +88,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
     },
     {
       id: 'fact-vedic-motto',
-      year: 'MOTTO',
+      year: { en: 'MOTTO', te: 'ధ్యేయం' },
       badge: {
         en: 'SACRED PROMISE',
         te: 'పవిత్ర ధ్యేయం',
@@ -115,7 +114,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
     },
     {
       id: 'fact-claim-settlement',
-      year: '98.5%+',
+      year: { en: '98.5%+', te: '98.5%+' },
       badge: {
         en: 'CLAIM INTEGRITY',
         te: 'క్లెయిమ్ విశ్వసనీయత',
@@ -141,7 +140,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
     },
     {
       id: 'fact-sovereign-scale',
-      year: '₹50L CR',
+      year: { en: '₹50L CR', te: '₹50L కోట్లు' },
       badge: {
         en: 'NATION BUILDER',
         te: 'జాతి సంపద',
@@ -158,7 +157,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
       },
       fullExplanation: {
         en: 'Every rupee invested in LIC not only secures your loved ones but also fuels Indian national infrastructure while multiplying safely through compounding sovereign bonuses.',
-        te: 'ఎల్.ఐ.సి లో ప్రతి పెట్టుబడి మీ కుటుంబానికి రక్షణ కల్పిస్తూనే, దేశాభివృద్ధికి తోడ్పడుతుంది మరియు లాభదాయకమైన వార్షిక బోనస్‌లతో సంపదను పెంచుతుంది.',
+        te: 'ఎల్.ఐ.సి లో ప్రతి రూపాయి మీ కుటుంబానికి రక్షణ కల్పిస్తూనే, దేశాభివృద్ధికి తోడ్పడుతుంది మరియు లాభదాయకమైన వార్షిక బోనస్‌లతో సంపదను పెంచుతుంది.',
       },
       keyFact: {
         en: '₹50+ Lakh Crore AUM • 95% Profit to Families • Sovereign Nation Builder',
@@ -167,13 +166,13 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
     },
   ];
 
-  // Repeat for continuous infinite flow
-  const marqueeItems = [...facts, ...facts, ...facts];
+  // Exactly 2 duplicates for mathematically seamless 50% translation without glitch
+  const marqueeItems = [...facts, ...facts];
 
   const isAnyCardHovered = hoveredCardId !== null;
 
   return (
-    <section id="roots" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden">
+    <section id="roots" className="py-14 sm:py-18 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden">
       
       {/* Background Subtle Gradient Glow & Rangoli Watermarks */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
@@ -186,7 +185,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Minimal Section Header: No pause button, no arrows */}
+        {/* Pure Bilingual Section Header: No pause button, no arrows, no mixed English */}
         <div className="mb-8 sm:mb-10 text-center sm:text-left">
           <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10">
             <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
@@ -202,17 +201,17 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
           }`}>
             {currentLang === 'te' ? (
               <>
-                మీకు తెలుసా? <span className="text-[#F59E0B] font-serif text-2xl sm:text-4xl">Do You Know?</span>
+                మీకు తెలుసా? <span className="text-[#F59E0B] font-normal">చారిత్రక మైలురాళ్లు</span>
               </>
             ) : (
               <>
-                Do You know? <span className="text-[#F59E0B] font-serif italic text-2xl sm:text-4xl">LIC Historic Milestones</span>
+                Do You know? <span className="text-[#F59E0B] font-serif italic">Historic Milestones</span>
               </>
             )}
           </h2>
 
           <p className={`mt-2 text-xs sm:text-sm text-[#5A5955] font-medium max-w-xl ${
-            currentLang === 'te' ? 'font-telugu' : ''
+            currentLang === 'te' ? 'font-telugu leading-relaxed' : ''
           }`}>
             {currentLang === 'te'
               ? 'ప్రజల సంక్షేమం కోసం స్థాపించబడిన ఎల్.ఐ.సి చారిత్రక రక్షణ ప్రస్థానం. వివరాలు చూడటానికి కార్డ్ పై కర్సర్ ఉంచండి.'
@@ -220,24 +219,21 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
           </p>
         </div>
 
-        {/* CONTINUOUS AUTO-MOVING CAROUSEL WITH HOVER BLUR & EXPANSION */}
-        <div
-          ref={scrollContainerRef}
-          className="relative w-full py-4 overflow-x-auto scrollbar-none snap-x snap-mandatory"
-          style={{ scrollBehavior: 'smooth' }}
-        >
+        {/* ULTRA-SMOOTH GPU-ACCELERATED CAROUSEL (ZERO SCROLLBAR, ZERO LAG) */}
+        <div className="relative w-full py-2 overflow-hidden no-scrollbar">
           <div
-            className={`flex items-start gap-5 sm:gap-6 w-max transition-all ${
+            className={`flex items-start gap-5 sm:gap-6 w-max will-change-transform ${
               isAnyCardHovered ? '[animation-play-state:paused]' : 'animate-marquee'
             }`}
             style={{
-              animationDuration: '48s',
+              animationDuration: '42s',
+              transform: 'translate3d(0, 0, 0)',
             }}
           >
             {marqueeItems.map((card, idx) => {
               const cardKey = `${card.id}-${idx}`;
               const isHovered = hoveredCardId === cardKey;
-              const isSiblingBlurred = isAnyCardHovered && !isHovered;
+              const isSiblingDimmed = isAnyCardHovered && !isHovered;
               const IconComp = card.icon;
 
               return (
@@ -246,13 +242,16 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                   onMouseEnter={() => setHoveredCardId(cardKey)}
                   onMouseLeave={() => setHoveredCardId(null)}
                   onClick={() => setHoveredCardId(isHovered ? null : cardKey)}
-                  className={`group relative rounded-2xl bg-white border transition-all duration-300 ease-out cursor-pointer flex flex-col snap-start flex-shrink-0 ${
+                  className={`group relative w-[290px] xs:w-[320px] sm:w-[350px] rounded-2xl bg-white border transition-all duration-300 ease-out cursor-pointer flex flex-col flex-shrink-0 ${
                     isHovered
-                      ? 'w-[340px] xs:w-[380px] sm:w-[420px] scale-105 shadow-[0_22px_60px_rgba(245,158,11,0.22)] border-[#F59E0B] z-30'
-                      : isSiblingBlurred
-                      ? 'w-[280px] xs:w-[310px] sm:w-[330px] filter blur-[2.5px] opacity-35 scale-95 border-[#E2DFD7] z-10'
-                      : 'w-[280px] xs:w-[310px] sm:w-[330px] shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-lg border-[#E2DFD7] z-10'
+                      ? 'scale-[1.03] shadow-[0_20px_45px_rgba(245,158,11,0.22)] border-[#F59E0B] z-30 opacity-100'
+                      : isSiblingDimmed
+                      ? 'scale-[0.98] opacity-40 border-[#E2DFD7] z-10'
+                      : 'shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-lg border-[#E2DFD7] z-10 opacity-100'
                   }`}
+                  style={{
+                    transformOrigin: 'center center',
+                  }}
                 >
                   
                   {/* Top Image: Rounded Corners */}
@@ -261,23 +260,23 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                       src={card.image}
                       alt={card.headline[currentLang]}
                       fill
-                      loading="lazy"
-                      sizes="(max-width: 640px) 320px, 420px"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      priority={idx < 4}
+                      sizes="(max-width: 640px) 300px, 350px"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     />
 
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
                     {/* Top Floating Badge */}
-                    <div className="absolute top-3 left-3 z-10 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#1E1E1E]/90 backdrop-blur-md text-[#F59E0B] border border-white/20 text-[10px] font-mono font-black tracking-wider uppercase">
+                    <div className="absolute top-3 left-3 z-10 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#1E1E1E]/90 text-[#F59E0B] border border-white/20 text-[10px] font-mono font-bold tracking-wider uppercase">
                       <IconComp className="w-3 h-3 text-[#F59E0B]" />
-                      <span>{card.badge[currentLang]}</span>
+                      <span className={currentLang === 'te' ? 'font-telugu' : ''}>{card.badge[currentLang]}</span>
                     </div>
 
-                    {/* Top Right Year Pill */}
+                    {/* Top Right Year Pill: Fully Translated */}
                     <div className="absolute top-3 right-3 z-10 px-2.5 py-0.5 rounded-md bg-[#F59E0B] text-[#1E1E1E] text-[10px] font-mono font-black shadow-sm">
-                      {card.year}
+                      {card.year[currentLang]}
                     </div>
                   </div>
 
@@ -286,14 +285,14 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                     <div>
                       {/* Short Hook Headline */}
                       <h3 className={`text-sm sm:text-base font-bold text-[#1E1E1E] tracking-tight leading-snug group-hover:text-amber-600 transition-colors ${
-                        currentLang === 'te' ? 'font-telugu leading-snug' : ''
+                        currentLang === 'te' ? 'font-telugu font-semibold leading-snug' : ''
                       }`}>
                         {card.headline[currentLang]}
                       </h3>
 
                       {/* Summary Text */}
                       <p className={`mt-2 text-xs text-[#5A5955] leading-relaxed font-normal ${
-                        currentLang === 'te' ? 'font-telugu text-[11px]' : ''
+                        currentLang === 'te' ? 'font-telugu text-[12px] leading-relaxed' : ''
                       }`}>
                         {card.shortSummary[currentLang]}
                       </p>
@@ -305,7 +304,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                         isHovered ? 'max-h-[260px] opacity-100 mt-3 pt-3 border-t border-[#C8C5BD]/60' : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <p className={`text-xs text-[#3A3A38] leading-relaxed font-light ${
+                      <p className={`text-xs text-[#3A3A38] leading-relaxed font-normal ${
                         currentLang === 'te' ? 'font-telugu leading-relaxed text-xs' : ''
                       }`}>
                         {card.fullExplanation[currentLang]}
@@ -315,7 +314,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                       <div className="mt-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center space-x-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#F59E0B] flex-shrink-0" />
                         <span className={`text-[11px] font-semibold text-[#1E1E1E] ${
-                          currentLang === 'te' ? 'font-telugu text-[10px]' : ''
+                          currentLang === 'te' ? 'font-telugu text-[11px]' : ''
                         }`}>
                           {card.keyFact[currentLang]}
                         </span>
@@ -325,7 +324,9 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                     {/* Subtly animated prompt when card is not hovered */}
                     {!isHovered && (
                       <div className="mt-3 pt-2 border-t border-black/5 flex items-center justify-between text-[11px] font-mono text-[#8C857B]">
-                        <span>{currentLang === 'te' ? 'వివరాలు చూడండి' : 'Hover to learn more'}</span>
+                        <span className={currentLang === 'te' ? 'font-telugu text-[11px]' : ''}>
+                          {currentLang === 'te' ? 'వివరాలు చూడండి' : 'Hover to learn more'}
+                        </span>
                         <span className="text-[#F59E0B] font-bold">→</span>
                       </div>
                     )}
@@ -340,7 +341,9 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
         {/* Mobile Swipe / Tap Hint */}
         <div className="md:hidden flex items-center justify-center space-x-2 text-[11px] font-bold text-[#8C857B] mt-3">
           <span className="text-[#F59E0B] animate-pulse">‹</span>
-          <span>{currentLang === 'te' ? 'కార్డ్ తాకి వివరాలు చూడండి • స్వైప్ చేయండి' : 'Tap any card to view details • Swipe'}</span>
+          <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+            {currentLang === 'te' ? 'కార్డ్ తాకి వివరాలు చూడండి' : 'Tap any card to view details'}
+          </span>
           <span className="text-[#F59E0B] animate-pulse">›</span>
         </div>
 
