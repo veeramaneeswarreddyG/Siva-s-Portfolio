@@ -68,7 +68,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 relative flex justify-center"
           >
@@ -105,7 +105,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
           <motion.div
             initial={{ opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
+            viewport={{ once: false, margin: '-40px' }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-7 space-y-6"
           >

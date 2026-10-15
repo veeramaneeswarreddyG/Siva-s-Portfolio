@@ -69,7 +69,7 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
                 whileTap={{ scale: 0.97 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
+                viewport={{ once: false, margin: '-40px' }}
                 transition={{ duration: 0.6, delay: idx * 0.15 }}
                 className="apple-press p-6 sm:p-8 rounded-2xl bg-white/90 backdrop-blur-md border border-cream-400 shadow-sm hover-lift cursor-pointer transition-all hover:border-amberGold-500/50"
               >

@@ -7,6 +7,8 @@ import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { MarqueeStrip } from '@/components/MarqueeStrip';
 import { Preloader } from '@/components/Preloader';
+import { ScrollReveal } from '@/components/ScrollReveal';
+import { ScrollProgressLoader } from '@/components/ScrollProgressLoader';
 
 // Lazy load below-the-fold components entirely for blazing-fast mobile performance
 const RootsSection = dynamic(
@@ -119,6 +121,9 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-cream-200 text-charcoal-950 font-sans selection:bg-amberGold-500 selection:text-white overflow-x-hidden">
       
+      {/* Dynamic Scroll Progress Bar Active on Every Scroll */}
+      <ScrollProgressLoader />
+
       {/* Cinematic Initial Preloader */}
       <Preloader />
 
@@ -135,23 +140,35 @@ export default function Home() {
       {/* Marquee Ticker Strip: District Hubs */}
       <MarqueeStrip currentLang={currentLang} />
 
-      {/* The LIC Story: Interactive Swiping Carousel (Lazy Loaded) */}
-      <RootsSection currentLang={currentLang} />
+      {/* The LIC Story: Interactive Swiping Carousel (Lazy Revealed on Every Scroll) */}
+      <ScrollReveal>
+        <RootsSection currentLang={currentLang} />
+      </ScrollReveal>
 
-      {/* Public Concerns & Advisory Solutions: Stepped-Polygon Accordion (Lazy Loaded) */}
-      <MilestonesAccordion currentLang={currentLang} />
+      {/* Public Concerns & Advisory Solutions: Stepped-Polygon Accordion (Lazy Revealed on Every Scroll) */}
+      <ScrollReveal>
+        <MilestonesAccordion currentLang={currentLang} />
+      </ScrollReveal>
 
-      {/* About Him Split Section (Lazy Loaded) */}
-      <AboutSection currentLang={currentLang} />
+      {/* About Him Split Section (Lazy Revealed on Every Scroll) */}
+      <ScrollReveal>
+        <AboutSection currentLang={currentLang} />
+      </ScrollReveal>
 
-      {/* Career Progression & Distinctions: Agent -> LIAFI -> CLIA -> 3x Diamond Brigade Club (Lazy Loaded) */}
-      <RecognitionsShowcase currentLang={currentLang} />
+      {/* Career Progression & Distinctions (Lazy Revealed on Every Scroll) */}
+      <ScrollReveal>
+        <RecognitionsShowcase currentLang={currentLang} />
+      </ScrollReveal>
 
-      {/* Human Significance & Generational Impact (Lazy Loaded) */}
-      <HumanImpactSection currentLang={currentLang} />
+      {/* Human Significance & Generational Impact (Lazy Revealed on Every Scroll) */}
+      <ScrollReveal>
+        <HumanImpactSection currentLang={currentLang} />
+      </ScrollReveal>
 
-      {/* Reach Out & Connect: The Final Section (Lazy Loaded) */}
-      <ReachOutSection currentLang={currentLang} />
+      {/* Reach Out & Connect: The Final Section (Lazy Revealed on Every Scroll) */}
+      <ScrollReveal>
+        <ReachOutSection currentLang={currentLang} />
+      </ScrollReveal>
 
       {/* Mobile Floating Action Dock (Call, WhatsApp, Lang Switch, Scroll Top) */}
       <MobileActionDock

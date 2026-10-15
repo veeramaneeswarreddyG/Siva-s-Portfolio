@@ -67,7 +67,7 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
                 whileTap={{ scale: 0.97 }}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
+                viewport={{ once: false, margin: '-40px' }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
                 className={`group apple-press relative p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 hover-lift snap-center flex-shrink-0 w-[82vw] xs:w-[300px] sm:w-auto ${
                   isDiamond
