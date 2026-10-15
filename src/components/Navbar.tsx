@@ -98,18 +98,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                 : 'opacity-100 scale-100 max-w-[620px] hidden md:flex items-center space-x-1 mx-2'
             }`}
           >
-            <nav className="flex items-center space-x-0.5" aria-label="Main Navigation">
+            <nav className="flex items-center space-x-1" aria-label="Main Navigation">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.id;
                 return (
                   <button
                     key={link.id}
                     onClick={() => scrollTo(link.id)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
-                      isActive
-                        ? 'bg-[#1E1E1E] text-[#F59E0B] shadow-sm'
-                        : 'text-[#3A3A38] hover:text-[#1E1E1E] hover:bg-black/5'
-                    } ${currentLang === 'te' ? 'font-telugu' : ''}`}
+                    className={`nav-link-btn px-2.5 py-1 text-xs tracking-wider whitespace-nowrap ${
+                      isActive ? 'nav-active' : ''
+                    } ${currentLang === 'te' ? 'font-telugu normal-case' : ''}`}
                   >
                     {link.label[currentLang]}
                   </button>

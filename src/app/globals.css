@@ -174,3 +174,50 @@ h4.font-telugu-heading {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* User-defined Nav Button Hover Animation (Expanding Center Underline) */
+.nav-link-btn {
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+  color: #4A4A48;
+}
+
+.nav-link-btn:focus,
+.nav-link-btn:hover {
+  color: #1E1E1E;
+}
+
+.nav-link-btn:focus::after,
+.nav-link-btn:hover::after,
+.nav-link-btn.nav-active::after {
+  width: 100%;
+  left: 0%;
+}
+
+.nav-link-btn::after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #F59E0B;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}
+
+.nav-link-btn.nav-active {
+  color: #1E1E1E;
+  font-weight: 800;
+}
+
