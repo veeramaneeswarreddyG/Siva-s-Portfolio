@@ -78,16 +78,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           }`}
         >
           
-          {/* Logo / Monogram (Always visible) */}
+          {/* Logo (Always visible) */}
           <button
             onClick={() => scrollTo('hero')}
-            className="flex items-center space-x-2 group focus-visible:outline-none flex-shrink-0 relative z-10"
+            className="flex items-center group focus-visible:outline-none flex-shrink-0 relative z-10"
             aria-label="Return to top"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center font-black text-xs shadow-sm group-hover:scale-105 transition-transform">
-              SRG
-            </div>
-            <span className="font-extrabold text-xs sm:text-sm tracking-tight text-[#1E1E1E] font-sans group-hover:text-amber-600 transition-colors">
+            <span className="font-extrabold text-sm sm:text-base tracking-tight text-[#1E1E1E] font-sans group-hover:text-amber-600 transition-colors">
               {currentLang === 'te' ? 'శివరామి' : 'Sivarami'}
               <span className="text-[#F59E0B]">.</span>
             </span>
