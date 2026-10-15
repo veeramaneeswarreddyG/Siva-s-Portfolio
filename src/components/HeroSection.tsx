@@ -6,6 +6,7 @@ import { Language } from '@/types';
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { RangoliMotif } from './RangoliMotif';
+import { SunRaysMotion } from './SunRaysMotion';
 
 interface HeroSectionProps {
   currentLang: Language;
@@ -27,6 +28,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       id="hero"
       className="relative w-full pt-16 sm:pt-20 pb-6 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
     >
+      {/* Ambient Minimal Sun Rays Motion in Background */}
+      <SunRaysMotion
+        size={780}
+        className="absolute -top-44 -right-40 pointer-events-none -z-10"
+        opacity={0.07}
+        duration={95}
+      />
+
       {/* Ambient Warm Atmosphere Glow */}
       <div className="absolute top-1/3 -right-20 pointer-events-none hidden lg:block">
         <RangoliMotif variant="mandala" size={320} color="#1E1E1E" opacity={0.12} />
@@ -137,6 +146,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             
             {/* Ambient Warm Golden Halo Glow behind Portrait */}
             <div className="absolute inset-0 bg-[#F59E0B]/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
+
+            {/* Ambient Minimal Sun Rays Radiance Behind Portrait */}
+            <SunRaysMotion
+              size={480}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none -z-10"
+              opacity={0.12}
+              duration={75}
+            />
 
             {/* Traditional Golden Mandala Aura directly behind Shiva */}
             <div className="absolute top-4 sm:top-2 left-1/2 -translate-x-1/2 pointer-events-none -z-10 opacity-25 sm:opacity-35">
