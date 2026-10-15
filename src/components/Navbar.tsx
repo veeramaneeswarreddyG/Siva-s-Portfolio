@@ -92,10 +92,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Center Links (Fades & collapses crisply in 200ms without stutter) */}
           <div
-            className={`transition-all duration-200 ease-out flex items-center overflow-hidden relative z-10 ${
+            className={`transition-all duration-200 ease-out flex items-center relative z-10 ${
               isShrunk
-                ? 'opacity-0 scale-95 max-w-0 pointer-events-none mx-0'
-                : 'opacity-100 scale-100 max-w-[620px] hidden md:flex items-center space-x-1 mx-2'
+                ? 'opacity-0 scale-95 max-w-0 pointer-events-none mx-0 overflow-hidden'
+                : 'opacity-100 scale-100 max-w-[640px] hidden md:flex items-center space-x-1 mx-2 overflow-visible'
             }`}
           >
             <nav className="flex items-center space-x-1" aria-label="Main Navigation">
@@ -105,8 +105,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <button
                     key={link.id}
                     onClick={() => scrollTo(link.id)}
-                    className={`nav-link-btn px-2.5 py-1 text-xs tracking-wider whitespace-nowrap ${
-                      isActive ? 'nav-active' : ''
+                    className={`nav-link-btn text-[12px] sm:text-[13px] tracking-wider whitespace-nowrap ${
+                      isActive ? 'nav-active font-black' : ''
                     } ${currentLang === 'te' ? 'font-telugu normal-case' : ''}`}
                   >
                     {link.label[currentLang]}

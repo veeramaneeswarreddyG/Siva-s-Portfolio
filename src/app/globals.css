@@ -178,16 +178,20 @@ h4.font-telugu-heading {
 /* User-defined Nav Button Hover Animation (Expanding Center Underline) */
 .nav-link-btn {
   font-family: inherit;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   position: relative;
   border: none;
   background: none;
   text-transform: uppercase;
+  color: #5A5955;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: color;
-  color: #4A4A48;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-link-btn:focus,
@@ -196,8 +200,7 @@ h4.font-telugu-heading {
 }
 
 .nav-link-btn:focus::after,
-.nav-link-btn:hover::after,
-.nav-link-btn.nav-active::after {
+.nav-link-btn:hover::after {
   width: 100%;
   left: 0%;
 }
@@ -205,12 +208,13 @@ h4.font-telugu-heading {
 .nav-link-btn::after {
   content: "";
   pointer-events: none;
-  bottom: -2px;
+  bottom: 0px;
   left: 50%;
   position: absolute;
   width: 0%;
   height: 2px;
   background-color: #F59E0B;
+  border-radius: 9999px;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
@@ -218,8 +222,8 @@ h4.font-telugu-heading {
 
 .nav-link-btn.nav-active {
   color: #1E1E1E;
-  font-weight: 800;
 }
+
 
 /* User-defined Carousel Blur & Scale Animation */
 .carousel-track {
