@@ -73,8 +73,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="relative z-10">
             
             {/* Double Quotes & Headline Stage */}
-            <div className="flex items-start space-x-2.5 sm:space-x-3.5">
-              <span className="text-6xl sm:text-6xl lg:text-7xl font-serif text-[#F59E0B] leading-none select-none -mt-1 sm:-mt-2 flex-shrink-0">
+            <div className="flex items-start space-x-2 sm:space-x-3.5">
+              <span className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#F59E0B] leading-none select-none -mt-0.5 sm:-mt-1.5 flex-shrink-0">
                 “
               </span>
 
@@ -90,17 +90,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   </span>
                 </div>
 
-                {/* LINE 1: FATHER'S NAME "SIVARAMI REDDY" IN ONE UNBROKEN LINE */}
-                <div className="inline-block bg-gradient-to-r from-amber-500 via-[#F59E0B] to-amber-500 text-[#1E1E1E] px-5 xs:px-6 sm:px-8 lg:px-10 py-2.5 xs:py-3 sm:py-3 rounded-full shadow-[0_10px_35px_rgba(245,158,11,0.32)] ring-1 ring-amber-400/40 w-fit max-w-full">
-                  <h1 className={`text-[32px] xs:text-[36px] sm:text-4xl md:text-5xl lg:text-[58px] xl:text-[64px] uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
-                    currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-sans font-black'
+                {/* LINE 1: FATHER'S NAME "SIVARAMI REDDY" IN ONE UNBROKEN LINE - PERFECT CAPSULE HUGGING */}
+                <div className="inline-flex items-center justify-center bg-gradient-to-r from-amber-500 via-[#F59E0B] to-amber-500 text-[#1E1E1E] px-4.5 xs:px-5 sm:px-7 lg:px-9 py-1.5 xs:py-2 sm:py-2.5 rounded-full shadow-[0_8px_30px_rgba(245,158,11,0.28)] ring-1 ring-amber-400/40 w-fit">
+                  <h1 className={`uppercase tracking-tight leading-none whitespace-nowrap m-0 select-none ${
+                    currentLang === 'te'
+                      ? 'font-telugu-heading font-normal tracking-normal py-0.5 text-[24px] xs:text-[27px] sm:text-4xl md:text-5xl lg:text-[52px]'
+                      : 'font-sans font-black text-[20px] xs:text-[22px] sm:text-3xl md:text-4xl lg:text-[46px]'
                   }`}>
                     {currentLang === 'te' ? 'శివరామిరెడ్డి' : 'SIVARAMI REDDY'}
                   </h1>
                 </div>
 
                 {/* LINE 2: "GADIKOTA." DIRECTLY BENEATH WITH UNBROKEN CONTINUITY */}
-                <div className={`text-[50px] xs:text-[58px] sm:text-6xl md:text-7xl lg:text-[82px] xl:text-[90px] uppercase tracking-tight text-[#1E1E1E] leading-[0.98] mt-1.5 sm:mt-2.5 whitespace-nowrap ${
+                <div className={`text-4xl xs:text-[42px] sm:text-6xl md:text-7xl lg:text-[76px] uppercase tracking-tight text-[#1E1E1E] leading-[1.02] mt-1.5 sm:mt-2.5 whitespace-nowrap ${
                   currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal' : 'font-sans font-black'
                 }`}>
                   {currentLang === 'te' ? 'గడికోట' : 'GADIKOTA'}
