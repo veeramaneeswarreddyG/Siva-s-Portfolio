@@ -15,7 +15,7 @@ export const RangoliMotif: React.FC<RangoliMotifProps> = ({
   className = '',
   size = 120,
   color = '#F59E0B',
-  opacity = 0.18,
+  opacity = 0.55,
 }) => {
   if (variant === 'divider') {
     return (

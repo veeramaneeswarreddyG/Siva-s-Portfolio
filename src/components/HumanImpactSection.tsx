@@ -19,10 +19,10 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
     <section id="impact" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative overflow-hidden">
       {/* Rangoli Watermark Motifs */}
       <div className="absolute top-8 left-8 pointer-events-none">
-        <RangoliMotif variant="corner" size={90} opacity={0.14} />
+        <RangoliMotif variant="corner" size={100} opacity={0.55} />
       </div>
       <div className="absolute bottom-8 right-8 pointer-events-none rotate-180">
-        <RangoliMotif variant="corner" size={90} opacity={0.14} />
+        <RangoliMotif variant="corner" size={100} opacity={0.55} />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -50,7 +50,7 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
             )}
           </h2>
 
-          <RangoliMotif variant="divider" opacity={0.22} className="my-3" />
+          <RangoliMotif variant="divider" opacity={0.65} className="my-3" />
 
           <p className={`mt-2 text-sm sm:text-base text-charcoal-600 font-medium ${
             currentLang === 'te' ? 'font-telugu' : ''

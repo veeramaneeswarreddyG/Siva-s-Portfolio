@@ -22,10 +22,10 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
       
       {/* Traditional Minimal Line-Art Rangoli Corner Motifs */}
       <div className="absolute top-4 left-4 pointer-events-none hidden sm:block">
-        <RangoliMotif variant="corner" size={110} color="#F59E0B" opacity={0.15} />
+        <RangoliMotif variant="corner" size={110} color="#F59E0B" opacity={0.55} />
       </div>
       <div className="absolute bottom-4 right-4 pointer-events-none hidden sm:block rotate-180">
-        <RangoliMotif variant="corner" size={110} color="#F59E0B" opacity={0.15} />
+        <RangoliMotif variant="corner" size={110} color="#F59E0B" opacity={0.55} />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
@@ -46,7 +46,7 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
           </h2>
 
           {/* Minimal Traditional Symmetrical Rangoli Divider */}
-          <RangoliMotif variant="divider" color="#F59E0B" opacity={0.3} className="my-3" />
+          <RangoliMotif variant="divider" color="#F59E0B" opacity={0.7} className="my-3" />
 
           <p className={`mt-2 text-sm sm:text-base text-charcoal-600 font-medium max-w-xl mx-auto leading-relaxed ${
             currentLang === 'te' ? 'font-telugu' : ''

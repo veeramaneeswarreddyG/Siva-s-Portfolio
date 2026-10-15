@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { Language } from '@/types';
 import { 
@@ -9,7 +9,9 @@ import {
   ShieldCheck, 
   Flame, 
   HeartHandshake, 
-  Coins 
+  Coins,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { RangoliMotif } from './RangoliMotif';
 
@@ -166,19 +168,44 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
     },
   ];
 
-  // Exactly 2 duplicates for mathematically seamless 50% translation without glitch
+  const [activeMobileIdx, setActiveMobileIdx] = useState(0);
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+
+  // Exactly 2 duplicates for mathematically seamless 50% translation without glitch on desktop
   const marqueeItems = [...facts, ...facts];
+
+  const handleMobileScroll = () => {
+    if (mobileScrollRef.current) {
+      const scrollLeft = mobileScrollRef.current.scrollLeft;
+      const cardWidth = mobileScrollRef.current.offsetWidth * 0.84;
+      const idx = Math.round(scrollLeft / cardWidth);
+      if (idx !== activeMobileIdx && idx >= 0 && idx < facts.length) {
+        setActiveMobileIdx(idx);
+      }
+    }
+  };
+
+  const scrollToMobileCard = (idx: number) => {
+    if (mobileScrollRef.current) {
+      const cardWidth = mobileScrollRef.current.offsetWidth * 0.84;
+      mobileScrollRef.current.scrollTo({
+        left: idx * cardWidth,
+        behavior: 'smooth',
+      });
+      setActiveMobileIdx(idx);
+    }
+  };
 
   return (
     <section id="roots" className="py-14 sm:py-18 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden">
       
-      {/* Background Subtle Gradient Glow & Rangoli Watermarks */}
+      {/* Background Subtle Gradient Glow & High-Visibility Rangoli Watermarks */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-8 left-8 pointer-events-none hidden md:block">
-        <RangoliMotif variant="corner" size={100} opacity={0.15} />
+        <RangoliMotif variant="corner" size={130} opacity={0.55} />
       </div>
       <div className="absolute top-8 right-8 pointer-events-none hidden md:block -scale-x-100">
-        <RangoliMotif variant="corner" size={100} opacity={0.15} />
+        <RangoliMotif variant="corner" size={130} opacity={0.55} />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -217,8 +244,110 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
           </p>
         </div>
 
-        {/* ULTRA-SMOOTH CONTINUOUS SCROLLING CAROUSEL WITH BLUR FOCUS EFFECT */}
-        <div className="relative w-full py-8 sm:py-10 overflow-hidden no-scrollbar">
+        {/* 1. MOBILE NATIVE SWIPE CAROUSEL (Touch-friendly, no stutter, with next-card peek preview) */}
+        <div className="md:hidden relative w-full mt-2">
+          <div
+            ref={mobileScrollRef}
+            onScroll={handleMobileScroll}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 px-1"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
+            {facts.map((card) => {
+              const IconComp = card.icon;
+              return (
+                <div
+                  key={card.id}
+                  className="snap-center flex-shrink-0 w-[84vw] max-w-[320px] rounded-2xl bg-white border border-[#E2DFD7] shadow-[0_6px_22px_rgba(0,0,0,0.06)] flex flex-col overflow-hidden"
+                >
+                  {/* Top Image */}
+                  <div className="relative w-full h-[180px] overflow-hidden rounded-t-2xl bg-charcoal-900 flex-shrink-0">
+                    <Image
+                      src={card.image}
+                      alt={card.headline[currentLang]}
+                      fill
+                      sizes="320px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+                    
+                    <div className="absolute top-3 left-3 z-10 flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-[#1E1E1E]/90 text-[#F59E0B] border border-white/20 text-[10px] font-mono font-bold tracking-wider uppercase">
+                      <IconComp className="w-3 h-3 text-[#F59E0B]" />
+                      <span className={currentLang === 'te' ? 'font-telugu' : ''}>{card.badge[currentLang]}</span>
+                    </div>
+
+                    <div className="absolute top-3 right-3 z-10 px-2.5 py-0.5 rounded-md bg-[#F59E0B] text-[#1E1E1E] text-[10px] font-mono font-black shadow-sm">
+                      {card.year[currentLang]}
+                    </div>
+                  </div>
+
+                  {/* Card Bottom */}
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className={`text-sm font-bold text-[#1E1E1E] tracking-tight leading-snug line-clamp-2 min-h-[2.5rem] ${
+                        currentLang === 'te' ? 'font-telugu font-semibold' : ''
+                      }`}>
+                        {card.headline[currentLang]}
+                      </h3>
+
+                      <p className={`mt-2 text-xs text-[#5A5955] leading-relaxed line-clamp-3 min-h-[3.6rem] ${
+                        currentLang === 'te' ? 'font-telugu text-[12px]' : ''
+                      }`}>
+                        {card.shortSummary[currentLang]}
+                      </p>
+                    </div>
+
+                    <div className="mt-3 pt-3 border-t border-black/5 flex items-center space-x-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#F59E0B] flex-shrink-0" />
+                      <span className={`text-[11px] font-semibold text-[#1E1E1E] truncate ${
+                        currentLang === 'te' ? 'font-telugu text-[11px]' : ''
+                      }`}>
+                        {card.keyFact[currentLang]}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile Swipe Indicators & Arrow Controls */}
+          <div className="flex items-center justify-between px-1 mt-2">
+            <div className="flex items-center space-x-1.5">
+              {facts.map((_, dotIdx) => (
+                <button
+                  key={dotIdx}
+                  onClick={() => scrollToMobileCard(dotIdx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeMobileIdx === dotIdx ? 'w-6 bg-[#F59E0B]' : 'w-1.5 bg-[#C8C5BD]'
+                  }`}
+                  aria-label={`Go to slide ${dotIdx + 1}`}
+                />
+              ))}
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => scrollToMobileCard(Math.max(0, activeMobileIdx - 1))}
+                disabled={activeMobileIdx === 0}
+                className="p-1.5 rounded-full bg-white border border-[#E2DFD7] text-[#1E1E1E] shadow-sm disabled:opacity-30 disabled:pointer-events-none active:scale-90 transition-all"
+                aria-label="Previous card"
+              >
+                <ChevronLeft className="w-4 h-4 text-[#1E1E1E]" />
+              </button>
+              <button
+                onClick={() => scrollToMobileCard(Math.min(facts.length - 1, activeMobileIdx + 1))}
+                disabled={activeMobileIdx === facts.length - 1}
+                className="p-1.5 rounded-full bg-white border border-[#E2DFD7] text-[#1E1E1E] shadow-sm disabled:opacity-30 disabled:pointer-events-none active:scale-90 transition-all"
+                aria-label="Next card"
+              >
+                <ChevronRight className="w-4 h-4 text-[#1E1E1E]" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* 2. DESKTOP/TABLET CONTINUOUS MARQUEE CAROUSEL (Smooth 60FPS with pause on hover) */}
+        <div className="hidden md:block relative w-full py-8 sm:py-10 overflow-hidden no-scrollbar">
           <div
             className={`carousel-track flex items-center gap-6 w-max animate-marquee hover:[animation-play-state:paused] will-change-transform ${
               hoveredCardId ? 'has-card-hover' : ''

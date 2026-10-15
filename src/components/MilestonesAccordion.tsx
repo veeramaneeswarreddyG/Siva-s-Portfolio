@@ -96,25 +96,28 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
   ];
 
   return (
-    <section id="milestones" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#ECEAE5] relative select-none overflow-hidden">
-      {/* Subtle Rangoli corner background */}
-      <div className="absolute top-6 right-6 pointer-events-none -scale-x-100">
-        <RangoliMotif variant="corner" size={90} opacity={0.14} />
+    <section id="milestones" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#ECEAE5] relative select-none overflow-hidden">
+      {/* High-visibility Rangoli corner watermark */}
+      <div className="absolute top-6 right-6 pointer-events-none -scale-x-100 hidden sm:block">
+        <RangoliMotif variant="corner" size={120} opacity={0.5} />
+      </div>
+      <div className="absolute top-6 left-6 pointer-events-none hidden sm:block">
+        <RangoliMotif variant="corner" size={120} opacity={0.5} />
       </div>
 
       <div className="max-w-5xl mx-auto relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4 sm:gap-6">
           <div>
-            <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2">
+            <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10">
               <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
               <span className={currentLang === 'te' ? 'font-telugu' : ''}>
                 {currentLang === 'te' ? 'ప్రజా సవాళ్లు & వాస్తవ పరిష్కారాలు' : 'Public Concerns & Advisory Solutions'}
               </span>
             </div>
             
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl text-[#1E1E1E] tracking-tight ${
+            <h2 className={`text-2xl xs:text-3xl sm:text-4xl md:text-5xl text-[#1E1E1E] tracking-tight ${
               currentLang === 'te' ? 'font-telugu-heading font-normal tracking-normal py-0.5' : 'font-sans font-black'
             }`}>
               {currentLang === 'te' ? (
@@ -134,31 +137,23 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
           </div>
         </div>
 
-        {/* Stacked Accordion with the EXACT stepped tabbed notch shape from reference image */}
+        {/* Stacked Accordion: Clean Spacious Rounded Cards on Mobile, Stepped Notch on Desktop */}
         <div className="space-y-4 sm:space-y-5">
           {items.map((item, index) => {
             const isExpanded = activeItem === index;
-
-            // Exact polygon formula matching reference image stepped notch profile
-            const clipStyle = {
-              clipPath: isExpanded
-                ? 'polygon(18px 10px, 175px 10px, 195px 0px, calc(100% - 18px) 0px, 100% 18px, 100% calc(100% - 18px), calc(100% - 18px) 100%, 105px 100%, 85px calc(100% - 10px), 18px calc(100% - 10px), 0px calc(100% - 24px), 0px 24px)'
-                : 'polygon(16px 8px, 85px 8px, 102px 0px, calc(100% - 16px) 0px, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 80px 100%, 65px calc(100% - 8px), 16px calc(100% - 8px), 0px calc(100% - 20px), 0px 20px)',
-            };
 
             return (
               <motion.div
                 key={index}
                 whileTap={{ scale: 0.99 }}
-                className="filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:drop-shadow-[0_6px_16px_rgba(0,0,0,0.1)] transition-all duration-300"
+                className="filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.05)] transition-all duration-300"
               >
                 <div
                   onClick={() => setActiveItem(isExpanded ? -1 : index)}
-                  style={clipStyle}
-                  className={`cursor-pointer transition-all duration-300 ${
+                  className={`cursor-pointer rounded-2xl md:rounded-3xl border transition-all duration-300 p-5 sm:p-7 md:p-8 ${
                     isExpanded
-                      ? 'bg-[#1C1A18] text-white py-5 sm:py-8 px-4.5 xs:px-6 sm:px-10'
-                      : 'bg-white hover:bg-[#FBF9F5] text-[#1E1E1E] py-4 sm:py-5 px-4.5 xs:px-6 sm:px-10'
+                      ? 'bg-[#1C1A18] text-white border-[#F59E0B]/50 shadow-xl'
+                      : 'bg-white hover:bg-[#FBF9F5] text-[#1E1E1E] border-[#E2DFD7] hover:border-[#F59E0B]/50'
                   }`}
                 >
                   

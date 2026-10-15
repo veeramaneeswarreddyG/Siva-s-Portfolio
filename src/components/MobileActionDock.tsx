@@ -63,7 +63,7 @@ export const MobileActionDock: React.FC<MobileActionDockProps> = ({
               </span>
               <Phone className="w-3.5 h-3.5 fill-[#1E1E1E]" />
               <span className={`whitespace-nowrap font-bold ${currentLang === 'te' ? 'font-telugu' : ''}`}>
-                {currentLang === 'te' ? 'నేరుగా కాల్' : 'Call Advisor'}
+                {currentLang === 'te' ? 'కాల్ చేయండి' : 'Request a Call'}
               </span>
             </a>
 
