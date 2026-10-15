@@ -27,12 +27,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       id="hero"
       className="relative w-full pt-16 sm:pt-20 pb-6 px-4 sm:px-8 lg:px-14 bg-[#ECEAE5] text-[#1E1E1E] overflow-hidden flex flex-col justify-start select-none"
     >
-      {/* Traditional Minimal Line-Art Rangoli Watermarks (Cultural Depth & Warmth) */}
-      <div className="absolute -top-12 -left-12 pointer-events-none">
-        <RangoliMotif variant="mandala" size={280} color="#F59E0B" opacity={0.45} />
-      </div>
+      {/* Ambient Warm Atmosphere Glow */}
       <div className="absolute top-1/3 -right-20 pointer-events-none hidden lg:block">
-        <RangoliMotif variant="mandala" size={320} color="#1E1E1E" opacity={0.25} />
+        <RangoliMotif variant="mandala" size={320} color="#1E1E1E" opacity={0.12} />
       </div>
 
       {/* 1. TOP FRAMING LINE */}
@@ -133,19 +130,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
         </div>
 
-        {/* RIGHT COLUMN: Elevated, Sized-Up Person Portrait with Smooth Minimal Float & Interactive Badges */}
-        <div className="lg:col-span-6 flex flex-col items-center lg:items-end justify-center relative mt-4 lg:mt-0">
+        {/* RIGHT COLUMN: Significantly Enlarged, Heroic Person Portrait with Traditional Aura & Interactive Badges */}
+        <div className="lg:col-span-6 flex flex-col items-center lg:items-end justify-center relative mt-6 lg:mt-0">
           
-          <div className="relative w-full max-w-[360px] xs:max-w-[400px] sm:max-w-[460px] lg:max-w-[520px] h-[430px] xs:h-[460px] sm:h-[490px] lg:h-[540px] flex items-end justify-center overflow-visible">
+          <div className="relative w-full max-w-[400px] xs:max-w-[440px] sm:max-w-[490px] lg:max-w-[540px] h-[520px] xs:h-[560px] sm:h-[600px] lg:h-[640px] flex items-end justify-center overflow-visible">
             
             {/* Ambient Warm Golden Halo Glow behind Portrait (Apple style depth) */}
-            <div className="absolute inset-0 bg-[#F59E0B]/22 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
+            <div className="absolute inset-0 bg-[#F59E0B]/25 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse-glow" />
+
+            {/* Traditional Golden Mandala Aura directly behind Shiva */}
+            <div className="absolute top-4 sm:top-2 left-1/2 -translate-x-1/2 pointer-events-none -z-10 opacity-30 sm:opacity-40">
+              <RangoliMotif variant="mandala" size={420} color="#F59E0B" opacity={0.35} />
+            </div>
 
             {/* 1. Circle Outline Behind Head / Shoulders */}
-            <div className="absolute top-2 sm:-top-2 left-3 sm:left-6 w-[280px] xs:w-[310px] sm:w-[360px] lg:w-[420px] h-[280px] xs:h-[310px] sm:h-[360px] lg:h-[420px] rounded-full border-2 border-[#1E1E1E]/80 pointer-events-none z-0" />
+            <div className="absolute top-2 sm:-top-2 left-3 sm:left-6 w-[310px] xs:w-[350px] sm:w-[390px] lg:w-[440px] h-[310px] xs:h-[350px] sm:h-[390px] lg:h-[440px] rounded-full border-2 border-[#1E1E1E]/80 pointer-events-none z-0" />
 
             {/* 2. Bold Warm Amber/Yellow Block Behind Torso */}
-            <div className="absolute bottom-0 right-2 sm:right-6 w-[220px] xs:w-[250px] sm:w-[280px] lg:w-[330px] h-[260px] xs:h-[290px] sm:h-[320px] lg:h-[370px] rounded-[36px] bg-[#F59E0B] shadow-xl z-0" />
+            <div className="absolute bottom-0 right-2 sm:right-6 w-[250px] xs:w-[280px] sm:w-[320px] lg:w-[360px] h-[290px] xs:h-[320px] sm:h-[360px] lg:h-[410px] rounded-[36px] bg-[#F59E0B] shadow-xl z-0" />
 
             {/* Floating Mobile Interactive Badges (Apple Liquid Glass with Micro-Interactions) */}
             <motion.div
@@ -162,7 +164,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               ⭐ 3× DIAMOND BRIGADE
             </motion.div>
 
-            {/* 3. Sivarami Reddy Cutout Portrait: Sized-Up, Heroic on Mobile */}
+            {/* 3. Sivarami Reddy Cutout Portrait: Truly Heroic, Substantially Enlarged on Mobile */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{
@@ -172,8 +174,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               }}
               className="relative z-10 w-full h-full flex items-end justify-center"
               style={{
-                maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
+                maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
               }}
             >
               <Image
@@ -182,7 +184,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 width={560}
                 height={520}
                 priority
-                className="object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] h-[110%] max-h-none w-auto scale-115 xs:scale-120 sm:scale-110 lg:scale-115 origin-bottom transition-transform duration-300 hover:scale-[1.22]"
+                className="object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.35)] h-[115%] max-h-none w-auto scale-[1.45] xs:scale-[1.50] sm:scale-[1.35] lg:scale-[1.25] origin-bottom transition-transform duration-300 hover:scale-[1.30]"
               />
             </motion.div>
 

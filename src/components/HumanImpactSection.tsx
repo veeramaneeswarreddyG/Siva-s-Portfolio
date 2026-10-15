@@ -18,11 +18,11 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
   return (
     <section id="impact" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-100 relative overflow-hidden">
       {/* Rangoli Watermark Motifs */}
-      <div className="absolute top-8 left-8 pointer-events-none">
-        <RangoliMotif variant="corner" size={100} opacity={0.55} />
+      <div className="absolute top-2 left-2 sm:top-4 sm:left-4 pointer-events-none hidden xs:block">
+        <RangoliMotif variant="corner" size={64} opacity={0.38} />
       </div>
-      <div className="absolute bottom-8 right-8 pointer-events-none rotate-180">
-        <RangoliMotif variant="corner" size={100} opacity={0.55} />
+      <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 pointer-events-none rotate-180 hidden xs:block">
+        <RangoliMotif variant="corner" size={64} opacity={0.38} />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">

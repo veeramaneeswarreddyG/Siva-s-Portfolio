@@ -127,11 +127,11 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
       
       {/* Background radial glow & Rangoli Motifs */}
       <div className="absolute top-1/3 right-0 w-96 h-96 bg-amberGold-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-6 right-6 pointer-events-none -scale-x-100">
-        <RangoliMotif variant="corner" size={100} opacity={0.55} />
+      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 pointer-events-none -scale-x-100 hidden xs:block">
+        <RangoliMotif variant="corner" size={68} opacity={0.38} />
       </div>
-      <div className="absolute bottom-6 left-6 pointer-events-none">
-        <RangoliMotif variant="corner" size={100} opacity={0.55} />
+      <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 pointer-events-none hidden xs:block">
+        <RangoliMotif variant="corner" size={68} opacity={0.38} />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">

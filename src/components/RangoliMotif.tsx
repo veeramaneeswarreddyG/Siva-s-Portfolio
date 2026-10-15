@@ -60,27 +60,87 @@ export const RangoliMotif: React.FC<RangoliMotifProps> = ({
         viewBox="0 0 100 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className={`pointer-events-none ${className}`}
+        className={`pointer-events-none select-none ${className}`}
         style={{ opacity }}
       >
-        {/* Outer Corner Frame Lines */}
-        <path d="M5 95 L5 25 A 20 20 0 0 1 25 5 L95 5" stroke={color} strokeWidth="1" fill="none" />
-        <path d="M15 95 L15 30 A 15 15 0 0 1 30 15 L95 15" stroke={color} strokeWidth="0.75" strokeDasharray="2 2" fill="none" />
-
-        {/* Traditional Corner Flower / Petal loops */}
-        <circle cx="35" cy="35" r="5" stroke={color} strokeWidth="1.2" />
-        <circle cx="35" cy="35" r="1.5" fill={color} />
+        {/* Elegant Traditional South Indian Muggu / Kolam Corner Filigree */}
         
-        {/* Curved Rangoli Petals */}
-        <path d="M35 22 C30 27, 30 31, 35 35 C40 31, 40 27, 35 22 Z" stroke={color} strokeWidth="1" />
-        <path d="M35 48 C30 43, 30 39, 35 35 C40 39, 40 43, 35 48 Z" stroke={color} strokeWidth="1" />
-        <path d="M22 35 C27 30, 31 30, 35 35 C31 40, 27 40, 22 35 Z" stroke={color} strokeWidth="1" />
-        <path d="M48 35 C43 30, 39 30, 35 35 C39 40, 43 40, 48 35 Z" stroke={color} strokeWidth="1" />
+        {/* Outer Graceful Corner Border Curve */}
+        <path
+          d="M 6 88 C 6 42, 42 6, 88 6"
+          stroke={color}
+          strokeWidth="1.25"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* Inner Parallel Dotted Harmony Curve */}
+        <path
+          d="M 12 76 C 12 40, 40 12, 76 12"
+          stroke={color}
+          strokeWidth="1"
+          strokeDasharray="2 3"
+          strokeLinecap="round"
+          fill="none"
+        />
 
-        {/* Diagonal Flourish loops */}
-        <path d="M35 35 L65 65" stroke={color} strokeWidth="1" strokeDasharray="2 2" />
-        <circle cx="65" cy="65" r="3" stroke={color} strokeWidth="1" />
-        <circle cx="78" cy="78" r="2" fill={color} />
+        {/* Corner Flourish Spirals (Curled Finials) */}
+        <path
+          d="M 88 6 C 94 6, 96 11, 92 14 C 88 17, 83 13, 85 9"
+          stroke={color}
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M 6 88 C 6 94, 11 96, 14 92 C 17 88, 13 83, 9 85"
+          stroke={color}
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          fill="none"
+        />
+
+        {/* Traditional Lotus Blossom Core radiating from corner diagonal */}
+        <g transform="translate(14, 14)">
+          {/* Central Bindu Dot */}
+          <circle cx="24" cy="24" r="2.5" fill={color} />
+          <circle cx="24" cy="24" r="5.5" stroke={color} strokeWidth="1" fill="none" />
+
+          {/* Central Diagonally Projecting Lotus Petal */}
+          <path
+            d="M 24 24 C 20 34, 30 44, 38 48 C 44 30, 34 20, 24 24 Z"
+            stroke={color}
+            strokeWidth="1.2"
+            fill="none"
+          />
+          {/* Left Wing Petal */}
+          <path
+            d="M 24 24 C 14 26, 12 36, 18 42 C 24 38, 25 30, 24 24 Z"
+            stroke={color}
+            strokeWidth="1"
+            fill="none"
+          />
+          {/* Right Wing Petal */}
+          <path
+            d="M 24 24 C 26 14, 36 12, 42 18 C 38 24, 30 25, 24 24 Z"
+            stroke={color}
+            strokeWidth="1"
+            fill="none"
+          />
+
+          {/* Accent Ornamental Dots */}
+          <circle cx="43" cy="53" r="1.5" fill={color} />
+          <circle cx="16" cy="46" r="1.25" fill={color} />
+          <circle cx="46" cy="16" r="1.25" fill={color} />
+          <circle cx="50" cy="60" r="1" fill={color} />
+        </g>
+
+        {/* Scalloped Radiating Lotus Pearls along curve */}
+        <circle cx="20" cy="58" r="1.5" fill={color} />
+        <circle cx="28" cy="46" r="1.5" fill={color} />
+        <circle cx="46" cy="28" r="1.5" fill={color} />
+        <circle cx="58" cy="20" r="1.5" fill={color} />
+        <circle cx="70" cy="15" r="1.2" fill={color} />
+        <circle cx="15" cy="70" r="1.2" fill={color} />
       </svg>
     );
   }

@@ -97,12 +97,12 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
 
   return (
     <section id="milestones" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#ECEAE5] relative select-none overflow-hidden">
-      {/* High-visibility Rangoli corner watermark */}
-      <div className="absolute top-6 right-6 pointer-events-none -scale-x-100 hidden sm:block">
-        <RangoliMotif variant="corner" size={120} opacity={0.5} />
+      {/* Subtle traditional Rangoli corner watermark */}
+      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 pointer-events-none -scale-x-100 hidden sm:block">
+        <RangoliMotif variant="corner" size={68} opacity={0.35} />
       </div>
-      <div className="absolute top-6 left-6 pointer-events-none hidden sm:block">
-        <RangoliMotif variant="corner" size={120} opacity={0.5} />
+      <div className="absolute top-2 left-2 sm:top-4 sm:left-4 pointer-events-none hidden sm:block">
+        <RangoliMotif variant="corner" size={68} opacity={0.35} />
       </div>
 
       <div className="max-w-5xl mx-auto relative z-10">

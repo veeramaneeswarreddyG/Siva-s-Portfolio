@@ -39,10 +39,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
       
       {/* Traditional Minimal Line-Art Rangoli Watermark on Dark Canvas */}
       <div className="absolute top-1/2 left-4 -translate-y-1/2 pointer-events-none hidden lg:block">
-        <RangoliMotif variant="mandala" size={360} color="#F59E0B" opacity={0.35} />
+        <RangoliMotif variant="mandala" size={320} color="#F59E0B" opacity={0.18} />
       </div>
-      <div className="absolute bottom-4 right-8 pointer-events-none hidden md:block">
-        <RangoliMotif variant="corner" size={140} color="#F59E0B" opacity={0.45} />
+      <div className="absolute bottom-3 right-3 sm:bottom-5 sm:right-5 pointer-events-none rotate-180 hidden md:block">
+        <RangoliMotif variant="corner" size={72} color="#F59E0B" opacity={0.38} />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">

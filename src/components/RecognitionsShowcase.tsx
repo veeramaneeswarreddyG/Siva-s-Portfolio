@@ -21,11 +21,11 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
     <section id="recognitions" className="py-24 px-4 sm:px-6 lg:px-8 bg-cream-200 relative overflow-hidden select-none">
       
       {/* Traditional Minimal Line-Art Rangoli Corner Motifs */}
-      <div className="absolute top-4 left-4 pointer-events-none hidden sm:block">
-        <RangoliMotif variant="corner" size={110} color="#F59E0B" opacity={0.55} />
+      <div className="absolute top-2 left-2 sm:top-4 sm:left-4 pointer-events-none hidden sm:block">
+        <RangoliMotif variant="corner" size={68} color="#F59E0B" opacity={0.38} />
       </div>
-      <div className="absolute bottom-4 right-4 pointer-events-none hidden sm:block rotate-180">
-        <RangoliMotif variant="corner" size={110} color="#F59E0B" opacity={0.55} />
+      <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 pointer-events-none hidden sm:block rotate-180">
+        <RangoliMotif variant="corner" size={68} color="#F59E0B" opacity={0.38} />
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">

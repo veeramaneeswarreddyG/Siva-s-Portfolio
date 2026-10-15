@@ -201,11 +201,11 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
       
       {/* Background Subtle Gradient Glow & High-Visibility Rangoli Watermarks */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-8 left-8 pointer-events-none hidden md:block">
-        <RangoliMotif variant="corner" size={130} opacity={0.55} />
+      <div className="absolute top-2 left-2 sm:top-4 sm:left-4 pointer-events-none hidden md:block">
+        <RangoliMotif variant="corner" size={72} opacity={0.38} />
       </div>
-      <div className="absolute top-8 right-8 pointer-events-none hidden md:block -scale-x-100">
-        <RangoliMotif variant="corner" size={130} opacity={0.55} />
+      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 pointer-events-none hidden md:block -scale-x-100">
+        <RangoliMotif variant="corner" size={72} opacity={0.38} />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
