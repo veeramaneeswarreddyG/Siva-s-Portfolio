@@ -1,19 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language } from '@/types';
 import { 
-  ShieldCheck, 
-  HeartHandshake, 
-  Landmark, 
-  Building2, 
-  Users,
   ChevronLeft, 
   ChevronRight, 
   ArrowRight,
-  Shield,
-  Award
+  Pause,
+  Play,
+  CheckCircle2,
+  Landmark,
+  ShieldCheck,
+  Train,
+  Flame,
+  FileText
 } from 'lucide-react';
 import { RangoliMotif } from './RangoliMotif';
 
@@ -21,138 +23,170 @@ interface RootsSectionProps {
   currentLang: Language;
 }
 
-export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
-  const [activeIndex, setActiveIndex] = useState(1); // Default to Card 1 or 2 in center
+interface FactCard {
+  id: string;
+  year: string;
+  badge: { en: string; te: string };
+  icon: React.ElementType;
+  image: string;
+  headline: { en: string; te: string };
+  shortSummary: { en: string; te: string };
+  fullExplanation: { en: string; te: string };
+  keyFact: { en: string; te: string };
+}
 
-  const cards = [
+export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
+  const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // 5 Rich Historic Facts matching RailOne "Do You Know?" style with relevant photography
+  const facts: FactCard[] = [
     {
-      id: 'sovereign-guarantee',
-      number: '01',
-      icon: ShieldCheck,
-      shortLabel: {
-        en: 'Sovereign Guarantee',
+      id: 'fact-1853-railway',
+      year: '1853',
+      badge: {
+        en: 'HERITAGE ORIGINS',
+        te: 'చారిత్రక ఆరంభం',
+      },
+      icon: Train,
+      image: '/images/lic_vintage_railway.jpg',
+      headline: {
+        en: 'First passenger train ran between Bori Bandar to Thane on April 16, 1853.',
+        te: 'భారతదేశపు మొట్టమొదటి ప్యాసింజర్ రైలు ఏప్రిల్ 16, 1853న బోరీ బందర్ నుండి థానే వరకు నడిచింది.',
+      },
+      shortSummary: {
+        en: 'The dawn of India’s transport and economic connectivity, which later laid the foundation for national financial institutions.',
+        te: 'భారతదేశ రవాణా మరియు ఆర్థిక అనుసంధానానికి నాంది పలికి, భవిష్యత్ జాతీయ ఆర్థిక సంస్థల స్థాపనకు పునాది వేసింది.',
+      },
+      fullExplanation: {
+        en: 'Just as Indian Railways commenced its historic 34-km maiden journey on April 16, 1853, transforming the subcontinent, life insurance emerged in India to safeguard families against unpredictable hardships. Over time, LIC and Indian Railways became twin pillars of sovereign public infrastructure.',
+        te: '1853లో కేవలం 34 కిలోమీటర్ల ప్రయాణంతో మొదలైన భారతీయ రైల్వే ఎలాగైతే దేశ రూపురేఖలను మార్చిందో... అదే కాలంలో భారత ప్రజల రక్షణ కోసం బీమా రంగం ఆరంభమైంది. నేడు ఎల్.ఐ.సి మరియు భారతీయ రైల్వేలు దేశ సార్వభౌమ నిర్మాణానికి రెండు ప్రధాన మూలస్తంభాలు.',
+      },
+      keyFact: {
+        en: '34 km route • 400 passengers • 3 steam locomotives',
+        te: '34 కి.మీ మార్గం • 400 మంది ప్రయాణికులు • 3 చారిత్రక ఇంజన్లు',
+      },
+    },
+    {
+      id: 'fact-1956-founding',
+      year: '1956',
+      badge: {
+        en: 'PARLIAMENT ACT',
+        te: 'పార్లమెంటు చట్టం',
+      },
+      icon: Landmark,
+      image: '/images/lic_founding_1956.jpg',
+      headline: {
+        en: 'On September 1, 1956, Parliament united 245 companies under the LIC Act.',
+        te: 'సెప్టెంబర్ 1, 1956న భారత పార్లమెంటు 245 ప్రైవేట్ సంస్థలను విలీనం చేసి ఎల్.ఐ.సి ని స్థాపించింది.',
+      },
+      shortSummary: {
+        en: 'To end private defaults, the Parliament of India nationalized life insurance to guarantee absolute safety of public savings.',
+        te: 'ప్రైవేట్ కంపెనీల మోసాలకు ముగింపు పలికి, ప్రజల కష్టార్జితానికి పూర్తి భద్రత కల్పించేందుకు జాతీయ సంస్థగా ఆవిర్భవించింది.',
+      },
+      fullExplanation: {
+        en: 'The Life Insurance Corporation of India was officially born on September 1, 1956, after Parliament passed the historic LIC Act on June 19, 1956. By nationalizing and amalgamating 154 Indian insurers, 16 foreign insurers, and 75 provident societies, India established an untouchable sanctuary of public trust with an initial capital of ₹5 Crore.',
+        te: 'భారత పార్లమెంటు ఎల్.ఐ.సి చట్టం ద్వారా 154 భారతీయ సంస్థలు, 16 విదేశీ సంస్థలు, 75 ప్రావిడెంట్ సొసైటీలను విలీనం చేసి ప్రభుత్వ అజమాయిషీలోకి తెచ్చింది. సామాన్య పౌరుడి పైసా కూడా వృథా కాకూడదనే పవిత్ర లక్ష్యంతో ఈ సంస్థ ప్రారంభమైంది.',
+      },
+      keyFact: {
+        en: '245 Insurers Merged • ₹5 Cr Seed Capital • 100% Public Trust',
+        te: '245 సంస్థల విలీనం • రూ. 5 కోట్ల ప్రాథమిక మూలధనం • నూరుశాతం ప్రభుత్వ భరోసా',
+      },
+    },
+    {
+      id: 'fact-section-37',
+      year: '100% SAFE',
+      badge: {
+        en: 'SOVEREIGN GUARANTEE',
         te: 'సార్వభౌమ హామీ',
       },
-      eyebrow: {
-        en: 'SECTION 37 • PARLIAMENT ACT',
-        te: 'సెక్షన్ 37 • పార్లమెంటు చట్టం',
+      icon: ShieldCheck,
+      image: '/images/lic_sovereign_guarantee.jpg',
+      headline: {
+        en: 'Section 37 of LIC Act gives 100% Sovereign Guarantee by Government of India.',
+        te: 'ఎల్.ఐ.సి చట్టం సెక్షన్ 37 ప్రకారం ప్రతి రూపాయికీ భారత ప్రభుత్వమే పూర్తి గ్యారెంటీ.',
       },
-      title: {
-        en: '100% Sovereign Guarantee',
-        te: '100% ప్రభుత్వ సార్వభౌమ హామీ',
+      shortSummary: {
+        en: 'Both Sum Assured and all declared bonuses are backed by the Consolidated Fund of India by statutory law.',
+        te: 'పాలసీ హామీ మొత్తం మరియు బోనస్‌కు భారత రాజ్యాంగబద్ధ పార్లమెంటు చట్టమే స్వయంగా సార్వభౌమ హామీ ఇస్తుంది.',
       },
-      description: {
-        en: 'Under Section 37 of the LIC Act 1956, every single policy carries the legal Sovereign Guarantee of the Government of India. The sum assured and all declared bonuses are legally pledged by the central government — ensuring total capital safety.',
-        te: 'ఎల్.ఐ.సి చట్టం సెక్షన్ 37 ప్రకారం భారత ప్రభుత్వం పూర్తి సార్వభౌమ హామీ ఇస్తుంది. మీ పాలసీ మొత్తం మరియు బోనస్‌కు కేంద్ర ప్రభుత్వమే చట్టబద్ధమైన గ్యారెంటీ. ఎలాంటి ఆర్థిక ఒడిదుడుకుల్లోనైనా మీ పెట్టుబడి నూరుశాతం సురక్షితం.',
+      fullExplanation: {
+        en: 'Section 37 of the LIC Act guarantees that the sum assured and all declared bonuses payable by LIC are legally backed and guaranteed by the Government of India. In the history of Indian finance, no private life insurance firm offers this parliamentary statutory guarantee, making LIC policies as safe as sovereign treasury currency.',
+        te: 'ప్రపంచంలో ఏ ప్రైవేట్ ఇన్సూరెన్స్ కంపెనీ ఇవ్వలేని అత్యున్నత చట్టబద్ధ రక్షణ ఇది. ఎల్.ఐ.సి పాలసీదారుడికి అందాల్సిన ప్రతి పైసాకు కేంద్ర ప్రభుత్వమే జవాబుదారీ. బ్యాంకులు లేదా ప్రైవేట్ సంస్థలు చేతులెత్తేసినా, ఎల్.ఐ.సి చెల్లింపులు తిరుగులేని ప్రభుత్వ హామీతో సాగుతాయి.',
       },
-      primaryArcColor: '#F59E0B',
-      secondaryArcColor: '#1E1E1E',
-      tertiaryArcColor: '#4A5568',
+      keyFact: {
+        en: 'Statutory Act • Sum Assured & Bonus Protected • Zero Default',
+        te: 'పార్లమెంటు చట్టబద్ధం • బోనస్ & మూలధన భద్రత • సున్నా నష్టభయం',
+      },
     },
     {
-      id: 'claim-settlement',
-      number: '02',
-      icon: HeartHandshake,
-      shortLabel: {
-        en: 'Claim Settlement',
-        te: 'క్లెయిమ్స్ పరిష్కారం',
+      id: 'fact-vedic-motto',
+      year: 'MOTTO',
+      badge: {
+        en: 'SACRED PROMISE',
+        te: 'పవిత్ర ధ్యేయం',
       },
-      eyebrow: {
-        en: '98.5%+ CLAIM SETTLEMENT RECORD',
-        te: '98.5%+ అత్యుత్తమ పరిష్కారం',
+      icon: Flame,
+      image: '/images/lic_protective_hands.jpg',
+      headline: {
+        en: 'The sacred emblem: Two caring hands sheltering the eternal flame of security.',
+        te: 'రెండు రక్షక హస్తాలు దీపశిఖను కాపాడే పవిత్ర చిహ్నం — “యోగక్షేమం వహామ్యహం”.',
       },
-      title: {
-        en: 'Unmatched Claim Honour',
-        te: 'మాట తప్పని నైతికత & వేగం',
+      shortSummary: {
+        en: 'Derived from Bhagavad Gita 9.22, meaning “Your Welfare Is Our Responsibility”.',
+        te: 'భగవద్గీత 9వ అధ్యాయం 22వ శ్లోకం నుండి స్వీకరించబడిన జీవన ధర్మం.',
       },
-      description: {
-        en: 'Maintaining one of the highest claim settlement ratios on earth (over 98.5%), LIC disburses thousands of crores every day across India. Through all hardships, promises are honored with utmost speed and compassion.',
-        te: 'ప్రతిరోజూ వేలాది కుటుంబాలకు మెచ్యూరిటీ మరియు డెత్ క్లెయిమ్‌లను వేగంగా పరిష్కరిస్తూ ఎల్.ఐ.సి ప్రపంచంలోనే అత్యుత్తమ 98.5% పైగా సెటిల్మెంట్ రికార్డును సొంతం చేసుకుంది. ఆపదలో కుటుంబాలకు కొండంత అండగా నిలుస్తుంది.',
+      fullExplanation: {
+        en: 'The iconic emblem of LIC displays two cupped hands preserving a sacred flame, accompanied by the Sanskrit shloka “Yogakshemam Vahamyaham” (Your Welfare Is Our Responsibility). Derived from the Bhagavad Gita (9.22), it symbolizes LIC’s lifelong covenant to guard every Indian household against life’s storms.',
+        te: 'భగవద్గీతలోని “తేషాం నిత్యాభియుక్తానాం యోగక్షేమం వహామ్యహం” అనే శ్లోకం నుండి గ్రహించబడిన ఈ వాక్యం... “మీ సంక్షేమం మా బాధ్యత” అని అర్థం. తుఫానుల్లోనూ కొడిగట్టని దీపంలా, కుటుంబాల ఆర్థిక భద్రతను తరతరాలుగా కాపాడటమే ఈ లోగో సారాంశం.',
       },
-      primaryArcColor: '#1E1E1E',
-      secondaryArcColor: '#F59E0B',
-      tertiaryArcColor: '#2D3748',
+      keyFact: {
+        en: 'Bhagavad Gita 9.22 • 7 Decades of Fidelity • Family Welfare',
+        te: 'భగవద్గీత 9.22 శ్లోకం • 7 దశాబ్దాల విశ్వసనీయత • కుటుంబ రక్షణ',
+      },
     },
     {
-      id: 'asset-base',
-      number: '03',
-      icon: Landmark,
-      shortLabel: {
-        en: 'Public Wealth',
-        te: 'మహా ప్రజా సంపద',
-      },
-      eyebrow: {
-        en: '₹50+ LAKH CRORES ASSETS',
-        te: '₹50+ లక్షల కోట్ల సంపద',
-      },
-      title: {
-        en: 'Managing ₹50+ Lakh Crores',
-        te: 'ప్రపంచ స్థాయి ఆర్థిక మహాసౌధం',
-      },
-      description: {
-        en: 'With an asset management base exceeding ₹50 Lakh Crores ($600+ Billion USD) and over 25 Crore active individual policies, LIC is the financial backbone of India — a fortress of unshakeable wealth.',
-        te: '₹50 లక్షల కోట్లకు పైగా సంపదను సమర్థవంతంగా నిర్వహిస్తూ, 25 కోట్లకు పైగా పాలసీదారుల జీవితాలకు భరోసా ఇస్తున్న ఎల్.ఐ.సి దేశ ఆర్థిక వ్యవస్థకే వెన్నెముక. మీ కుటుంబానికి తిరుగులేని ఆర్థిక స్థిరత్వం లభిస్తుంది.',
-      },
-      primaryArcColor: '#F59E0B',
-      secondaryArcColor: '#4A5568',
-      tertiaryArcColor: '#1E1E1E',
-    },
-    {
-      id: 'nation-building',
-      number: '04',
-      icon: Building2,
-      shortLabel: {
-        en: 'Nation Building',
+      id: 'fact-chenab-infra',
+      year: 'INFRA',
+      badge: {
+        en: 'NATION BUILDER',
         te: 'జాతి నిర్మాణం',
       },
-      eyebrow: {
-        en: 'PEOPLE’S MONEY FOR PEOPLE’S GOOD',
-        te: 'ప్రజాధనం దేశాభివృద్ధికి',
+      icon: FileText,
+      image: '/images/lic_nation_railway.jpg',
+      headline: {
+        en: 'Chenab Railway Bridge in J&K is the World’s highest rail bridge, powered by sovereign funds.',
+        te: 'జమ్మూ కాశ్మీర్‌లోని చీనాబ్ వంతెన ప్రపంచంలోనే అత్యంత ఎత్తైన రైల్వే వంతెన — దేశ నిర్మాణంలో భాగస్వామ్యం.',
       },
-      title: {
-        en: 'Powering India’s Infrastructure',
-        te: 'దేశ ప్రగతికి కొండంత ఊతం',
+      shortSummary: {
+        en: 'LIC invests public savings into Indian Railways, highways, power grids, and monumental national bridges.',
+        te: 'ఎల్.ఐ.సి నిధులు భారతీయ రైల్వేలు, జాతీయ రహదారులు, విద్యుత్ గ్రిడ్లు మరియు వంతెనల నిర్మాణానికి వెన్నెముకగా నిలుస్తున్నాయి.',
       },
-      description: {
-        en: 'Your premium builds India’s national highways, railway corridors, clean water grids, and irrigation dams. Securing your family’s tomorrow while actively constructing the nation’s future.',
-        te: 'మీరు కట్టే ప్రతి పైసా మీ పిల్లల భవిష్యత్తును రక్షిస్తూనే... దేశంలోని జాతీయ రహదారులు, రైల్వేలు, సాగునీరు మరియు విద్యుత్ ప్రాజెక్టుల నిర్మాణానికి ఉపయోగపడుతుంది. ఇంటికి భద్రత, దేశానికి ప్రగతి.',
+      fullExplanation: {
+        en: 'LIC is not merely an insurer; it is India’s greatest sovereign nation-builder. Massive investments from LIC policyholder reserves fund critical national infrastructure — including Indian Railways corridors, high-altitude mountain rail bridges across Jammu & Kashmir, solar solar power projects, and clean drinking water networks across thousands of villages.',
+        te: 'ఎల్.ఐ.సి అంటే కేవలం బీమా మాత్రమే కాదు, భారతదేశ ఆర్థిక శక్తికి వెన్నెముక. చీనాబ్ వంటి ప్రపంచ ప్రఖ్యాత రైల్వే వంతెనలు, హైవేలు, విద్యుత్ కేంద్రాలు, గ్రామాలకు తాగునీటి ప్రాజెక్టుల నిర్మాణంలో ఎల్.ఐ.సి అందించే ఆర్థిక సహకారం అపారమైనది.',
       },
-      primaryArcColor: '#1E1E1E',
-      secondaryArcColor: '#F59E0B',
-      tertiaryArcColor: '#718096',
-    },
-    {
-      id: 'generational-bond',
-      number: '05',
-      icon: Users,
-      shortLabel: {
-        en: '70-Year Trust',
-        te: '70 ఏళ్ల అనుబంధం',
+      keyFact: {
+        en: '359m Above River Bed • 35m Higher Than Eiffel Tower • Sovereign Assets',
+        te: 'నదీమట్టానికి 359 మీ. ఎత్తు • ఈఫిల్ టవర్ కంటే 35 మీ. ఎక్కువ • జాతీయ సంపద',
       },
-      eyebrow: {
-        en: 'YOGAKSHEMAM VAHAMYAHAM',
-        te: 'యోగక్షేమం వహామ్యహం',
-      },
-      title: {
-        en: '70 Years of Family Bonds',
-        te: 'తరతరాల ఆత్మీయ విశ్వాసం',
-      },
-      description: {
-        en: 'Since September 1, 1956, LIC has been a family member in Indian homes. From funding daughters’ higher education to weddings and serene retirement pensions, trust tested across generations never fails.',
-        te: '1956 నుండి ప్రతి భారతీయ గడపలో ఎల్.ఐ.సి ఒక ఆత్మీయ బంధువులా నిలిచింది. పిల్లల ఉన్నత చదువులు, ఆడబిడ్డల పెళ్లిళ్లు, మరియు వృద్ధాప్య పెన్షన్... తరతరాలుగా నిలిచిన ఈ పవిత్ర బంధమే శాశ్వత రక్షణ.',
-      },
-      primaryArcColor: '#F59E0B',
-      secondaryArcColor: '#1E1E1E',
-      tertiaryArcColor: '#4A5568',
     },
   ];
 
+  // Repeat items for seamless continuous infinite marquee
+  const marqueeItems = [...facts, ...facts, ...facts];
+
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? cards.length - 1 : prev - 1));
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -340, behavior: 'smooth' });
+    }
   };
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+    }
   };
 
   const scrollToReachOut = () => {
@@ -163,225 +197,234 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
   };
 
   return (
-    <section id="roots" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden">
+    <section id="roots" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden border-b border-[#C8C5BD]/60">
       
       {/* Background Subtle Gradient Glow & Rangoli Watermarks */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-8 left-8 pointer-events-none">
+      <div className="absolute top-8 left-8 pointer-events-none hidden md:block">
         <RangoliMotif variant="corner" size={100} opacity={0.15} />
       </div>
-      <div className="absolute top-8 right-8 pointer-events-none -scale-x-100">
+      <div className="absolute top-8 right-8 pointer-events-none hidden md:block -scale-x-100">
         <RangoliMotif variant="corner" size={100} opacity={0.15} />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10">
-            <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
-            <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+        {/* Section Header: Styled after RailOne "Do You know?" with our clean typography */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
+          <div>
+            <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10">
+              <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
+              <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                {currentLang === 'te'
+                  ? '1956 నుండి భారత సార్వభౌమ రక్షణ కవచం'
+                  : 'The Sovereign Trust of India • Established 1956'}
+              </span>
+            </div>
+            
+            {/* Header Title: "Do You know?" */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] tracking-tight font-sans">
+              {currentLang === 'te' ? (
+                <>
+                  మీకు తెలుసా? <span className="text-[#F59E0B] font-serif text-2xl sm:text-4xl">Do You Know?</span>
+                </>
+              ) : (
+                <>
+                  Do You know? <span className="text-[#F59E0B] font-serif italic text-2xl sm:text-4xl">Historic Milestones</span>
+                </>
+              )}
+            </h2>
+
+            <p className={`mt-2 text-xs sm:text-sm text-[#5A5955] font-medium max-w-xl ${
+              currentLang === 'te' ? 'font-telugu' : ''
+            }`}>
               {currentLang === 'te'
-                ? '1956 నుండి భారత సార్వభౌమ రక్షణ కవచం'
-                : 'The Sovereign Trust of India • Established 1956'}
-            </span>
+                ? 'భారతీయ రైల్వేల ఆరంభం నుండి ఎల్.ఐ.సి సార్వభౌమ రక్షణ వరకు... దేశ చరిత్రలోని విశేషాలు. (వివరాల కోసం కార్డ్ పై కర్సర్ ఉంచండి).'
+                : 'From the dawn of Indian transport to the sovereign creation of LIC. Hover or tap any card to view full historical facts.'}
+            </p>
           </div>
-          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1E1E1E] tracking-tight font-sans">
-            {currentLang === 'te' ? (
-              <>
-                ఎల్.ఐ.సి చారిత్రక కథ: <span className="text-[#F59E0B]">కోట్లాది ప్రజల తిరుగులేని నమ్మకం</span>
-              </>
-            ) : (
-              <>
-                The LIC Story: <span className="text-[#F59E0B]">Why Millions Trust Us</span>
-              </>
-            )}
-          </h2>
 
-          <RangoliMotif variant="divider" opacity={0.25} className="my-2" />
+          {/* Controls: Prev/Next & Pause/Play toggle */}
+          <div className="flex items-center space-x-2 self-start md:self-end">
+            <button
+              onClick={() => setIsPaused(!isPaused)}
+              className="px-3 py-1.5 rounded-full bg-white border border-[#C8C5BD] text-xs font-bold text-[#1E1E1E] flex items-center space-x-1.5 shadow-sm hover:bg-[#F59E0B] hover:border-[#F59E0B] transition-all active:scale-95"
+              aria-label={isPaused ? 'Resume auto-scroll' : 'Pause auto-scroll'}
+            >
+              {isPaused ? <Play className="w-3.5 h-3.5 fill-[#1E1E1E]" /> : <Pause className="w-3.5 h-3.5 fill-[#1E1E1E]" />}
+              <span className="text-[11px] font-mono uppercase">{isPaused ? 'RESUME' : 'PAUSE'}</span>
+            </button>
 
-          <p className={`mt-2 text-sm sm:text-base text-[#5A5955] font-medium max-w-2xl mx-auto leading-relaxed ${
-            currentLang === 'te' ? 'font-telugu' : ''
-          }`}>
-            {currentLang === 'te'
-              ? 'భారత పార్లమెంటు చట్టంతో నిర్మితమై, 100% ప్రభుత్వ సార్వభౌమ హామీతో... “యోగక్షేమం వహామ్యహం” అనే పవిత్ర ఆశయంతో సాగుతున్న దేశపు అత్యున్నత రక్షణ సంస్థ.'
-              : 'Built by the Parliament of India, backed by 100% Sovereign Guarantee under Section 37, and dedicated to one timeless promise: “Yogakshemam Vahamyaham” (Your Welfare Is Our Responsibility).'}
-          </p>
+            <button
+              onClick={handlePrev}
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white hover:bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center transition-all duration-200 border border-[#C8C5BD] shadow-sm active:scale-90"
+              aria-label="Previous Slide"
+            >
+              <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#F59E0B] hover:bg-amber-400 text-[#1E1E1E] flex items-center justify-center transition-all duration-200 shadow-sm active:scale-90 font-bold"
+              aria-label="Next Slide"
+            >
+              <ChevronRight className="w-4 h-4 stroke-[3]" />
+            </button>
+          </div>
         </div>
 
-        {/* 3D / CENTER-FOCUSED HORIZONTAL CAROUSEL (Exact Match to User Reference) */}
-        <div className="relative w-full py-4 overflow-hidden">
-          
-          {/* Card Strip Viewport */}
-          <div className="flex items-center justify-center gap-3 sm:gap-6 min-h-[520px] sm:min-h-[560px]">
-            
-            {cards.map((card, index) => {
-              const isCenter = index === activeIndex;
-              const isPrev = index === (activeIndex === 0 ? cards.length - 1 : activeIndex - 1);
-              const isNext = index === (activeIndex === cards.length - 1 ? 0 : activeIndex + 1);
+        {/* CONTINUOUS AUTO-MOVING CAROUSEL WITH INTERACTIVE HOVER EXPANSION */}
+        <div
+          ref={scrollContainerRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => {
+            if (!hoveredCardId) setIsPaused(false);
+          }}
+          className="relative w-full py-4 overflow-x-auto scrollbar-none snap-x snap-mandatory"
+          style={{ scrollBehavior: 'smooth' }}
+        >
+          <div
+            className={`flex items-start gap-5 sm:gap-6 w-max ${
+              isPaused ? '' : 'animate-marquee hover:[animation-play-state:paused]'
+            }`}
+            style={{
+              animationDuration: '45s',
+            }}
+          >
+            {marqueeItems.map((card, idx) => {
+              const isHovered = hoveredCardId === `${card.id}-${idx}`;
               const IconComp = card.icon;
 
-              // Hide cards that are far away from view to keep the 3-5 card focused stage clean
-              const isVisible = isCenter || isPrev || isNext;
-              if (!isVisible) return null;
-
               return (
-                <motion.div
-                  key={card.id}
-                  layout
-                  drag={isCenter ? 'x' : false}
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={(_, { offset, velocity }) => {
-                    if (offset.x < -40 || velocity.x < -300) {
-                      handleNext();
-                    } else if (offset.x > 40 || velocity.x > 300) {
-                      handlePrev();
-                    }
+                <div
+                  key={`${card.id}-${idx}`}
+                  onMouseEnter={() => {
+                    setHoveredCardId(`${card.id}-${idx}`);
+                    setIsPaused(true);
                   }}
-                  onClick={() => setActiveIndex(index)}
-                  initial={{ opacity: 0.4, scale: 0.9 }}
-                  animate={{
-                    opacity: isCenter ? 1 : 0.5,
-                    scale: isCenter ? 1 : 0.9,
-                    y: isCenter ? 0 : 15,
+                  onMouseLeave={() => {
+                    setHoveredCardId(null);
+                    setIsPaused(false);
                   }}
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  className={`relative rounded-[32px] transition-all duration-300 flex flex-col justify-between cursor-pointer touch-pan-y ${
-                    isCenter
-                      ? 'w-[calc(100vw-40px)] max-w-[340px] xs:max-w-[360px] sm:max-w-[400px] md:max-w-[420px] h-[520px] sm:h-[560px] bg-white border border-[#E2DFD7] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.12)] z-20 p-5 sm:p-8'
-                      : 'hidden md:flex w-[180px] lg:w-[220px] h-[440px] sm:h-[480px] bg-white/70 hover:bg-white/90 border border-[#E2DFD7]/80 shadow-md z-10 p-5 items-center text-center'
+                  onClick={() => {
+                    setHoveredCardId(isHovered ? null : `${card.id}-${idx}`);
+                    setIsPaused(true);
+                  }}
+                  className={`group relative rounded-2xl bg-white border transition-all duration-400 ease-out cursor-pointer flex flex-col snap-start flex-shrink-0 ${
+                    isHovered
+                      ? 'w-[340px] xs:w-[380px] sm:w-[420px] scale-[1.02] shadow-[0_20px_50px_rgba(0,0,0,0.18)] border-[#F59E0B] z-30'
+                      : 'w-[280px] xs:w-[310px] sm:w-[330px] shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-lg border-[#E2DFD7] z-10'
                   }`}
                 >
                   
-                  {/* ====== IF CENTER ACTIVE CARD: Full Rich Visual & Editorial Text ====== */}
-                  {isCenter ? (
-                    <>
-                      {/* Top 55%: Concentric Dotted Orbital Graphic with Colored Arcs (Exact match to reference image) */}
-                      <div className="relative w-full h-[220px] sm:h-[240px] flex items-center justify-center">
-                        
-                        <svg className="w-full h-full max-w-[240px] max-h-[240px]" viewBox="0 0 240 240" fill="none">
-                          {/* Outer Dotted Orbit */}
-                          <circle cx="120" cy="120" r="95" stroke="#D1CDC4" strokeWidth="1.5" strokeDasharray="3 4" />
-                          
-                          {/* Middle Dotted Orbit */}
-                          <circle cx="120" cy="120" r="68" stroke="#D1CDC4" strokeWidth="1.5" strokeDasharray="3 4" />
-                          
-                          {/* Inner Dotted Orbit */}
-                          <circle cx="120" cy="120" r="42" stroke="#D1CDC4" strokeWidth="1.5" strokeDasharray="3 4" />
+                  {/* Top Image: Rounded Corners matching reference image */}
+                  <div className="relative w-full aspect-[16/10] overflow-hidden rounded-t-2xl bg-charcoal-900">
+                    <Image
+                      src={card.image}
+                      alt={card.headline[currentLang]}
+                      fill
+                      loading="lazy"
+                      sizes="(max-width: 640px) 320px, 420px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
 
-                          {/* Outer Arc 1 with Rounded Cap (Golden-Amber) */}
-                          <path
-                            d="M175 45 A 95 95 0 0 1 215 120"
-                            stroke={card.primaryArcColor}
-                            strokeWidth="10"
-                            strokeLinecap="round"
-                          />
+                    {/* Gradient Overlay for Vignette */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
-                          {/* Middle Arc 2 with Rounded Cap (Charcoal) */}
-                          <path
-                            d="M60 85 A 68 68 0 0 1 120 52"
-                            stroke={card.secondaryArcColor}
-                            strokeWidth="9"
-                            strokeLinecap="round"
-                          />
+                    {/* Top Floating Badge */}
+                    <div className="absolute top-3 left-3 z-10 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#1E1E1E]/85 backdrop-blur-md text-[#F59E0B] border border-white/20 text-[10px] font-mono font-black tracking-wider uppercase">
+                      <IconComp className="w-3 h-3 text-[#F59E0B]" />
+                      <span>{card.badge[currentLang]}</span>
+                    </div>
 
-                          {/* Bottom Arc 3 with Rounded Cap */}
-                          <path
-                            d="M80 185 A 95 95 0 0 0 155 210"
-                            stroke={card.primaryArcColor}
-                            strokeWidth="9"
-                            strokeLinecap="round"
-                          />
+                    {/* Top Right Year Pill */}
+                    <div className="absolute top-3 right-3 z-10 px-2.5 py-0.5 rounded-md bg-[#F59E0B] text-[#1E1E1E] text-[10px] font-mono font-black shadow-sm">
+                      {card.year}
+                    </div>
 
-                          {/* Inner Arc 4 with Rounded Cap */}
-                          <path
-                            d="M120 78 A 42 42 0 0 1 162 120"
-                            stroke={card.tertiaryArcColor}
-                            strokeWidth="8"
-                            strokeLinecap="round"
-                          />
+                  </div>
 
-                          {/* Center Core Badge */}
-                          <circle cx="120" cy="120" r="22" fill="#1E1E1E" />
-                          <circle cx="120" cy="120" r="21" stroke="#F59E0B" strokeWidth="2" />
-                        </svg>
+                  {/* Card Bottom: Headline & Full In-Depth Explanation (Expands on Hover) */}
+                  <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+                    
+                    <div>
+                      {/* Short Hook Headline (Matches RailOne UI card caption) */}
+                      <h3 className={`text-sm sm:text-base font-bold text-[#1E1E1E] tracking-tight leading-snug group-hover:text-amber-600 transition-colors ${
+                        currentLang === 'te' ? 'font-telugu leading-snug' : ''
+                      }`}>
+                        {card.headline[currentLang]}
+                      </h3>
 
-                        {/* Center Icon embedded cleanly */}
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-[#F59E0B]">
-                          <IconComp className="w-5 h-5 stroke-[2.5]" />
-                        </div>
+                      {/* Summary Text (Always visible) */}
+                      <p className={`mt-2 text-xs text-[#5A5955] leading-relaxed font-normal ${
+                        currentLang === 'te' ? 'font-telugu text-[11px]' : ''
+                      }`}>
+                        {card.shortSummary[currentLang]}
+                      </p>
+                    </div>
 
-                      </div>
+                    {/* EXPANDED IN-DEPTH EXPLANATION: Shown on Hover / Tap */}
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-out ${
+                        isHovered ? 'max-h-[300px] opacity-100 mt-4 pt-3 border-t border-[#C8C5BD]/60' : 'max-h-0 opacity-0'
+                      }`}
+                    >
+                      <p className={`text-xs text-[#3A3A38] leading-relaxed font-light ${
+                        currentLang === 'te' ? 'font-telugu leading-relaxed text-xs' : ''
+                      }`}>
+                        {card.fullExplanation[currentLang]}
+                      </p>
 
-                      {/* Bottom 45%: Editorial Typography (Matches Reference Image) */}
-                      <div className="space-y-2 pt-2">
-                        
-                        {/* Eyebrow Label */}
-                        <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.22em] text-[#F59E0B] font-bold block">
-                          {card.eyebrow[currentLang]}
-                        </span>
-
-                        {/* Card Title */}
-                        <h3 className={`text-2xl sm:text-3xl font-black text-[#1E1E1E] tracking-tight leading-snug font-sans ${
-                          currentLang === 'te' ? 'font-telugu text-xl' : ''
-                        }`}>
-                          {card.title[currentLang]}
-                        </h3>
-
-                        {/* Card Description */}
-                        <p className={`text-xs sm:text-sm text-[#5A5955] leading-relaxed font-light ${
-                          currentLang === 'te' ? 'font-telugu text-xs leading-relaxed' : ''
-                        }`}>
-                          {card.description[currentLang]}
-                        </p>
-
-                      </div>
-                    </>
-                  ) : (
-                    /* ====== IF SIDE CARD (Non-Active): Simplified Minimal Preview (Matches Reference Image) ====== */
-                    <div className="w-full h-full flex flex-col justify-between items-center py-6">
-                      
-                      {/* Top Pill Number */}
-                      <span className="text-xs font-mono font-bold text-[#8C857B]">
-                        {card.number}
-                      </span>
-
-                      {/* Center Simplified Icon in circle */}
-                      <div className="w-14 h-14 rounded-full bg-[#ECEAE5] text-[#1E1E1E] flex items-center justify-center shadow-sm">
-                        <IconComp className="w-6 h-6 stroke-[2]" />
-                      </div>
-
-                      {/* Bottom Label (Matches Reference Image "MODEL TRAINING", "COLLECTING DATA") */}
-                      <div className="text-center">
-                        <span className={`text-[11px] font-bold uppercase tracking-wider text-[#3A3A38] block leading-tight ${
+                      {/* Key Historic Fact Highlight */}
+                      <div className="mt-3 p-2.5 rounded-xl bg-cream-200 border border-cream-400/80 flex items-center space-x-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#F59E0B] flex-shrink-0" />
+                        <span className={`text-[11px] font-semibold text-[#1E1E1E] ${
                           currentLang === 'te' ? 'font-telugu text-[10px]' : ''
                         }`}>
-                          {card.shortLabel[currentLang]}
+                          {card.keyFact[currentLang]}
                         </span>
                       </div>
 
+                      {/* Direct CTA inside expanded card */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          scrollToReachOut();
+                        }}
+                        className="mt-3 w-full py-2 rounded-xl bg-[#1E1E1E] hover:bg-black text-[#F59E0B] text-xs font-bold flex items-center justify-center space-x-1.5 transition-colors shadow-sm"
+                      >
+                        <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                          {currentLang === 'te' ? 'చీఫ్ అడ్వైజర్‌ను సంప్రదించండి' : 'Consult Chief Advisor'}
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 text-[#F59E0B]" />
+                      </button>
                     </div>
-                  )}
 
-                </motion.div>
+                    {/* Interactive Expand Prompt Indicator */}
+                    {!isHovered && (
+                      <div className="mt-3 pt-2 border-t border-black/5 flex items-center justify-between text-[11px] font-mono text-[#8C857B]">
+                        <span>{currentLang === 'te' ? 'వివరాలు చూడండి' : 'Hover to learn more'}</span>
+                        <span className="text-[#F59E0B] font-bold">→</span>
+                      </div>
+                    )}
+
+                  </div>
+
+                </div>
               );
             })}
-
           </div>
-
-          {/* Mobile Interactive Swipe Hint */}
-          <div className="md:hidden flex items-center justify-center space-x-2 text-[11px] font-bold text-[#8C857B] mt-3">
-            <span className="text-[#F59E0B] font-bold animate-pulse text-sm">‹</span>
-            <span>{currentLang === 'te' ? 'స్వైప్ చేసి కథలను చూడండి' : 'Swipe card left or right to explore'}</span>
-            <span className="text-[#F59E0B] font-bold animate-pulse text-sm">›</span>
-          </div>
-
         </div>
 
-        {/* BOTTOM METRICS & NAVIGATION BAR */}
-        <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-[#C8C5BD] flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Mobile Swipe / Tap Hint */}
+        <div className="md:hidden flex items-center justify-center space-x-2 text-[11px] font-bold text-[#8C857B] mt-2 mb-2">
+          <span className="text-[#F59E0B] animate-pulse">‹</span>
+          <span>{currentLang === 'te' ? 'కార్డ్ తాకి వివరాలు చూడండి • స్వైప్ చేయండి' : 'Tap any card to view detailed history • Swipe'}</span>
+          <span className="text-[#F59E0B] animate-pulse">›</span>
+        </div>
+
+        {/* BOTTOM METRICS & ADVISORY LIAISON */}
+        <div className="mt-6 pt-5 border-t border-[#C8C5BD] flex flex-col sm:flex-row items-center justify-between gap-4">
           
           {/* Left Brand Identity */}
           <div className="flex items-center space-x-3 text-center sm:text-left">
@@ -400,46 +443,14 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
             </div>
           </div>
 
-          {/* Center Progress Indicators */}
-          <div className="flex items-center space-x-2">
-            {cards.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`h-2.5 rounded-full transition-all duration-300 active:scale-90 ${
-                  activeIndex === idx
-                    ? 'w-8 bg-[#F59E0B]'
-                    : 'w-2.5 bg-black/20 hover:bg-black/40'
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-
-          {/* Right Navigation Arrows & Consultation Action */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <button
-              onClick={handlePrev}
-              className="w-10 h-10 rounded-full bg-white hover:bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center transition-all duration-200 border border-[#C8C5BD] shadow-sm active:scale-90"
-              aria-label="Previous Slide"
-            >
-              <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
-            </button>
-
-            <button
-              onClick={handleNext}
-              className="w-10 h-10 rounded-full bg-[#F59E0B] hover:bg-amber-400 text-[#1E1E1E] flex items-center justify-center transition-all duration-200 shadow-sm active:scale-90 font-bold"
-              aria-label="Next Slide"
-            >
-              <ChevronRight className="w-4 h-4 stroke-[3]" />
-            </button>
-
+          {/* Right Action: Consult Chief Advisor */}
+          <div className="flex items-center space-x-3">
             <button
               onClick={scrollToReachOut}
-              className="ml-1 sm:ml-2 inline-flex items-center space-x-2 px-4 py-2.5 rounded-full bg-[#1E1E1E] hover:bg-black text-white text-xs font-bold shadow-md hover-lift active:scale-95 transition-all"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#1E1E1E] hover:bg-black text-white text-xs font-bold shadow-md hover-lift active:scale-95 transition-all"
             >
               <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                {currentLang === 'te' ? 'సంప్రదించండి' : 'Consult Advisor'}
+                {currentLang === 'te' ? 'శివరామిరెడ్డి గారితో మాట్లాడండి' : 'Connect With Chief Advisor'}
               </span>
               <ArrowRight className="w-3.5 h-3.5 text-[#F59E0B]" />
             </button>
