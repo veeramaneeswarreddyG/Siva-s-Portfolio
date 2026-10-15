@@ -22,136 +22,138 @@ interface RootsSectionProps {
 }
 
 export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1); // Default to Card 1 or 2 in center
 
-  const licStories = [
+  const cards = [
     {
       id: 'sovereign-guarantee',
+      number: '01',
       icon: ShieldCheck,
-      stat: { en: '100% Sovereign Backed', te: '100% ప్రభుత్వ హామీ' },
-      badge: { en: 'SECTION 37 • LIC ACT 1956', te: 'సెక్షన్ 37 • పార్లమెంటు చట్టం' },
+      shortLabel: {
+        en: 'Sovereign Guarantee',
+        te: 'సార్వభౌమ హామీ',
+      },
+      eyebrow: {
+        en: 'SECTION 37 • PARLIAMENT ACT',
+        te: 'సెక్షన్ 37 • పార్లమెంటు చట్టం',
+      },
       title: {
-        en: 'The Sovereign Guarantee of the Government of India',
-        te: 'భారత ప్రభుత్వ సార్వభౌమ రక్షణ & చట్టబద్ధమైన హామీ',
+        en: '100% Sovereign Guarantee',
+        te: '100% ప్రభుత్వ సార్వభౌమ హామీ',
       },
-      tagline: {
-        en: 'Your hard-earned savings can never default or be compromised.',
-        te: 'మీ సంపాదన ప్రతి పైసా చట్టబద్ధంగా నూరుశాతం సురక్షితం.',
+      description: {
+        en: 'Under Section 37 of the LIC Act 1956, every single policy carries the legal Sovereign Guarantee of the Government of India. The sum assured and all declared bonuses are legally pledged by the central government — ensuring total capital safety.',
+        te: 'ఎల్.ఐ.సి చట్టం సెక్షన్ 37 ప్రకారం భారత ప్రభుత్వం పూర్తి సార్వభౌమ హామీ ఇస్తుంది. మీ పాలసీ మొత్తం మరియు బోనస్‌కు కేంద్ర ప్రభుత్వమే చట్టబద్ధమైన గ్యారెంటీ. ఎలాంటి ఆర్థిక ఒడిదుడుకుల్లోనైనా మీ పెట్టుబడి నూరుశాతం సురక్షితం.',
       },
-      story: {
-        en: 'Unlike private insurance corporations or volatile mutual funds, every single policy issued by LIC carries the legal Sovereign Guarantee of the Government of India under Section 37 of the LIC Act. The sum assured and all declared bonuses are legally pledged by the central government. In an uncertain economic world, LIC is the ultimate haven of total capital safety.',
-        te: 'ప్రైవేట్ కంపెనీలు లేదా ఒడిదుడుకులతో కూడిన మార్కెట్ పెట్టుబడులలా కాకుండా... ఎల్.ఐ.సి అందించే ప్రతి పాలసీకి ఎల్.ఐ.సి చట్టం సెక్షన్ 37 ప్రకారం భారత ప్రభుత్వం పూర్తి సార్వభౌమ హామీ ఇస్తుంది. మీరు దాచుకున్న పాలసీ మొత్తం మరియు బోనస్‌కు కేంద్ర ప్రభుత్వమే చట్టబద్ధమైన గ్యారెంటీ. ఎలాంటి ఆర్థిక సంక్షోభంలోనైనా మీ పెట్టుబడి అత్యంత భద్రం.',
-      },
-      highlights: [
-        { en: 'Parliamentary Law', te: 'పార్లమెంటు చట్టం' },
-        { en: 'Zero Default Risk', te: 'రిస్క్ లేని భద్రత' },
-        { en: 'Statutory Safety', te: 'చట్టబద్ధ రక్షణ' },
-      ],
+      primaryArcColor: '#F59E0B',
+      secondaryArcColor: '#1E1E1E',
+      tertiaryArcColor: '#4A5568',
     },
     {
       id: 'claim-settlement',
+      number: '02',
       icon: HeartHandshake,
-      stat: { en: '98.5%+ Settlement Ratio', te: '98.5%+ క్లెయిమ్స్ పరిష్కారం' },
-      badge: { en: 'GLOBAL BENCHMARK OF TRUST', te: 'ప్రపంచ స్థాయి అత్యుత్తమ రికార్డు' },
+      shortLabel: {
+        en: 'Claim Settlement',
+        te: 'క్లెయిమ్స్ పరిష్కారం',
+      },
+      eyebrow: {
+        en: '98.5%+ CLAIM SETTLEMENT RECORD',
+        te: '98.5%+ అత్యుత్తమ పరిష్కారం',
+      },
       title: {
-        en: 'Unmatched Claim Settlement Record & Humanity',
-        te: 'మాట తప్పని నైతికత • తక్షణ & కారుణ్య క్లెయిమ్ పరిష్కారాలు',
+        en: 'Unmatched Claim Honour',
+        te: 'మాట తప్పని నైతికత & వేగం',
       },
-      tagline: {
-        en: 'Honoring promises with speed, compassion, and zero bureaucracy.',
-        te: 'కష్టకాలంలో కుటుంబానికి కొండంత అండగా నిలిచే నైతిక బాధ్యత.',
+      description: {
+        en: 'Maintaining one of the highest claim settlement ratios on earth (over 98.5%), LIC disburses thousands of crores every day across India. Through all hardships, promises are honored with utmost speed and compassion.',
+        te: 'ప్రతిరోజూ వేలాది కుటుంబాలకు మెచ్యూరిటీ మరియు డెత్ క్లెయిమ్‌లను వేగంగా పరిష్కరిస్తూ ఎల్.ఐ.సి ప్రపంచంలోనే అత్యుత్తమ 98.5% పైగా సెటిల్మెంట్ రికార్డును సొంతం చేసుకుంది. ఆపదలో కుటుంబాలకు కొండంత అండగా నిలుస్తుంది.',
       },
-      story: {
-        en: 'An insurance policy is only as honest as its claim settlement. LIC settles thousands of death and maturity claims every day across India, maintaining one of the highest claim settlement ratios on earth (over 98.5%). Through natural calamities, wars, and pandemics, LIC has consistently stood at the doorsteps of Indian households, delivering financial lifelines without delay.',
-        te: 'పాలసీ నిజమైన విలువ తెలిసేది ఆపద వచ్చినప్పుడే. భారతదేశంలో ప్రతిరోజూ వేలాది కుటుంబాలకు మెచ్యూరిటీ మరియు డెత్ క్లెయిమ్‌లను అత్యంత వేగంగా పరిష్కరిస్తూ ఎల్.ఐ.సి ప్రపంచంలోనే అత్యుత్తమ 98.5% పైగా సెటిల్మెంట్ రికార్డును సొంతం చేసుకుంది. కరోనా, ప్రకృతి వైపరీత్యాలు ఏవైనా... ఇచ్చిన మాటను గౌరవించి కుటుంబాలను ఆదుకోవడంలో ఎల్.ఐ.సి కి సాటిలేదు.',
-      },
-      highlights: [
-        { en: 'Fast Track Verification', te: 'వేగవంతమైన తనిఖీ' },
-        { en: 'Thousands of Cr. Daily', te: 'కోట్ల రూపాయల పంపిణీ' },
-        { en: 'Compassionate Service', te: 'మానవీయ సేవ' },
-      ],
+      primaryArcColor: '#1E1E1E',
+      secondaryArcColor: '#F59E0B',
+      tertiaryArcColor: '#2D3748',
     },
     {
       id: 'asset-base',
+      number: '03',
       icon: Landmark,
-      stat: { en: '₹50+ Lakh Crores Assets', te: '₹50+ లక్షల కోట్ల ఆస్తులు' },
-      badge: { en: 'FINANCIAL COLOSSUS OF BHARAT', te: 'భారతదేశ ఆర్థిక మహాసౌధం' },
+      shortLabel: {
+        en: 'Public Wealth',
+        te: 'మహా ప్రజా సంపద',
+      },
+      eyebrow: {
+        en: '₹50+ LAKH CRORES ASSETS',
+        te: '₹50+ లక్షల కోట్ల సంపద',
+      },
       title: {
-        en: 'Managing Wealth Bigger Than Most Global Banks',
-        te: 'ప్రపంచ ప్రఖ్యాత బ్యాంకుల కంటే పటిష్టమైన మహా సంపద',
+        en: 'Managing ₹50+ Lakh Crores',
+        te: 'ప్రపంచ స్థాయి ఆర్థిక మహాసౌధం',
       },
-      tagline: {
-        en: 'An unshakeable financial fortress protecting 25+ Crore policyholders.',
-        te: '25 కోట్లకు పైగా పాలసీదారుల జీవిత పొదుపుకు తిరుగులేని రక్షణ.',
+      description: {
+        en: 'With an asset management base exceeding ₹50 Lakh Crores ($600+ Billion USD) and over 25 Crore active individual policies, LIC is the financial backbone of India — a fortress of unshakeable wealth.',
+        te: '₹50 లక్షల కోట్లకు పైగా సంపదను సమర్థవంతంగా నిర్వహిస్తూ, 25 కోట్లకు పైగా పాలసీదారుల జీవితాలకు భరోసా ఇస్తున్న ఎల్.ఐ.సి దేశ ఆర్థిక వ్యవస్థకే వెన్నెముక. మీ కుటుంబానికి తిరుగులేని ఆర్థిక స్థిరత్వం లభిస్తుంది.',
       },
-      story: {
-        en: 'Managing an unprecedented asset base exceeding ₹50 Lakh Crores ($600+ Billion USD) and stewarding over 25 Crore active individual policies, LIC is a monumental institution of national stability. When you choose LIC, you are aligning your household with the strongest, most stable financial titan on the Asian continent.',
-        te: '₹50 లక్షల కోట్లకు పైగా సంపదను సమర్థవంతంగా నిర్వహిస్తూ, 25 కోట్లకు పైగా పాలసీదారుల జీవితాలకు భరోసా ఇస్తున్న ఎల్.ఐ.సి ఒక సంస్థ మాత్రమే కాదు... దేశ ఆర్థిక వ్యవస్థకే వెన్నెముక. మీరు ఎల్.ఐ.సి పాలసీ తీసుకున్నప్పుడు, మీ కుటుంబ భవిష్యత్తు ఆసియాలోనే అత్యంత శక్తివంతమైన ఆర్థిక మహాసౌధం నీడలో సురక్షితంగా ఉంటుంది.',
-      },
-      highlights: [
-        { en: '25+ Crore Families', te: '25+ కోట్ల కుటుంబాలు' },
-        { en: 'Unrivaled Liquidity', te: 'అపారమైన నిధులు' },
-        { en: 'Generational Strength', te: 'తరతరాల బలం' },
-      ],
+      primaryArcColor: '#F59E0B',
+      secondaryArcColor: '#4A5568',
+      tertiaryArcColor: '#1E1E1E',
     },
     {
       id: 'nation-building',
+      number: '04',
       icon: Building2,
-      stat: { en: 'People’s Money for People’s Good', te: 'ప్రజాధనం దేశాభివృద్ధికి' },
-      badge: { en: 'NATION BUILDING PILLAR', te: 'జాతి నిర్మాణంలో అగ్రగామి' },
+      shortLabel: {
+        en: 'Nation Building',
+        te: 'జాతి నిర్మాణం',
+      },
+      eyebrow: {
+        en: 'PEOPLE’S MONEY FOR PEOPLE’S GOOD',
+        te: 'ప్రజాధనం దేశాభివృద్ధికి',
+      },
       title: {
-        en: 'Your Premium Powers India’s Railways, Dams & Highways',
-        te: 'మీ ప్రీమియం దేశ నిర్మాణానికి కొండంత ఊతం',
+        en: 'Powering India’s Infrastructure',
+        te: 'దేశ ప్రగతికి కొండంత ఊతం',
       },
-      tagline: {
-        en: 'Securing your family today while building the nation for tomorrow.',
-        te: 'మీ ఇంటిని కాపాడుతూనే... దేశ ప్రగతికి బాటలు వేసే పవిత్ర పొదుపు.',
+      description: {
+        en: 'Your premium builds India’s national highways, railway corridors, clean water grids, and irrigation dams. Securing your family’s tomorrow while actively constructing the nation’s future.',
+        te: 'మీరు కట్టే ప్రతి పైసా మీ పిల్లల భవిష్యత్తును రక్షిస్తూనే... దేశంలోని జాతీయ రహదారులు, రైల్వేలు, సాగునీరు మరియు విద్యుత్ ప్రాజెక్టుల నిర్మాణానికి ఉపయోగపడుతుంది. ఇంటికి భద్రత, దేశానికి ప్రగతి.',
       },
-      story: {
-        en: 'Every rupee you invest in an LIC policy performs a sacred dual mission: it constructs an unassailable financial shield for your children, while simultaneously financing India’s national highways, railway networks, power plants, and agricultural irrigation dams. With LIC, your family’s prosperity and the nation’s growth move hand in hand.',
-        te: 'మీరు ఎల్.ఐ.సి లో కట్టే ప్రతి పైసా రెండు విధాలుగా ఉపయోగపడుతుంది: ఒకటి మీ పిల్లల భవిష్యత్తుకు పూర్తి ఆర్థిక రక్షణ కల్పిస్తుంది; రెండవది మన దేశంలోని జాతీయ రహదారులు, రైల్వేలు, సాగునీటి ప్రాజెక్టులు, మరియు విద్యుత్ కేంద్రాల నిర్మాణానికి నిధులు సమకూరుస్తుంది. ఎల్.ఐ.సి లో దాచుకోవడం అంటే మీ ఇంటితో పాటు మన దేశాన్ని నిర్మించడమే.',
-      },
-      highlights: [
-        { en: 'National Highways & Rails', te: 'రైల్వేలు & రహదారులు' },
-        { en: 'Clean Drinking Water', te: 'తాగునీటి పథకాలు' },
-        { en: 'Rural Electrification', te: 'గ్రామీణ విద్యుదీకరణ' },
-      ],
+      primaryArcColor: '#1E1E1E',
+      secondaryArcColor: '#F59E0B',
+      tertiaryArcColor: '#718096',
     },
     {
       id: 'generational-bond',
+      number: '05',
       icon: Users,
-      stat: { en: '7 Decades of Devotion', te: '70 ఏళ్ల పవిత్ర అనుబంధం' },
-      badge: { en: 'YOGAKSHEMAM VAHAMYAHAM', te: 'యోగక్షేమం వహామ్యహం' },
+      shortLabel: {
+        en: '70-Year Trust',
+        te: '70 ఏళ్ల అనుబంధం',
+      },
+      eyebrow: {
+        en: 'YOGAKSHEMAM VAHAMYAHAM',
+        te: 'యోగక్షేమం వహామ్యహం',
+      },
       title: {
-        en: 'Grandparents to Grandchildren: A Bond of 70 Years',
-        te: 'తాతల నుండి మనుమల వరకు... 7 దశాబ్దాల ఆత్మీయ విశ్వాసం',
+        en: '70 Years of Family Bonds',
+        te: 'తరతరాల ఆత్మీయ విశ్వాసం',
       },
-      tagline: {
-        en: 'Private startups come and go; LIC remains an eternal companion.',
-        te: 'కాలాలు మారినా, తరాలు మారినా... ఎప్పటికీ చెదరని బంధం.',
+      description: {
+        en: 'Since September 1, 1956, LIC has been a family member in Indian homes. From funding daughters’ higher education to weddings and serene retirement pensions, trust tested across generations never fails.',
+        te: '1956 నుండి ప్రతి భారతీయ గడపలో ఎల్.ఐ.సి ఒక ఆత్మీయ బంధువులా నిలిచింది. పిల్లల ఉన్నత చదువులు, ఆడబిడ్డల పెళ్లిళ్లు, మరియు వృద్ధాప్య పెన్షన్... తరతరాలుగా నిలిచిన ఈ పవిత్ర బంధమే శాశ్వత రక్షణ.',
       },
-      story: {
-        en: 'Since September 1, 1956, LIC has been the most trusted silent partner in Indian homes. From funding daughters’ higher education to weddings and serene post-retirement pensions, millions of families have achieved dignity through timely LIC maturity payouts. Trust that has been tested across generations is the only trust you can bet your life upon.',
-        te: '1956 సెప్టెంబర్ 1 నుండి ప్రతి భారతీయ గడపలో ఎల్.ఐ.సి ఒక కుటుంబ సభ్యుడిగా నిలిచింది. పిల్లల ఉన్నత చదువులు, ఆడబిడ్డల పెళ్లిళ్లు, మరియు వృద్ధాప్యంలో గౌరవప్రదమైన పెన్షన్... తరతరాలుగా కోట్లాది కుటుంబాలు ఎల్.ఐ.సి అందించిన ఆర్థిక భరోసాతోనే తమ కలలను నిజం చేసుకున్నాయి. కాలపరీక్షను తట్టుకున్న ఈ బంధమే మీ కుటుంబానికి శాశ్వత రక్షణ.',
-      },
-      highlights: [
-        { en: 'Education & Marriage', te: 'చదువు & వివాహ నిధి' },
-        { en: 'Guaranteed Pension', te: 'గౌరవప్రద పెన్షన్' },
-        { en: 'Lifetime Protection', te: 'జీవితాంతం తోడు' },
-      ],
+      primaryArcColor: '#F59E0B',
+      secondaryArcColor: '#1E1E1E',
+      tertiaryArcColor: '#4A5568',
     },
   ];
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? licStories.length - 1 : prev - 1));
+    setActiveIndex((prev) => (prev === 0 ? cards.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === licStories.length - 1 ? 0 : prev + 1));
+    setActiveIndex((prev) => (prev === cards.length - 1 ? 0 : prev + 1));
   };
-
-  const currentStory = licStories[currentIndex];
-  const IconComponent = currentStory.icon;
 
   const scrollToReachOut = () => {
     const el = document.getElementById('reach-out');
@@ -161,15 +163,15 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
   };
 
   return (
-    <section id="roots" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#ECEAE5] relative select-none overflow-hidden">
+    <section id="roots" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-10 bg-[#ECEAE5] relative select-none overflow-hidden">
       
-      {/* Background ambient watermarks */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Background Subtle Gradient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#F59E0B]/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         
-        {/* Section Header: Inspiring & Customer-Attracting */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-[#3A3A38] mb-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10">
             <span className="w-2 h-2 rounded-full bg-[#F59E0B]" />
             <span className={currentLang === 'te' ? 'font-telugu' : ''}>
@@ -201,159 +203,221 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
           </p>
         </div>
 
-        {/* SWIPING CAROUSEL STAGE */}
-        <div className="relative max-w-4xl mx-auto">
+        {/* 3D / CENTER-FOCUSED HORIZONTAL CAROUSEL (Exact Match to User Reference) */}
+        <div className="relative w-full py-4 overflow-hidden">
           
-          {/* Main Swiping Card Container */}
-          <div className="relative overflow-hidden rounded-[32px] bg-[#1C1A18] text-white p-6 sm:p-10 md:p-12 shadow-2xl border-2 border-[#F59E0B]/30 min-h-[440px] sm:min-h-[460px] flex flex-col justify-between">
+          {/* Card Strip Viewport */}
+          <div className="flex items-center justify-center gap-3 sm:gap-6 min-h-[520px] sm:min-h-[560px]">
             
-            {/* Top Stat Bar & Category Badge */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6"
-              >
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 rounded-2xl bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center font-black shadow-md flex-shrink-0">
-                    <IconComponent className="w-6 h-6 stroke-[2.5]" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.2em] text-[#F59E0B] font-bold block">
-                      {currentStory.badge[currentLang]}
-                    </span>
-                    <span className="text-sm sm:text-base font-extrabold text-white">
-                      {currentStory.stat[currentLang]}
-                    </span>
-                  </div>
-                </div>
+            {cards.map((card, index) => {
+              const isCenter = index === activeIndex;
+              const isPrev = index === (activeIndex === 0 ? cards.length - 1 : activeIndex - 1);
+              const isNext = index === (activeIndex === cards.length - 1 ? 0 : activeIndex + 1);
+              const IconComp = card.icon;
 
-                <div className="text-right">
-                  <span className="text-xs font-mono text-white/50 uppercase tracking-widest">
-                    Pillar 0{currentIndex + 1} / 0{licStories.length}
-                  </span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+              // Hide cards that are far away from view to keep the 3-5 card focused stage clean
+              const isVisible = isCenter || isPrev || isNext;
+              if (!isVisible) return null;
 
-            {/* Narrative Content */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex + '-content'}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.35 }}
-                className="py-6 sm:py-8 space-y-4 my-auto"
-              >
-                <h3 className={`text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight ${
-                  currentLang === 'te' ? 'font-telugu leading-snug' : ''
-                }`}>
-                  {currentStory.title[currentLang]}
-                </h3>
-
-                <p className={`text-xs sm:text-sm font-semibold text-[#F59E0B] ${
-                  currentLang === 'te' ? 'font-telugu' : ''
-                }`}>
-                  {currentStory.tagline[currentLang]}
-                </p>
-
-                <p className={`text-sm sm:text-base text-[#D4D0C5] leading-relaxed font-light ${
-                  currentLang === 'te' ? 'font-telugu text-sm leading-relaxed' : ''
-                }`}>
-                  {currentStory.story[currentLang]}
-                </p>
-
-                {/* Key Highlight Pills */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {currentStory.highlights.map((h, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/90 border border-white/15"
-                    >
-                      {h[currentLang]}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Bottom Controls & Navigation */}
-            <div className="pt-6 border-t border-white/10 flex items-center justify-between">
-              
-              {/* Progress Dots */}
-              <div className="flex items-center space-x-2">
-                {licStories.map((_, dotIdx) => (
-                  <button
-                    key={dotIdx}
-                    onClick={() => setCurrentIndex(dotIdx)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      currentIndex === dotIdx
-                        ? 'w-8 bg-[#F59E0B]'
-                        : 'w-2 bg-white/30 hover:bg-white/50'
-                    }`}
-                    aria-label={`Go to slide ${dotIdx + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Prev / Next Arrows */}
-              <div className="flex items-center space-x-3">
-                <button
-                  onClick={handlePrev}
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-[#F59E0B] text-white hover:text-[#1E1E1E] flex items-center justify-center transition-all duration-200 active:scale-95 border border-white/20"
-                  aria-label="Previous Story"
+              return (
+                <motion.div
+                  key={card.id}
+                  layout
+                  onClick={() => setActiveIndex(index)}
+                  initial={{ opacity: 0.4, scale: 0.9 }}
+                  animate={{
+                    opacity: isCenter ? 1 : 0.5,
+                    scale: isCenter ? 1 : 0.9,
+                    y: isCenter ? 0 : 15,
+                  }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className={`relative rounded-[32px] transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+                    isCenter
+                      ? 'w-[320px] sm:w-[380px] md:w-[420px] h-[520px] sm:h-[560px] bg-white border border-[#E2DFD7] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.12)] z-20 p-6 sm:p-8'
+                      : 'hidden md:flex w-[180px] lg:w-[220px] h-[440px] sm:h-[480px] bg-white/70 hover:bg-white/90 border border-[#E2DFD7]/80 shadow-md z-10 p-5 items-center text-center'
+                  }`}
                 >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="w-10 h-10 rounded-full bg-[#F59E0B] hover:bg-amber-400 text-[#1E1E1E] flex items-center justify-center transition-all duration-200 active:scale-95 shadow-md font-bold"
-                  aria-label="Next Story"
-                >
-                  <ChevronRight className="w-5 h-5 stroke-[2.5]" />
-                </button>
-              </div>
+                  
+                  {/* ====== IF CENTER ACTIVE CARD: Full Rich Visual & Editorial Text ====== */}
+                  {isCenter ? (
+                    <>
+                      {/* Top 55%: Concentric Dotted Orbital Graphic with Colored Arcs (Exact match to reference image) */}
+                      <div className="relative w-full h-[220px] sm:h-[240px] flex items-center justify-center">
+                        
+                        <svg className="w-full h-full max-w-[240px] max-h-[240px]" viewBox="0 0 240 240" fill="none">
+                          {/* Outer Dotted Orbit */}
+                          <circle cx="120" cy="120" r="95" stroke="#D1CDC4" strokeWidth="1.5" strokeDasharray="3 4" />
+                          
+                          {/* Middle Dotted Orbit */}
+                          <circle cx="120" cy="120" r="68" stroke="#D1CDC4" strokeWidth="1.5" strokeDasharray="3 4" />
+                          
+                          {/* Inner Dotted Orbit */}
+                          <circle cx="120" cy="120" r="42" stroke="#D1CDC4" strokeWidth="1.5" strokeDasharray="3 4" />
 
-            </div>
+                          {/* Outer Arc 1 with Rounded Cap (Golden-Amber) */}
+                          <path
+                            d="M175 45 A 95 95 0 0 1 215 120"
+                            stroke={card.primaryArcColor}
+                            strokeWidth="10"
+                            strokeLinecap="round"
+                          />
+
+                          {/* Middle Arc 2 with Rounded Cap (Charcoal) */}
+                          <path
+                            d="M60 85 A 68 68 0 0 1 120 52"
+                            stroke={card.secondaryArcColor}
+                            strokeWidth="9"
+                            strokeLinecap="round"
+                          />
+
+                          {/* Bottom Arc 3 with Rounded Cap */}
+                          <path
+                            d="M80 185 A 95 95 0 0 0 155 210"
+                            stroke={card.primaryArcColor}
+                            strokeWidth="9"
+                            strokeLinecap="round"
+                          />
+
+                          {/* Inner Arc 4 with Rounded Cap */}
+                          <path
+                            d="M120 78 A 42 42 0 0 1 162 120"
+                            stroke={card.tertiaryArcColor}
+                            strokeWidth="8"
+                            strokeLinecap="round"
+                          />
+
+                          {/* Center Core Badge */}
+                          <circle cx="120" cy="120" r="22" fill="#1E1E1E" />
+                          <circle cx="120" cy="120" r="21" stroke="#F59E0B" strokeWidth="2" />
+                        </svg>
+
+                        {/* Center Icon embedded cleanly */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-[#F59E0B]">
+                          <IconComp className="w-5 h-5 stroke-[2.5]" />
+                        </div>
+
+                      </div>
+
+                      {/* Bottom 45%: Editorial Typography (Matches Reference Image) */}
+                      <div className="space-y-2 pt-2">
+                        
+                        {/* Eyebrow Label */}
+                        <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.22em] text-[#F59E0B] font-bold block">
+                          {card.eyebrow[currentLang]}
+                        </span>
+
+                        {/* Card Title */}
+                        <h3 className={`text-2xl sm:text-3xl font-black text-[#1E1E1E] tracking-tight leading-snug font-sans ${
+                          currentLang === 'te' ? 'font-telugu text-xl' : ''
+                        }`}>
+                          {card.title[currentLang]}
+                        </h3>
+
+                        {/* Card Description */}
+                        <p className={`text-xs sm:text-sm text-[#5A5955] leading-relaxed font-light ${
+                          currentLang === 'te' ? 'font-telugu text-xs leading-relaxed' : ''
+                        }`}>
+                          {card.description[currentLang]}
+                        </p>
+
+                      </div>
+                    </>
+                  ) : (
+                    /* ====== IF SIDE CARD (Non-Active): Simplified Minimal Preview (Matches Reference Image) ====== */
+                    <div className="w-full h-full flex flex-col justify-between items-center py-6">
+                      
+                      {/* Top Pill Number */}
+                      <span className="text-xs font-mono font-bold text-[#8C857B]">
+                        {card.number}
+                      </span>
+
+                      {/* Center Simplified Icon in circle */}
+                      <div className="w-14 h-14 rounded-full bg-[#ECEAE5] text-[#1E1E1E] flex items-center justify-center shadow-sm">
+                        <IconComp className="w-6 h-6 stroke-[2]" />
+                      </div>
+
+                      {/* Bottom Label (Matches Reference Image "MODEL TRAINING", "COLLECTING DATA") */}
+                      <div className="text-center">
+                        <span className={`text-[11px] font-bold uppercase tracking-wider text-[#3A3A38] block leading-tight ${
+                          currentLang === 'te' ? 'font-telugu text-[10px]' : ''
+                        }`}>
+                          {card.shortLabel[currentLang]}
+                        </span>
+                      </div>
+
+                    </div>
+                  )}
+
+                </motion.div>
+              );
+            })}
 
           </div>
 
-          {/* Customer Callout Bar Below Carousel: High Conversion */}
-          <div className="mt-8 p-6 rounded-2xl bg-white border border-[#C8C5BD] shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center space-x-3 text-center sm:text-left">
-              <div className="w-10 h-10 rounded-full bg-[#F59E0B]/20 text-[#1E1E1E] flex items-center justify-center flex-shrink-0">
-                <Award className="w-5 h-5 text-[#F59E0B]" />
-              </div>
-              <div>
-                <h4 className={`font-black text-sm sm:text-base text-[#1E1E1E] ${
-                  currentLang === 'te' ? 'font-telugu' : ''
-                }`}>
-                  {currentLang === 'te'
-                    ? 'మీ కుటుంబ భవిష్యత్తుకు కొండంత రక్షణ కల్పించాలనుకుంటున్నారా?'
-                    : 'Ready to Secure Your Family with the Sovereign Trust of LIC?'}
-                </h4>
-                <p className={`text-xs text-[#6B6A66] ${
-                  currentLang === 'te' ? 'font-telugu' : ''
-                }`}>
-                  {currentLang === 'te'
-                    ? 'కడప డివిజన్, జమ్మలమడుగు బ్రాంచ్ చీఫ్ అడ్వైజర్‌తో నేరుగా మాట్లాడండి.'
-                    : 'Consult directly with Chief Advisor G. Sivarami Reddy, Jammalamadugu Branch.'}
-                </p>
-              </div>
+        </div>
+
+        {/* BOTTOM METRICS & NAVIGATION BAR (Matches Reference Bottom Style "Ageeva / Websites + Web Apps") */}
+        <div className="mt-8 pt-6 border-t border-[#C8C5BD] flex flex-col sm:flex-row items-center justify-between gap-4">
+          
+          {/* Left Brand Identity */}
+          <div className="flex items-center space-x-3 text-center sm:text-left">
+            <div className="w-8 h-8 rounded-full bg-[#1E1E1E] text-[#F59E0B] flex items-center justify-center font-black text-xs shadow-sm">
+              LIC
             </div>
+            <div>
+              <span className="text-sm font-extrabold text-[#1E1E1E] tracking-tight block font-sans">
+                {currentLang === 'te' ? 'భారతీయ జీవిత బీమా సంస్థ' : 'Life Insurance Corporation of India'}
+              </span>
+              <span className={`text-[11px] font-mono text-[#6B6A66] tracking-wider uppercase ${
+                currentLang === 'te' ? 'font-telugu text-[10px]' : ''
+              }`}>
+                {currentLang === 'te' ? 'స్థాపన: 1956 • యోగక్షేమం వహామ్యహం' : 'Est. 1956 • Yogakshemam Vahamyaham'}
+              </span>
+            </div>
+          </div>
+
+          {/* Center Progress Indicators */}
+          <div className="flex items-center space-x-2">
+            {cards.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeIndex === idx
+                    ? 'w-8 bg-[#F59E0B]'
+                    : 'w-2 bg-black/20 hover:bg-black/40'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Right Navigation Arrows & Consultation Action */}
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={handlePrev}
+              className="w-9 h-9 rounded-full bg-white hover:bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center transition-all duration-200 border border-[#C8C5BD] shadow-sm active:scale-95"
+              aria-label="Previous Slide"
+            >
+              <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+            </button>
+
+            <button
+              onClick={handleNext}
+              className="w-9 h-9 rounded-full bg-[#F59E0B] hover:bg-amber-400 text-[#1E1E1E] flex items-center justify-center transition-all duration-200 shadow-sm active:scale-95 font-bold"
+              aria-label="Next Slide"
+            >
+              <ChevronRight className="w-4 h-4 stroke-[3]" />
+            </button>
 
             <button
               onClick={scrollToReachOut}
-              className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-[#1E1E1E] hover:bg-black text-white text-xs sm:text-sm font-bold shadow-md hover-lift transition-all flex-shrink-0 whitespace-nowrap"
+              className="ml-2 inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-[#1E1E1E] hover:bg-black text-white text-xs font-bold shadow-md hover-lift transition-all"
             >
               <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                {currentLang === 'te' ? 'ఉచిత పాలసీ సలహా కొరకు సంప్రదించండి' : 'Request Policy Advisory'}
+                {currentLang === 'te' ? 'సలహా కొరకు సంప్రదించండి' : 'Consult Advisor'}
               </span>
-              <ArrowRight className="w-4 h-4 text-[#F59E0B]" />
+              <ArrowRight className="w-3.5 h-3.5 text-[#F59E0B]" />
             </button>
           </div>
 
