@@ -24,19 +24,20 @@ const notoSansTelugu = Noto_Sans_Telugu({
   weight: ["400", "500", "600", "700"],
 });
 
-// Custom Telugu Heading Font: Syamala Ramana Regular (Regal, Display, Calligraphic)
-const syamalaRamana = localFont({
-  src: "./fonts/syamala_ramana_regular.otf",
+// Custom Telugu Heading Font: Potti Sreeramulu Regular (Authoritative, Classic, Elegant Heading)
+const pottiSreeramuluHeading = localFont({
+  src: "./fonts/potti-sreeramulu-regular.otf",
   variable: "--font-telugu-heading",
   display: "swap",
   weight: "400",
 });
 
-// Custom Telugu Body Font: Potti Sreeramulu Regular (Clean, Highly Legible, Graceful)
-const pottiSreeramulu = localFont({
-  src: "./fonts/potti-sreeramulu-regular.otf",
+// Custom Telugu Body & Supporting Font: NATS Regular (Modern, Ultra-clean, Highly Legible Body)
+const natsBody = localFont({
+  src: "./fonts/NATS_regular.otf",
   variable: "--font-telugu-body",
   display: "swap",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -64,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cinzel.variable} ${plusJakarta.variable} ${notoSansTelugu.variable} ${syamalaRamana.variable} ${pottiSreeramulu.variable}`}>
+    <html lang="en" className={`${cinzel.variable} ${plusJakarta.variable} ${notoSansTelugu.variable} ${pottiSreeramuluHeading.variable} ${natsBody.variable}`}>
       <body className="bg-soil-900 text-ivory-200 antialiased selection:bg-gold-500 selection:text-soil-900">
         {children}
       </body>
