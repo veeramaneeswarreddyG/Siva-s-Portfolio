@@ -145,8 +145,9 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
             };
 
             return (
-              <div
+              <motion.div
                 key={index}
+                whileTap={{ scale: 0.99 }}
                 className="filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:drop-shadow-[0_6px_16px_rgba(0,0,0,0.1)] transition-all duration-300"
               >
                 <div
@@ -154,15 +155,15 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
                   style={clipStyle}
                   className={`cursor-pointer transition-all duration-300 ${
                     isExpanded
-                      ? 'bg-[#1C1A18] text-white py-6 sm:py-8 px-6 sm:px-10'
-                      : 'bg-white hover:bg-[#FBF9F5] text-[#1E1E1E] py-4 sm:py-5 px-6 sm:px-10'
+                      ? 'bg-[#1C1A18] text-white py-5 sm:py-8 px-4.5 xs:px-6 sm:px-10'
+                      : 'bg-white hover:bg-[#FBF9F5] text-[#1E1E1E] py-4 sm:py-5 px-4.5 xs:px-6 sm:px-10'
                   }`}
                 >
                   
                   {/* Row Top: Number + Dotted Guide + Question Title + Orange Action Circle */}
                   <div className="flex items-center justify-between gap-3 sm:gap-6">
                     
-                    <div className="flex items-center flex-1 min-w-0">
+                    <div className="flex items-center flex-1 min-w-0 pr-1">
                       
                       {/* Number in Amber Gold (Matches Reference "01.", "02.") */}
                       <span className="font-mono text-sm sm:text-base font-extrabold text-[#F59E0B] flex-shrink-0 tracking-wider">
@@ -171,14 +172,14 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
 
                       {/* Dotted Connecting Guide Line (Matches Reference Dotted Line) */}
                       <div
-                        className={`hidden sm:block w-10 md:w-16 border-b-2 border-dotted mx-3 md:mx-5 flex-shrink-0 ${
+                        className={`hidden sm:block w-8 md:w-16 border-b-2 border-dotted mx-3 md:mx-5 flex-shrink-0 ${
                           isExpanded ? 'border-white/25' : 'border-[#C8C5BD]'
                         }`}
                       />
 
-                      {/* Question Title */}
+                      {/* Question Title (Fully readable on all screen sizes, never truncated) */}
                       <h3
-                        className={`font-black text-sm sm:text-base md:text-lg tracking-tight truncate sm:whitespace-normal font-sans ${
+                        className={`font-black text-xs xs:text-sm sm:text-base md:text-lg tracking-tight leading-snug break-words ml-2.5 sm:ml-0 font-sans ${
                           isExpanded ? 'text-white' : 'text-[#1E1E1E]'
                         } ${currentLang === 'te' ? 'font-telugu leading-snug' : ''}`}
                       >
@@ -188,11 +189,11 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
 
                     {/* Orange Circular Action Button with Up-Right Arrow (Matches Reference) */}
                     <div
-                      className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center flex-shrink-0 font-black shadow-sm transition-transform duration-300 ${
+                      className={`w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center flex-shrink-0 font-black shadow-sm transition-transform duration-300 ${
                         isExpanded ? 'rotate-90 scale-105' : 'group-hover:scale-105'
                       }`}
                     >
-                      <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.75]" />
+                      <ArrowUpRight className="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 stroke-[2.75]" />
                     </div>
 
                   </div>
@@ -234,7 +235,7 @@ export const MilestonesAccordion: React.FC<MilestonesAccordionProps> = ({
                   </AnimatePresence>
 
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

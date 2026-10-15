@@ -230,6 +230,16 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                 <motion.div
                   key={card.id}
                   layout
+                  drag={isCenter ? 'x' : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={(_, { offset, velocity }) => {
+                    if (offset.x < -40 || velocity.x < -300) {
+                      handleNext();
+                    } else if (offset.x > 40 || velocity.x > 300) {
+                      handlePrev();
+                    }
+                  }}
                   onClick={() => setActiveIndex(index)}
                   initial={{ opacity: 0.4, scale: 0.9 }}
                   animate={{
@@ -238,9 +248,9 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
                     y: isCenter ? 0 : 15,
                   }}
                   transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  className={`relative rounded-[32px] transition-all duration-300 flex flex-col justify-between cursor-pointer ${
+                  className={`relative rounded-[32px] transition-all duration-300 flex flex-col justify-between cursor-pointer touch-pan-y ${
                     isCenter
-                      ? 'w-[320px] sm:w-[380px] md:w-[420px] h-[520px] sm:h-[560px] bg-white border border-[#E2DFD7] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.12)] z-20 p-6 sm:p-8'
+                      ? 'w-[calc(100vw-40px)] max-w-[340px] xs:max-w-[360px] sm:max-w-[400px] md:max-w-[420px] h-[520px] sm:h-[560px] bg-white border border-[#E2DFD7] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.12)] z-20 p-5 sm:p-8'
                       : 'hidden md:flex w-[180px] lg:w-[220px] h-[440px] sm:h-[480px] bg-white/70 hover:bg-white/90 border border-[#E2DFD7]/80 shadow-md z-10 p-5 items-center text-center'
                   }`}
                 >
@@ -361,10 +371,17 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
 
           </div>
 
+          {/* Mobile Interactive Swipe Hint */}
+          <div className="md:hidden flex items-center justify-center space-x-2 text-[11px] font-bold text-[#8C857B] mt-3">
+            <span className="text-[#F59E0B] font-bold animate-pulse text-sm">‹</span>
+            <span>{currentLang === 'te' ? 'స్వైప్ చేసి కథలను చూడండి' : 'Swipe card left or right to explore'}</span>
+            <span className="text-[#F59E0B] font-bold animate-pulse text-sm">›</span>
+          </div>
+
         </div>
 
-        {/* BOTTOM METRICS & NAVIGATION BAR (Matches Reference Bottom Style "Ageeva / Websites + Web Apps") */}
-        <div className="mt-8 pt-6 border-t border-[#C8C5BD] flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* BOTTOM METRICS & NAVIGATION BAR */}
+        <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-[#C8C5BD] flex flex-col sm:flex-row items-center justify-between gap-4">
           
           {/* Left Brand Identity */}
           <div className="flex items-center space-x-3 text-center sm:text-left">
@@ -389,10 +406,10 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
               <button
                 key={idx}
                 onClick={() => setActiveIndex(idx)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-2.5 rounded-full transition-all duration-300 active:scale-90 ${
                   activeIndex === idx
                     ? 'w-8 bg-[#F59E0B]'
-                    : 'w-2 bg-black/20 hover:bg-black/40'
+                    : 'w-2.5 bg-black/20 hover:bg-black/40'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
@@ -400,10 +417,10 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
           </div>
 
           {/* Right Navigation Arrows & Consultation Action */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <button
               onClick={handlePrev}
-              className="w-9 h-9 rounded-full bg-white hover:bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center transition-all duration-200 border border-[#C8C5BD] shadow-sm active:scale-95"
+              className="w-10 h-10 rounded-full bg-white hover:bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center transition-all duration-200 border border-[#C8C5BD] shadow-sm active:scale-90"
               aria-label="Previous Slide"
             >
               <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
@@ -411,7 +428,7 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
 
             <button
               onClick={handleNext}
-              className="w-9 h-9 rounded-full bg-[#F59E0B] hover:bg-amber-400 text-[#1E1E1E] flex items-center justify-center transition-all duration-200 shadow-sm active:scale-95 font-bold"
+              className="w-10 h-10 rounded-full bg-[#F59E0B] hover:bg-amber-400 text-[#1E1E1E] flex items-center justify-center transition-all duration-200 shadow-sm active:scale-90 font-bold"
               aria-label="Next Slide"
             >
               <ChevronRight className="w-4 h-4 stroke-[3]" />
@@ -419,10 +436,10 @@ export const RootsSection: React.FC<RootsSectionProps> = ({ currentLang }) => {
 
             <button
               onClick={scrollToReachOut}
-              className="ml-2 inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-[#1E1E1E] hover:bg-black text-white text-xs font-bold shadow-md hover-lift transition-all"
+              className="ml-1 sm:ml-2 inline-flex items-center space-x-2 px-4 py-2.5 rounded-full bg-[#1E1E1E] hover:bg-black text-white text-xs font-bold shadow-md hover-lift active:scale-95 transition-all"
             >
               <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                {currentLang === 'te' ? 'సలహా కొరకు సంప్రదించండి' : 'Consult Advisor'}
+                {currentLang === 'te' ? 'సంప్రదించండి' : 'Consult Advisor'}
               </span>
               <ArrowRight className="w-3.5 h-3.5 text-[#F59E0B]" />
             </button>

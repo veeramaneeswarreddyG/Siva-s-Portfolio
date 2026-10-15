@@ -72,14 +72,14 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[360px] sm:max-w-[400px] h-[500px] sm:h-[570px] rounded-[36px] overflow-hidden shadow-2xl border-4 border-amberGold-500/40 bg-cream-200 group">
+            <div className="relative w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[400px] h-[440px] xs:h-[490px] sm:h-[570px] rounded-[32px] sm:rounded-[36px] overflow-hidden shadow-2xl border-4 border-amberGold-500/40 bg-cream-200 group">
               
-              {/* Thumbs-Up Image: Fully Bright, Natural & Clear (No dark dimming gradient) */}
+              {/* Thumbs-Up Image: Fully Bright, Natural & Clear (Lazy Loaded) */}
               <Image
                 src="/images/sivarami_thumbsup.jpg"
                 alt="G Sivarami Reddy"
                 fill
-                priority
+                loading="lazy"
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-105 brightness-100 contrast-100"
               />
 
@@ -141,11 +141,12 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                 : 'Chief Advisor • Jammalamadugu Branch • Kadapa Division'}
             </p>
 
-            {/* Direct Contact Cards */}
+            {/* Direct Contact Cards with Tactile Micro-Interactions */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               
               {/* Phone / Call */}
-              <a
+              <motion.a
+                whileTap={{ scale: 0.96 }}
                 href="tel:8919358526"
                 className="p-3.5 rounded-xl bg-white border border-cream-400 hover:border-amberGold-500 shadow-sm hover-lift flex items-center space-x-3 transition-all group"
               >
@@ -162,10 +163,11 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                     8919358526
                   </span>
                 </div>
-              </a>
+              </motion.a>
 
               {/* Email */}
-              <a
+              <motion.a
+                whileTap={{ scale: 0.96 }}
                 href="mailto:gadikotalic@gmail.com"
                 className="p-3.5 rounded-xl bg-white border border-cream-400 hover:border-amberGold-500 shadow-sm hover-lift flex items-center space-x-3 transition-all group"
               >
@@ -182,7 +184,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                     gadikotalic@gmail.com
                   </span>
                 </div>
-              </a>
+              </motion.a>
 
               {/* Office Address */}
               <div className="sm:col-span-2 p-3.5 rounded-xl bg-white border border-cream-400 shadow-sm flex items-start space-x-3">
@@ -243,7 +245,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                       placeholder={currentLang === 'te' ? 'మీ పేరు' : 'Your Name'}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className={`px-3.5 py-2.5 rounded-xl bg-cream-100 border border-cream-300 text-xs text-charcoal-950 focus:outline-none focus:border-amberGold-500 font-medium ${
+                      className={`px-3.5 py-2.5 rounded-xl bg-cream-100 border border-cream-300 text-sm sm:text-xs text-charcoal-950 focus:outline-none focus:border-amberGold-500 font-medium ${
                         currentLang === 'te' ? 'font-telugu' : ''
                       }`}
                     />
@@ -253,7 +255,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                       placeholder={currentLang === 'te' ? 'మీ ఫోన్ నంబర్' : 'Your Phone Number'}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="px-3.5 py-2.5 rounded-xl bg-cream-100 border border-cream-300 text-xs text-charcoal-950 focus:outline-none focus:border-amberGold-500 font-medium"
+                      className="px-3.5 py-2.5 rounded-xl bg-cream-100 border border-cream-300 text-sm sm:text-xs text-charcoal-950 focus:outline-none focus:border-amberGold-500 font-medium"
                     />
                   </div>
 
@@ -261,7 +263,7 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                     <select
                       value={formData.inquiryType}
                       onChange={(e) => setFormData({ ...formData, inquiryType: e.target.value })}
-                      className={`px-3 py-2.5 rounded-xl bg-cream-100 border border-cream-300 text-xs text-charcoal-800 focus:outline-none focus:border-amberGold-500 font-medium ${
+                      className={`px-3 py-2.5 rounded-xl bg-cream-100 border border-cream-300 text-sm sm:text-xs text-charcoal-800 focus:outline-none focus:border-amberGold-500 font-medium ${
                         currentLang === 'te' ? 'font-telugu' : ''
                       }`}
                     >
@@ -282,15 +284,17 @@ export const ReachOutSection: React.FC<ReachOutSectionProps> = ({ currentLang })
                       )}
                     </select>
 
-                    <button
+                    <motion.button
+                      whileTap={{ scale: 0.96 }}
+                      whileHover={{ scale: 1.02 }}
                       type="submit"
-                      className="flex-1 py-2.5 px-5 rounded-xl bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover-lift button-press transition-all"
+                      className="flex-1 py-2.5 px-5 rounded-xl bg-amberGold-500 hover:bg-amberGold-600 text-charcoal-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover-lift transition-all"
                     >
                       <span className={currentLang === 'te' ? 'font-telugu' : ''}>
                         {currentLang === 'te' ? 'కాల్ రిక్వెస్ట్ పంపండి' : 'Request Callback'}
                       </span>
                       <Send className="w-3.5 h-3.5" />
-                    </button>
+                    </motion.button>
                   </div>
                 </form>
               )}

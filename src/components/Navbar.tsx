@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Language } from '@/types';
 import { Globe, Menu, X, ArrowUpRight, PhoneCall } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavbarProps {
   currentLang: Language;
@@ -135,10 +136,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             </button>
 
-            {/* "Request a Call" Button: Smooth scroll to #reach-out */}
+            {/* "Request a Call" Button: Desktop/Tablet view */}
             <button
               onClick={() => scrollTo('reach-out')}
-              className="inline-flex items-center space-x-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-black bg-[#F59E0B] hover:bg-amber-500 text-[#1E1E1E] shadow-sm hover:scale-[1.02] active:scale-95 transition-all whitespace-nowrap"
+              className="hidden sm:inline-flex items-center space-x-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-black bg-[#F59E0B] hover:bg-amber-500 text-[#1E1E1E] shadow-sm hover:scale-[1.02] active:scale-95 transition-all whitespace-nowrap"
             >
               <PhoneCall className="w-3.5 h-3.5" />
               <span className={currentLang === 'te' ? 'font-telugu' : ''}>
@@ -146,10 +147,19 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             </button>
 
+            {/* Mobile Direct Call Icon Shortcut */}
+            <a
+              href="tel:8919358526"
+              className="sm:hidden p-2 rounded-full bg-[#F59E0B] text-[#1E1E1E] flex items-center justify-center shadow-sm active:scale-90 transition-transform"
+              aria-label="Call 8919358526"
+            >
+              <PhoneCall className="w-3.5 h-3.5" />
+            </a>
+
             {/* Mobile Menu Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 rounded-full text-[#1E1E1E] bg-black/5 hover:bg-black/10 transition-colors"
+              className="md:hidden p-2 rounded-full text-[#1E1E1E] bg-black/5 hover:bg-black/10 active:scale-90 transition-all flex items-center justify-center"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -160,42 +170,50 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       </div>
 
-      {/* Mobile Drawer (Liquid Glass Styled) */}
-      {mobileMenuOpen && (
-        <div className="md:hidden max-w-sm mx-auto mt-2 px-4 pointer-events-auto">
-          <div className="bg-white/85 backdrop-blur-2xl border border-white/80 rounded-2xl p-4 shadow-xl space-y-1.5 animate-in slide-in-from-top-2 duration-200">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollTo(link.id)}
-                className={`w-full text-left px-3 py-2 text-xs font-bold rounded-xl transition-colors flex items-center justify-between ${
-                  activeSection === link.id
-                    ? 'bg-[#F59E0B] text-[#1E1E1E] font-bold'
-                    : 'text-[#3A3A38] hover:bg-black/5'
-                }`}
-              >
-                <span className={currentLang === 'te' ? 'font-telugu' : ''}>
-                  {link.label[currentLang]}
-                </span>
-                {activeSection === link.id && <ArrowUpRight className="w-3.5 h-3.5" />}
-              </button>
-            ))}
+      {/* Mobile Drawer (Animated Liquid Glass with Spring Physics) */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -12, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.98 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+            className="md:hidden max-w-sm mx-auto mt-2 px-4 pointer-events-auto"
+          >
+            <div className="bg-white/95 backdrop-blur-2xl border border-white/90 rounded-2xl p-4 shadow-[0_20px_50px_rgba(0,0,0,0.18)] space-y-1.5">
+              {navLinks.map((link, idx) => (
+                <motion.button
+                  key={link.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.04 }}
+                  onClick={() => scrollTo(link.id)}
+                  className={`w-full text-left px-3.5 py-2.5 text-xs font-bold rounded-xl transition-all flex items-center justify-between active:scale-[0.98] ${
+                    activeSection === link.id
+                      ? 'bg-[#F59E0B] text-[#1E1E1E] shadow-sm'
+                      : 'text-[#3A3A38] hover:bg-black/5'
+                  }`}
+                >
+                  <span className={currentLang === 'te' ? 'font-telugu' : ''}>
+                    {link.label[currentLang]}
+                  </span>
+                  {activeSection === link.id && <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />}
+                </motion.button>
+              ))}
 
-            <div className="pt-2 border-t border-black/10">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  scrollTo('reach-out');
-                }}
-                className="w-full text-center py-2.5 rounded-full bg-[#F59E0B] text-[#1E1E1E] text-xs font-bold flex items-center justify-center space-x-1.5"
-              >
-                <PhoneCall className="w-3.5 h-3.5" />
-                <span>{currentLang === 'te' ? 'కాల్ కొరకు అభ్యర్థించండి' : 'Request a Call (8919358526)'}</span>
-              </button>
+              <div className="pt-3 border-t border-black/10 space-y-2">
+                <a
+                  href="tel:8919358526"
+                  className="w-full text-center py-2.5 rounded-full bg-[#F59E0B] text-[#1E1E1E] text-xs font-extrabold flex items-center justify-center space-x-2 shadow-sm active:scale-95 transition-transform"
+                >
+                  <PhoneCall className="w-3.5 h-3.5" />
+                  <span>{currentLang === 'te' ? 'నేరుగా కాల్: 8919358526' : 'Direct Call: 8919358526'}</span>
+                </a>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

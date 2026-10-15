@@ -56,15 +56,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="relative w-full max-w-[380px] sm:max-w-[420px] aspect-[932/1024] rounded-[28px] overflow-hidden border-2 border-amberGold-500/40 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] group bg-charcoal-900">
+            <div className="relative w-full max-w-[340px] xs:max-w-[380px] sm:max-w-[420px] aspect-[932/1024] rounded-2xl sm:rounded-[28px] overflow-hidden border-2 border-amberGold-500/40 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.7)] group bg-charcoal-900">
               
-              {/* Full-Fill Conversational Photo */}
+              {/* Full-Fill Conversational Photo (Lazy Loaded) */}
               <Image
                 src="/images/sivarami_conversational.jpg"
                 alt="G Sivarami Reddy in Conversation"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
-                priority
+                loading="lazy"
                 className="object-cover object-[center_20%] transition-transform duration-700 ease-out group-hover:scale-105"
               />
 
@@ -124,27 +124,34 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               </p>
             </div>
 
-            {/* Stat Boxes Grid */}
+            {/* Stat Boxes Grid with Tactile Micro-Interactions */}
             <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
               {stats.map((s, idx) => (
-                <div key={idx} className="p-3.5 sm:p-4 rounded-xl bg-charcoal-900 border border-charcoal-800">
+                <motion.div
+                  key={idx}
+                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  className="p-3.5 sm:p-4 rounded-xl bg-charcoal-900 border border-charcoal-800 transition-colors hover:border-amberGold-500/50 cursor-pointer"
+                >
                   <div className={`font-extrabold text-base sm:text-lg text-amberGold-400 font-sans ${
                     currentLang === 'te' ? 'font-telugu' : ''
                   }`}>
                     {s.value[currentLang]}
                   </div>
-                  <div className={`text-xs text-cream-400/80 mt-0.5 ${
+                  <div className={`text-xs text-cream-400/80 mt-0.5 leading-snug ${
                     currentLang === 'te' ? 'font-telugu' : ''
                   }`}>
                     {s.label[currentLang]}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
             {/* Action CTA */}
             <div className="pt-2">
-              <button
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
                 onClick={() => {
                   const el = document.getElementById('reach-out');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -155,7 +162,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
                   {currentLang === 'te' ? 'సలహా కొరకు సంప్రదించండి' : 'Connect for Advisory'}
                 </span>
                 <ArrowRight className="w-3.5 h-3.5" />
-              </button>
+              </motion.button>
             </div>
 
           </motion.div>

@@ -64,11 +64,12 @@ export const HumanImpactSection: React.FC<HumanImpactSectionProps> = ({ currentL
             return (
               <motion.div
                 key={idx}
+                whileTap={{ scale: 0.97 }}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.6, delay: idx * 0.15 }}
-                className="p-8 rounded-2xl bg-white border border-cream-400 shadow-sm hover-lift"
+                className="p-6 sm:p-8 rounded-2xl bg-white border border-cream-400 shadow-sm hover-lift cursor-pointer transition-all hover:border-amberGold-500/50"
               >
                 <div className="w-12 h-12 rounded-xl bg-cream-200 text-amberGold-600 flex items-center justify-center mb-6">
                   <Icon className="w-6 h-6" />

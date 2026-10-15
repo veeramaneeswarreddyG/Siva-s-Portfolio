@@ -57,18 +57,19 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
           </p>
         </div>
 
-        {/* Cards Grid: Agent -> LIAFI -> CLIA -> 3x Diamond Brigade Club */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Cards: Horizontal Snap-Swipe on Mobile, Grid on Tablet/Desktop */}
+        <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 overflow-x-auto sm:overflow-visible pb-4 sm:pb-0 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-none">
           {items.map((item, idx) => {
             const isDiamond = item.id === 'rec-diamond-brigade';
             return (
               <motion.div
                 key={item.id}
+                whileTap={{ scale: 0.97 }}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className={`group relative p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 hover-lift ${
+                className={`group relative p-6 rounded-2xl flex flex-col justify-between transition-all duration-300 hover-lift snap-center flex-shrink-0 w-[82vw] xs:w-[300px] sm:w-auto ${
                   isDiamond
                     ? 'bg-charcoal-950 text-white border-2 border-amberGold-500 shadow-xl'
                     : 'bg-white hover:bg-cream-100 text-charcoal-900 border border-cream-400 shadow-sm'
@@ -136,6 +137,13 @@ export const RecognitionsShowcase: React.FC<RecognitionsShowcaseProps> = ({
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Mobile Swipe Hint */}
+        <div className="sm:hidden flex items-center justify-center space-x-2 text-[11px] font-bold text-[#8C857B] mt-4">
+          <span className="text-[#F59E0B] animate-pulse">‹</span>
+          <span>{currentLang === 'te' ? 'హోదాలు చూడటానికి స్వైప్ చేయండి' : 'Swipe horizontally to view all distinctions'}</span>
+          <span className="text-[#F59E0B] animate-pulse">›</span>
         </div>
 
       </div>

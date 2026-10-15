@@ -1,16 +1,79 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { Language } from '@/types';
 import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { MarqueeStrip } from '@/components/MarqueeStrip';
-import { RootsSection } from '@/components/RootsSection';
-import { MilestonesAccordion } from '@/components/MilestonesAccordion';
-import { AboutSection } from '@/components/AboutSection';
-import { RecognitionsShowcase } from '@/components/RecognitionsShowcase';
-import { HumanImpactSection } from '@/components/HumanImpactSection';
-import { ReachOutSection } from '@/components/ReachOutSection';
+
+// Lazy load below-the-fold components entirely for blazing-fast mobile performance
+const RootsSection = dynamic(
+  () => import('@/components/RootsSection').then((mod) => mod.RootsSection),
+  {
+    ssr: true,
+    loading: () => (
+      <div className="w-full min-h-[500px] bg-[#ECEAE5] flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full border-2 border-[#F59E0B] border-t-transparent animate-spin" />
+      </div>
+    ),
+  }
+);
+
+const MilestonesAccordion = dynamic(
+  () => import('@/components/MilestonesAccordion').then((mod) => mod.MilestonesAccordion),
+  {
+    ssr: true,
+    loading: () => (
+      <div className="w-full min-h-[400px] bg-[#ECEAE5]" />
+    ),
+  }
+);
+
+const AboutSection = dynamic(
+  () => import('@/components/AboutSection').then((mod) => mod.AboutSection),
+  {
+    ssr: true,
+    loading: () => (
+      <div className="w-full min-h-[500px] bg-[#0F0F0E]" />
+    ),
+  }
+);
+
+const RecognitionsShowcase = dynamic(
+  () => import('@/components/RecognitionsShowcase').then((mod) => mod.RecognitionsShowcase),
+  {
+    ssr: true,
+    loading: () => (
+      <div className="w-full min-h-[400px] bg-[#FAF5EB]" />
+    ),
+  }
+);
+
+const HumanImpactSection = dynamic(
+  () => import('@/components/HumanImpactSection').then((mod) => mod.HumanImpactSection),
+  {
+    ssr: true,
+    loading: () => (
+      <div className="w-full min-h-[350px] bg-[#FAF5EB]" />
+    ),
+  }
+);
+
+const ReachOutSection = dynamic(
+  () => import('@/components/ReachOutSection').then((mod) => mod.ReachOutSection),
+  {
+    ssr: true,
+    loading: () => (
+      <div className="w-full min-h-[500px] bg-[#FAF5EB]" />
+    ),
+  }
+);
+
+const MobileActionDock = dynamic(
+  () => import('@/components/MobileActionDock').then((mod) => mod.MobileActionDock),
+  { ssr: false }
+);
 
 export default function Home() {
   const [currentLang, setCurrentLang] = useState<Language>('en');
@@ -53,7 +116,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative min-h-screen bg-cream-200 text-charcoal-950 font-sans selection:bg-amberGold-500 selection:text-white">
+    <main className="relative min-h-screen bg-cream-200 text-charcoal-950 font-sans selection:bg-amberGold-500 selection:text-white overflow-x-hidden">
       
       {/* Minimal, Collapsible & Recoverable Navbar */}
       <Navbar
@@ -62,32 +125,38 @@ export default function Home() {
         activeSection={activeSection}
       />
 
-      {/* Hero Section with Floating Cutout Portrait */}
+      {/* Hero Section with Floating Cutout Portrait (Rendered Immediately) */}
       <HeroSection currentLang={currentLang} />
 
       {/* Marquee Ticker Strip: District Hubs */}
       <MarqueeStrip currentLang={currentLang} />
 
-      {/* The LIC Story: Interactive Swiping Carousel */}
+      {/* The LIC Story: Interactive Swiping Carousel (Lazy Loaded) */}
       <RootsSection currentLang={currentLang} />
 
-      {/* Public Concerns & Advisory Solutions: Stepped-Polygon Accordion */}
+      {/* Public Concerns & Advisory Solutions: Stepped-Polygon Accordion (Lazy Loaded) */}
       <MilestonesAccordion currentLang={currentLang} />
 
-      {/* About Him Split Section */}
+      {/* About Him Split Section (Lazy Loaded) */}
       <AboutSection currentLang={currentLang} />
 
-      {/* Career Progression & Distinctions: Agent -> LIAFI -> CLIA -> 3x Diamond Brigade Club */}
+      {/* Career Progression & Distinctions: Agent -> LIAFI -> CLIA -> 3x Diamond Brigade Club (Lazy Loaded) */}
       <RecognitionsShowcase currentLang={currentLang} />
 
-      {/* Human Significance & Generational Impact */}
+      {/* Human Significance & Generational Impact (Lazy Loaded) */}
       <HumanImpactSection currentLang={currentLang} />
 
-      {/* Reach Out & Connect (The Final Section) */}
+      {/* Reach Out & Connect: The Final Section (Lazy Loaded) */}
       <ReachOutSection currentLang={currentLang} />
 
+      {/* Mobile Floating Action Dock (Call, WhatsApp, Lang Switch, Scroll Top) */}
+      <MobileActionDock
+        currentLang={currentLang}
+        onLanguageChange={handleLanguageChange}
+      />
+
       {/* Clean Colophon Footer */}
-      <footer className="bg-charcoal-950 text-cream-400 py-8 px-4 border-t border-charcoal-800 text-center text-xs">
+      <footer className="bg-charcoal-950 text-cream-400 py-8 px-4 pb-20 md:pb-8 border-t border-charcoal-800 text-center text-xs">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <p>
             {currentLang === 'te'
