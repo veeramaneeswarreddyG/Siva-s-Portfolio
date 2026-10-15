@@ -6,6 +6,7 @@ import { Language } from '@/types';
 import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { MarqueeStrip } from '@/components/MarqueeStrip';
+import { Preloader } from '@/components/Preloader';
 
 // Lazy load below-the-fold components entirely for blazing-fast mobile performance
 const RootsSection = dynamic(
@@ -118,6 +119,9 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-cream-200 text-charcoal-950 font-sans selection:bg-amberGold-500 selection:text-white overflow-x-hidden">
       
+      {/* Cinematic Initial Preloader */}
+      <Preloader />
+
       {/* Minimal, Collapsible & Recoverable Navbar */}
       <Navbar
         currentLang={currentLang}
